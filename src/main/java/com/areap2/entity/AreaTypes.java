@@ -45,4 +45,11 @@ public class AreaTypes implements Serializable {
 	@Column(name = "updated_dtm")
 	private Timestamp updatedDtm;
 
+	@Column(name = "status")
+	private String status;
+
+	
+	@Column(name = "status_code")
+	private String statusCode;
+
 }

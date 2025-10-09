@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.areap2.constant.ModelConstant;
 import com.areap2.entity.AreaTypes;
 import com.areap2.entity.AuditLog;
 import com.areap2.entity.CircleDetails;
@@ -470,6 +471,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			districtDetails.setDistrictName(districtDetailsModel.getDistrictName());
 			districtDetails.setCreatedBy(loginId);
 			districtDetails.setActive(true);
+			districtDetails.setStatus(ModelConstant.PEN_J_M);
+			districtDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			log.info(
 					"Saving District Details | District Name: {} | District Code: {} | Created By: {} | Method: {} | Class: {}",
@@ -481,7 +484,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Log action
 			logAction(loginId, "District", "ADD", "District Code: " + savedDistrictDetails.getDistrictCode(),
-					"District added successfully with name: " + savedDistrictDetails.getDistrictName());
+					"District added successfully with name: " + savedDistrictDetails.getDistrictName(),
+					ModelConstant.PEN_DIST_J_M);
 
 			// Build response
 			response.setData(savedDistrictDetails);
@@ -557,6 +561,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			DistrictDetails updatedDistrict = new DistrictDetails();
 			updatedDistrict.setDistrictCode(districtDetailsModel.getDistrictCode());
 			updatedDistrict.setDistrictName(districtDetailsModel.getDistrictName());
+
+			updatedDistrict.setStatus(ModelConstant.PEN_J_M);
+			updatedDistrict.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			updatedDistrict.setActive(true);
 			updatedDistrict.setCreatedBy(existingDistrict.getCreatedBy());
 			updatedDistrict.setCreatedDtm(existingDistrict.getCreatedDtm());
@@ -566,7 +573,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			DistrictDetails savedDistrict = districtDetailsRepo.save(updatedDistrict);
 
 			logAction(loginId, "District", "UPDATE", "District Code: " + savedDistrict.getDistrictCode(),
-					"District updated successfully with name: " + savedDistrict.getDistrictName());
+					"District updated successfully with name: " + savedDistrict.getDistrictName(),
+					ModelConstant.PEN_DIST_J_M);
 
 			response.setData(savedDistrict);
 			response.setHttpStatus(HttpStatus.OK);
@@ -628,12 +636,16 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Mark as inactive
 			districtDetails.setActive(false);
+
+			districtDetails.setStatus(ModelConstant.PEN_J_M);
+			districtDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			districtDetails.setUpdatedBy(loginId);
 			districtDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
 			DistrictDetails savedDistrict = districtDetailsRepo.save(districtDetails);
 
 			logAction(loginId, "District", "DELETE", "District Code: " + savedDistrict.getDistrictCode(),
-					"District deleted (set active=false) , name: " + savedDistrict.getDistrictName());
+					"District deleted (set active=false) , name: " + savedDistrict.getDistrictName(),
+					ModelConstant.PEN_DIST_J_M);
 
 			response.setData(savedDistrict);
 			response.setHttpStatus(HttpStatus.OK);
@@ -690,6 +702,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			circleDetails.setDistrictCode(circleDetailsModel.getDistrictCode());
 			circleDetails.setCreatedBy(loginId);
 			circleDetails.setActive(true);
+			circleDetails.setStatus(ModelConstant.PEN_J_M);
+			circleDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			// Save entity
 			CircleDetails savedCircle = circleDetailsRepo.saveAndFlush(circleDetails);
@@ -697,7 +711,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			// Log action
 			logAction(loginId, "Circle", "ADD",
 					"District Code: " + savedCircle.getDistrictCode() + ", Circle Code:" + savedCircle.getCircleCode(),
-					"Circle  added successfully with name: " + savedCircle.getCircleName());
+					"Circle  added successfully with name: " + savedCircle.getCircleName(),
+					ModelConstant.PEN_CIRCLE_J_M);
 
 			response.setData(savedCircle);
 			response.setHttpStatus(HttpStatus.OK);
@@ -769,6 +784,7 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Create new record with updated details
 			CircleDetails updatedCircle = new CircleDetails();
+
 			updatedCircle.setCircleCode(circleDetailsModel.getCircleCode());
 			updatedCircle.setCircleName(circleDetailsModel.getCircleName());
 			updatedCircle.setDistrictCode(circleDetailsModel.getDistrictCode());
@@ -777,13 +793,16 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			updatedCircle.setCreatedDtm(existingCircle.getCreatedDtm());
 			updatedCircle.setUpdatedBy(loginId);
 			updatedCircle.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			updatedCircle.setStatus(ModelConstant.PEN_J_M);
+			updatedCircle.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			CircleDetails savedCircle = circleDetailsRepo.save(updatedCircle);
 
 			// Log action
 			logAction(loginId, "Circle", "UPDATE",
 					"District Code: " + savedCircle.getDistrictCode() + ", Circle Code:" + savedCircle.getCircleCode(),
-					"Circle updated successfully with name: " + savedCircle.getCircleName());
+					"Circle updated successfully with name: " + savedCircle.getCircleName(),
+					ModelConstant.PEN_CIRCLE_J_M);
 
 			response.setData(savedCircle);
 			response.setHttpStatus(HttpStatus.OK);
@@ -849,11 +868,14 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			circleDetails.setActive(false);
 			circleDetails.setUpdatedBy(loginId);
 			circleDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			circleDetails.setStatus(ModelConstant.PEN_J_M);
+			circleDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			CircleDetails savedCircle = circleDetailsRepo.save(circleDetails);
 
 			// Log action
 			logAction(loginId, "Circle", "DELETE", "Circle Code:" + savedCircle.getCircleCode(),
-					"Circle  deleted (set active=false) with name: " + savedCircle.getCircleName());
+					"Circle  deleted (set active=false) with name: " + savedCircle.getCircleName(),
+					ModelConstant.PEN_CIRCLE_J_M);
 
 			response.setData(savedCircle);
 			response.setHttpStatus(HttpStatus.OK);
@@ -911,6 +933,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			villageDetails.setCircleCode(villageDetailsModel.getCircleCode());
 			villageDetails.setCreatedBy(loginId);
 			villageDetails.setActive(true);
+			villageDetails.setStatus(ModelConstant.PEN_J_M);
+			villageDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			VillageDetails savedVillageDetails = villageDetailsRepo.saveAndFlush(villageDetails);
 			// Log action
@@ -918,7 +942,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					"District Code: " + savedVillageDetails.getDistrictCode() + ", Circle Code: "
 							+ savedVillageDetails.getCircleCode() + ", Village Code: "
 							+ savedVillageDetails.getVillageCode(),
-					"Village added successfully with name: " + savedVillageDetails.getVillageName());
+					"Village added successfully with name: " + savedVillageDetails.getVillageName(),
+					ModelConstant.PEN_VILL_J_M);
 
 			response.setData(savedVillageDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -993,14 +1018,16 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			newVillage.setCreatedDtm(oldVillage.getCreatedDtm());
 			newVillage.setUpdatedBy(loginId);
 			newVillage.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			newVillage.setStatus(ModelConstant.PEN_J_M);
+			newVillage.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			// Save both (old + new) in one go
 			villageDetailsRepo.saveAll(Arrays.asList(oldVillage, newVillage));
 			// Log action
 			logAction(loginId, "Village", "UPDATE",
 					"District Code: " + newVillage.getDistrictCode() + ", Circle Code: " + newVillage.getCircleCode()
 							+ ", Village Code: " + newVillage.getVillageCode(),
-					"Village updated successfully with name: " + newVillage.getVillageName());
+					"Village updated successfully with name: " + newVillage.getVillageName(),
+					ModelConstant.PEN_VILL_J_M);
 
 			response.setData(newVillage);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1058,11 +1085,14 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			villageDetails.setActive(false);
 			villageDetails.setUpdatedBy(loginId);
 			villageDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			villageDetails.setStatus(ModelConstant.PEN_J_M);
+			villageDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			VillageDetails savedVillageDetails = villageDetailsRepo.save(villageDetails);
 			logAction(loginId, "District", "DELETE", savedVillageDetails.getVillageCode(),
 					"District deleted (set active=false successfully with name: "
-							+ savedVillageDetails.getVillageName());
+							+ savedVillageDetails.getVillageName(),
+					ModelConstant.PEN_VILL_J_M);
 			response.setData(savedVillageDetails);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("Village Deleted Successfully");
@@ -1119,6 +1149,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			mouzaDetails.setAreaTypeId(mouzaDetailsModel.getAreaTypeId());
 			mouzaDetails.setCreatedBy(loginId);
 			mouzaDetails.setActive(true);
+			mouzaDetails.setStatus(ModelConstant.PEN_J_M);
+			mouzaDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.saveAndFlush(mouzaDetails);
 			// Log action
@@ -1126,7 +1158,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					"District Code: " + savedMouzaDetails.getDistrictCode() + ", Circle Code: "
 							+ savedMouzaDetails.getCircleCode() + ", Area Type Id Code: "
 							+ savedMouzaDetails.getAreaTypeId() + ", Mauza Code: " + savedMouzaDetails.getMouzaCode(),
-					"Mauza added successfully with name: " + savedMouzaDetails.getMouzaName());
+					"Mauza added successfully with name: " + savedMouzaDetails.getMouzaName(),
+					ModelConstant.PEN_MOUZA_J_M);
 
 			response.setData(savedMouzaDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1203,14 +1236,16 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			updatedMouza.setCreatedDtm(existingMouza.getCreatedDtm());
 			updatedMouza.setUpdatedBy(loginId);
 			updatedMouza.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			updatedMouza.setStatus(ModelConstant.PEN_J_M);
+			updatedMouza.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.save(updatedMouza);
 			// Log action
 			logAction(loginId, "Mauza", "UPDATE",
 					"District Code: " + savedMouzaDetails.getDistrictCode() + ", Circle Code: "
 							+ savedMouzaDetails.getCircleCode() + ", Area Type Id Code: "
 							+ savedMouzaDetails.getAreaTypeId() + ", Mauza Code: " + savedMouzaDetails.getMouzaCode(),
-					"Mauza updated successfully with name: " + savedMouzaDetails.getMouzaName());
+					"Mauza updated successfully with name: " + savedMouzaDetails.getMouzaName(),
+					ModelConstant.PEN_MOUZA_J_M);
 
 			response.setData(savedMouzaDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1270,12 +1305,14 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			mouzaDetails.setActive(false);
 			mouzaDetails.setUpdatedBy(loginId);
 			mouzaDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			mouzaDetails.setStatus(ModelConstant.PEN_J_M);
+			mouzaDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.save(mouzaDetails);
 			// Log action
 
 			logAction(loginId, "Mauza", "DELETE", savedMouzaDetails.getMouzaCode(),
-					"District deleted (set active=false successfully with name: " + savedMouzaDetails.getMouzaName());
+					"District deleted (set active=false successfully with name: " + savedMouzaDetails.getMouzaName(),
+					ModelConstant.PEN_MOUZA_J_M);
 
 			response.setData(savedMouzaDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1320,11 +1357,14 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			landCategories.setLandCategoryName(landCategoriesModel.getLandCategoryName());
 			landCategories.setCreatedBy(loginId);
 			landCategories.setActive(true);
+			landCategories.setStatus(ModelConstant.PEN_J_M);
+			landCategories.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			LandCategories savedLandCategory = landCategoriesRepo.saveAndFlush(landCategories);
 			// Log action
 			logAction(loginId, "LandUse", "ADD", "Land Code: Not defined"// + savedLandCategory.getDistrictCode(),
-					, "LandUse added successfully with name: " + savedLandCategory.getLandCategoryName());
+					, "LandUse added successfully with name: " + savedLandCategory.getLandCategoryName(),
+					ModelConstant.PEN_LAN_CATE_J_M);
 
 			response.setData(savedLandCategory);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1374,7 +1414,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 				response.setMessage("No Data Found");
 				return response;
 			}
-
+			landCategories.setStatus(ModelConstant.PEN_J_M);
+			landCategories.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			landCategories.setActive(false);
 			landCategories.setUpdatedBy(loginId);
 			landCategories.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
@@ -1383,7 +1424,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			// Log action
 			logAction(loginId, "LandUse", "DELETE", "Land Code: Not defined"// + savedLandCategory.getDistrictCode(),
 					, "LandUse deleted (set active=false) successfully with name: "
-							+ landCategoriesSaved.getLandCategoryName());
+							+ landCategoriesSaved.getLandCategoryName(),
+					ModelConstant.PEN_LAN_CATE_J_M);
 
 			response.setData(landCategoriesSaved);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1427,11 +1469,14 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			areaTypes.setAreaType(areaTypesModel.getAreaType());
 			areaTypes.setCreatedBy(loginId);
 			areaTypes.setActive(true);
+			areaTypes.setStatus(ModelConstant.PEN_J_M);
+			areaTypes.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			AreaTypes savedAreaType = areaTypesRepo.saveAndFlush(areaTypes);
 			// Log action
 			logAction(loginId, "AreaType", "ADD", "Area Type: Not defined",
-					"AreaType added successfully with name: " + savedAreaType.getAreaType());
+					"AreaType added successfully with name: " + savedAreaType.getAreaType(),
+					ModelConstant.PEN_AREA_TYPE_J_M);
 
 			response.setData(savedAreaType);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1483,6 +1528,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			}
 
 			// Soft delete
+			areaTypes.setStatus(ModelConstant.PEN_J_M);
+			areaTypes.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			areaTypes.setActive(false);
 			areaTypes.setUpdatedBy(loginId);
 			areaTypes.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
@@ -1491,7 +1538,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			// Log action
 
 			logAction(loginId, "Area Type", "DELETE", updatedAreaType.getAreaType(),
-					"Area Type deleted (set active=false successfully with name: " + updatedAreaType.getAreaType());
+					"Area Type deleted (set active=false successfully with name: " + updatedAreaType.getAreaType(),
+					ModelConstant.PEN_AREA_TYPE_J_M);
 			response.setData(updatedAreaType);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("AreaType deleted successfully");
@@ -1614,6 +1662,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			lotDetails.setAreaTypeId(lotDetailsModel.getAreaTypeId());
 			lotDetails.setCreatedBy(loginId);
 			lotDetails.setActive(true);
+			lotDetails.setStatus(ModelConstant.PEN_J_M);
+			lotDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			LotDetails savedLotDetails = lotDetailsRepo.saveAndFlush(lotDetails);
 			// Log action
@@ -1621,7 +1671,7 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					"District Code: " + savedLotDetails.getDistrictCode() + ", Circle Code: "
 							+ savedLotDetails.getCircleCode() + ", AreaTypeId Code: " + savedLotDetails.getAreaTypeId()
 							+ ", Lot Code: " + savedLotDetails.getLotCode(),
-					"Lot added successfully with name: " + savedLotDetails.getLotName());
+					"Lot added successfully with name: " + savedLotDetails.getLotName(), ModelConstant.PEN_LOT_J_M);
 			response.setData(savedLotDetails);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("Lot added successfully");
@@ -1698,14 +1748,15 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			updatedLot.setCreatedDtm(existingLot.getCreatedDtm()); // keep original
 			updatedLot.setUpdatedBy(loginId);
 			updatedLot.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			updatedLot.setStatus(ModelConstant.PEN_J_M);
+			updatedLot.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			LotDetails savedLotDetails = lotDetailsRepo.save(updatedLot);
 			// Log action
 			logAction(loginId, "Lot", "UPDATE",
 					"District Code: " + savedLotDetails.getDistrictCode() + ", Circle Code: "
 							+ savedLotDetails.getCircleCode() + ", AreaTypeId Code: " + savedLotDetails.getAreaTypeId()
 							+ ", Lot Code: " + savedLotDetails.getLotCode(),
-					"Lot updated successfully with name: " + savedLotDetails.getLotName());
+					"Lot updated successfully with name: " + savedLotDetails.getLotName(), ModelConstant.PEN_LOT_J_M);
 
 			response.setData(savedLotDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1765,12 +1816,14 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			LotDetails.setActive(false);
 			LotDetails.setUpdatedBy(loginId);
 			LotDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			LotDetails.setStatus(ModelConstant.PEN_J_M);
+			LotDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			LotDetails savedLotDetails = lotDetailsRepo.save(LotDetails);
 			// Log action
 
 			logAction(loginId, "Lot", "DELETE", savedLotDetails.getLotCode(),
-					"Lot deleted (set active=false successfully with name: " + savedLotDetails.getLotName());
+					"Lot deleted (set active=false successfully with name: " + savedLotDetails.getLotName(),
+					ModelConstant.PEN_LOT_J_M);
 			response.setData(savedLotDetails);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("Lot Delete Successfully");
@@ -1912,13 +1965,16 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			landSubClassDetails.setLandClassName(landSubClassDetailsModel.getLandClassName());
 			landSubClassDetails.setCreatedBy(loginId);
 			landSubClassDetails.setActive(true);
+			landSubClassDetails.setStatus(ModelConstant.PEN_J_M);
+			landSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.saveAndFlush(landSubClassDetails);
 			// Log action
 			logAction(loginId, "Land Sub Class", "ADD",
 					"Land Class Name: " + savedLandSubClassDetails.getLandClassName() + ", Land Sub Class Code: "
 							+ savedLandSubClassDetails.getLandSubClassCode(),
-					"Land Sub Class added successfully with name: " + savedLandSubClassDetails.getLandSubClassName());
+					"Land Sub Class added successfully with name: " + savedLandSubClassDetails.getLandSubClassName(),
+					ModelConstant.PEN_LAND_SUB_CLASS_J_M);
 
 			response.setData(savedLandSubClassDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1995,13 +2051,15 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			updatedLandSubClassDetails.setCreatedDtm(existingLandSubClassDetails.getCreatedDtm());
 			updatedLandSubClassDetails.setUpdatedBy(loginId);
 			updatedLandSubClassDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			updatedLandSubClassDetails.setStatus(ModelConstant.PEN_J_M);
+			updatedLandSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.save(updatedLandSubClassDetails);
 
 			logAction(loginId, "Land Sub Class", "UPDATE",
 					"Land Class Name: " + savedLandSubClassDetails.getLandClassName() + ", Land Sub Class Code: "
 							+ savedLandSubClassDetails.getLandSubClassCode(),
-					"Land Sub Class updated successfully with name: " + savedLandSubClassDetails.getLandSubClassName());
+					"Land Sub Class updated successfully with name: " + savedLandSubClassDetails.getLandSubClassName(),
+					ModelConstant.PEN_LAND_SUB_CLASS_J_M);
 
 			response.setData(savedLandSubClassDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -2061,6 +2119,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			LandSubClassDetails.setActive(false);
 			LandSubClassDetails.setUpdatedBy(loginId);
 			LandSubClassDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			LandSubClassDetails.setStatus(ModelConstant.PEN_J_M);
+			LandSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
 			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.save(LandSubClassDetails);
 
@@ -2068,7 +2128,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			logAction(loginId, "District", "DELETE", savedLandSubClassDetails.getLandSubClassCode(),
 					"District deleted (set active=false successfully with name: "
-							+ savedLandSubClassDetails.getLandSubClassName());
+							+ savedLandSubClassDetails.getLandSubClassName(),
+					ModelConstant.PEN_LAND_SUB_CLASS_J_M);
 
 			response.setData(savedLandSubClassDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -2089,7 +2150,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 	}
 
-	public void logAction(String loginId, String featureName, String actionType, String referenceId, String message) {
+	public void logAction(String loginId, String featureName, String actionType, String referenceId, String message,
+			String stat) {
 		AuditLog log = new AuditLog();
 		log.setLoginId(loginId);
 		log.setFeatureName(featureName);
@@ -2097,6 +2159,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 		log.setActionDatetime(new Timestamp(System.currentTimeMillis()));
 		log.setFeatureId(referenceId);
 		log.setMessage(message);
+		log.setStatus(stat);
+		log.setStatusCode(ModelConstant.PEN_J_M_CODE);
 		auditLogRepo.save(log);
 
 	}

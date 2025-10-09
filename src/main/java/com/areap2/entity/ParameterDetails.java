@@ -67,4 +67,12 @@ public class ParameterDetails implements Serializable {
 
 	@Column(name = "approved_dtm")
 	private Timestamp approvedDtm;
+
+	
+	@Column(name = "status")
+	private String status;
+
+	
+	@Column(name = "status_code")
+	private String statusCode;
 }

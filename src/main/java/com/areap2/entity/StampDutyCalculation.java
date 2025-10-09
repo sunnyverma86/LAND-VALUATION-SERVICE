@@ -1,5 +1,4 @@
 package com.areap2.entity;
-
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
