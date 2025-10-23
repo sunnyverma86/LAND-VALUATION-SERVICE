@@ -26,7 +26,7 @@ public class LandCategories implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_land_categories_land_category_gen_id_seq")
 	@Column(name = "land_category_gen_id")
 	private Long landCategoryGenId;
-
+     
 	@Column(name = "land_category_name")
 	private String landCategoryName;
 	

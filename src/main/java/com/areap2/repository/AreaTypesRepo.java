@@ -19,5 +19,11 @@ public interface AreaTypesRepo extends JpaRepository<AreaTypes,Long>{
 	AreaTypes findByAreaTypesGenIdAndActiveTrue(Long areaTypesGenId);
 
 	List<AreaTypes> findAllByActiveTrue();
+
+	List<AreaTypes> findByStatusCode(String statusCode);
+
+	AreaTypes findByAreaTypesGenId(Long id);
+
+	List<AreaTypes> findAllByActiveTrueAndStatus(String status);
 	
 }

@@ -32,6 +32,14 @@ public class AuditLog {
 	private String status;
 	
 	private String statusCode;
+	
+	private Long referenceId;
+	
+	private Long newReferenceId;
+	
+	private Timestamp updateDatetime;
+	
+	private String updatedBy;
 
 	// getters and setters
 }

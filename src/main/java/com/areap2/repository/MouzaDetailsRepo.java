@@ -26,6 +26,13 @@ public interface MouzaDetailsRepo extends JpaRepository<MouzaDetails,Long>{
 	MouzaDetails findByMouzaCodeAndActiveTrue(String mouzaCode);
 
 	List<MouzaDetails> findMouzaByDistrictCodeAndCircleCodeAndActiveTrue(String districtCode, String circleCode);
+
+	List<MouzaDetails> findByStatusCode(String statusCode);
+
+	MouzaDetails findByMouzaGenId(Long id);
+
+	List<MouzaDetails> findMouzaByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(String districtCode,
+			String circleCode, String status);
 	
 	
 } 

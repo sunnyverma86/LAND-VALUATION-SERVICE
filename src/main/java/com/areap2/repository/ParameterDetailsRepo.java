@@ -18,7 +18,8 @@ public interface ParameterDetailsRepo extends JpaRepository<ParameterDetails, Lo
 
 	// List<ParameterDetails> findParameterDetailsByRangeAndActiveTrue(BigDecimal
 	// minRange, BigDecimal maxRange);
-	List<ParameterDetails> findByMinRangeInMetersGreaterThanEqualAndMaxRangeInMetersLessThanEqualAndActiveTrue(
-			BigDecimal minRange, BigDecimal maxRange);
+
+	List<ParameterDetails> findByMinRangeInMetersGreaterThanEqualAndMaxRangeInMetersLessThanEqualAndActiveTrueAndStatus(
+			BigDecimal minRange, BigDecimal maxRange,String status);
 
 }

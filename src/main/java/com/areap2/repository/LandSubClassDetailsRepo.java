@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.areap2.entity.DistrictDetails;
 import com.areap2.entity.LandSubClassDetails;
 
 @Repository
@@ -17,5 +18,14 @@ public interface LandSubClassDetailsRepo extends JpaRepository<LandSubClassDetai
 	Integer findMaxLandSubClassCode();
 
 	LandSubClassDetails findByLandSubClassNameAndActiveTrue(String landSubClassName);
+
+	List<DistrictDetails> findByStatusCode(String statusCode);
+
+	LandSubClassDetails findByLandSubClassGenId(Long id);
+
+	List<LandSubClassDetails> findLandSubClassByLandClassNameAndActiveTrueAndStatus(String landClassName,
+			String status);
+
+	LandSubClassDetails findByLandSubClassNameAndActiveTrueAndStatus(String landSubClass, String status);
 
 }

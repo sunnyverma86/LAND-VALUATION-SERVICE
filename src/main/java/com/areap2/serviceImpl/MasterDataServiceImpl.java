@@ -2,10 +2,11 @@ package com.areap2.serviceImpl;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,8 +58,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 		try {
 			log.info("Request: Finding All District Details " + "  Method Name" + methodName + " Class : "
 					+ this.getClass());
-
-			List<DistrictDetails> districtList = districtDetailsRepo.findAllByActiveTrue();
+			String Status=ModelConstant.COMPLETE;
+			List<DistrictDetails> districtList = districtDetailsRepo.findAllByActiveTrueAndStatus(Status);
 
 			if (districtList == null || districtList.isEmpty()) {
 				log.info("Respond: No Data Found - All District Details " + "  Method Name" + methodName + " Class : "
@@ -95,7 +96,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// List<Map<String, String>> circleList =
 			// circleDetailsRepo.findCircleByDistrictCode(districtCode);
-			List<CircleDetails> circleList = circleDetailsRepo.findCircleByDistrictCodeAndActiveTrue(districtCode);
+			String status=ModelConstant.COMPLETE;
+			List<CircleDetails> circleList = circleDetailsRepo.findCircleByDistrictCodeAndActiveTrueAndStatus(districtCode,status);
 			if (circleList == null || circleList.isEmpty()) {
 				log.info("Respond: No Data Found for Circle By District code :  " + districtCode + "  Method Name"
 						+ methodName + " Class : " + this.getClass());
@@ -131,8 +133,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 //
 //			List<Map<String, String>> villageList = villageDetailsRepo
 //					.findVillageByDistrictCodeAndCircleCode(districtCode, circleCode);
+			String status=ModelConstant.COMPLETE;
 			List<VillageDetails> villageList = villageDetailsRepo
-					.findVillageByDistrictCodeAndCircleCodeAndActiveTrue(districtCode, circleCode);
+					.findVillageByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(districtCode, circleCode,status);
 
 			if (villageList == null || villageList.isEmpty()) {
 				log.info("Respond: No Data Found for Village By District code :  " + districtCode + " and circleCode : "
@@ -179,9 +182,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 				// List<Map<String, Object>> mouzaList =
 				// mouzaDetailsRepo.findMouzaByDistrictCode(districtCode);
-
+				String status=ModelConstant.COMPLETE;
 				List<MouzaDetails> mouzaList = mouzaDetailsRepo
-						.findMouzaByDistrictCodeAndCircleCodeAndActiveTrue(districtCode, circleCode);
+						.findMouzaByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(districtCode, circleCode,status);
 
 				if (mouzaList == null || mouzaList.isEmpty()) {
 					log.info("Respond: No Data Found for Mouza By District code :  " + districtCode + "  Method Name"
@@ -241,7 +244,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// List<Map<String, Object>> landCategoriesList =
 			// landCategoriesRepo.findAllLandCategories();
-			List<LandCategories> landCategoriesList = landCategoriesRepo.findAllByActiveTrue();
+			
+			String status=ModelConstant.COMPLETE;
+			List<LandCategories> landCategoriesList = landCategoriesRepo.findAllByActiveTrueAndStatus(status);
 
 			if (landCategoriesList == null || landCategoriesList.isEmpty()) {
 				log.info("Respond: No Data Found - Land Categories " + "  Method Name" + methodName + " Class : "
@@ -276,7 +281,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Finding All Area Type " + "  Method Name" + methodName + " Class : " + this.getClass());
 
 			// List<Map<String, Object>> areaTypeList = areaTypesRepo.findAllAreaType();
-			List<AreaTypes> areaTypeList = areaTypesRepo.findAllByActiveTrue();
+			String status=ModelConstant.COMPLETE;
+			List<AreaTypes> areaTypeList = areaTypesRepo.findAllByActiveTrueAndStatus(status);
 			if (areaTypeList == null || areaTypeList.isEmpty()) {
 				log.info("Respond: No Data Found - Area Type " + "  Method Name" + methodName + " Class : "
 						+ this.getClass());
@@ -366,9 +372,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			// List<Map<String, Object>> zoneValueList = zonalValuesRepo
 			// .findMouzaByDistrictCodeAndCircleCodeAndMouzaCode(districtCode, circleCode,
 			// mouzaCode);
-
+			String status=ModelConstant.COMPLETE;
 			List<ZonalValues> zoneValueList = zonalValuesRepo
-					.findMouzaByDistrictCodeAndCircleCodeAndMouzaCodeAndActiveTrue(districtCode, circleCode, mouzaCode);
+					.findMouzaByDistrictCodeAndCircleCodeAndMouzaCodeAndStatusAndActiveTrue(districtCode, circleCode, mouzaCode,status);
 
 			if (zoneValueList == null || zoneValueList.isEmpty()) {
 				log.info("Respond: No Data Found -ZonalValue by districtCode : " + districtCode + " ,circleCode :  "
@@ -407,10 +413,10 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 //
 //			List<Map<String, Object>> parameterList = parameterDetailsRepo.findParameterDetailsByRange(minRange,
 //					maxRange);
-
+			String status=ModelConstant.COMPLETE;
 			List<ParameterDetails> parameterList = parameterDetailsRepo
-					.findByMinRangeInMetersGreaterThanEqualAndMaxRangeInMetersLessThanEqualAndActiveTrue(minRange,
-							maxRange);
+					.findByMinRangeInMetersGreaterThanEqualAndMaxRangeInMetersLessThanEqualAndActiveTrueAndStatus(minRange,
+							maxRange,status);
 
 			if (parameterList == null || parameterList.isEmpty()) {
 				log.info("Respond: No Data Found - Parameter Details for minRange :  " + minRange + " ,maxRange : "
@@ -445,9 +451,8 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 		ResponseModel response = new ResponseModel();
 
 		try {
-			log.info(
-					"Request received to add District Details | District Name: {} | District Code: (to be generated) | Method: {} | Class: {}",
-					districtDetailsModel.getDistrictName(), methodName, this.getClass().getSimpleName());
+			log.info("Request received to add District Details | District Name: {} | Method: {}",
+					districtDetailsModel.getDistrictName(), methodName);
 
 			// Generate new district code
 			Integer maxDistrictCode = districtDetailsRepo.findMaxDistrictCode();
@@ -455,15 +460,19 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = (authentication != null) ? authentication.getName() : "SYSTEM";
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Prepare entity
 			DistrictDetails districtDetails = new DistrictDetails();
@@ -471,21 +480,33 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			districtDetails.setDistrictName(districtDetailsModel.getDistrictName());
 			districtDetails.setCreatedBy(loginId);
 			districtDetails.setActive(true);
-			districtDetails.setStatus(ModelConstant.PEN_J_M);
-			districtDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 
-			log.info(
-					"Saving District Details | District Name: {} | District Code: {} | Created By: {} | Method: {} | Class: {}",
-					districtDetails.getDistrictName(), districtDetails.getDistrictCode(), loginId, methodName,
-					this.getClass().getSimpleName());
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				districtDetails.setStatus(ModelConstant.COMPLETE);
+				districtDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				districtDetails.setStatus(ModelConstant.COMPLETE);
+				districtDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				districtDetails.setStatus(ModelConstant.PEN_S_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				districtDetails.setStatus(ModelConstant.PEN_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				districtDetails.setStatus(ModelConstant.PEN_J_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			// Save entity
 			DistrictDetails savedDistrictDetails = districtDetailsRepo.saveAndFlush(districtDetails);
 
 			// Log action
-			logAction(loginId, "District", "ADD", "District Code: " + savedDistrictDetails.getDistrictCode(),
-					"District added successfully with name: " + savedDistrictDetails.getDistrictName(),
-					ModelConstant.PEN_DIST_J_M);
+			logAction(loginId, ModelConstant.DISTRICT, ModelConstant.ADD,
+					"District Code: " + savedDistrictDetails.getDistrictCode(),
+					"District added, name: " + savedDistrictDetails.getDistrictName(), savedDistrictDetails.getStatus(), savedDistrictDetails.getStatusCode(),
+					savedDistrictDetails.getDistrictGenId());
 
 			// Build response
 			response.setData(savedDistrictDetails);
@@ -493,23 +514,13 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			response.setMessage("District added successfully | District Name: " + savedDistrictDetails.getDistrictName()
 					+ ", District Code: " + savedDistrictDetails.getDistrictCode());
 
-			log.info(
-					"District added successfully | District Name: {} | District Code: {} | Created By: {} | Method: {} | Class: {}",
-					savedDistrictDetails.getDistrictName(), savedDistrictDetails.getDistrictCode(), loginId, methodName,
-					this.getClass().getSimpleName());
-
 		} catch (Exception e) {
-			log.error(
-					"Error occurred while adding District Details | District Name: {} | District Code: {} | Method: {} | Class: {}",
-					districtDetailsModel.getDistrictName(),
-					(districtDetailsModel.getDistrictCode() != null ? districtDetailsModel.getDistrictCode() : "N/A"),
-					methodName, this.getClass().getSimpleName(), e);
+			log.error("Error occurred while adding District Details | District Name: {} | Method: {}",
+					districtDetailsModel.getDistrictName(), methodName, e);
 
 			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
 			response.setMessage("Failed to add District Details | District Name: "
-					+ districtDetailsModel.getDistrictName() + ", District Code: "
-					+ (districtDetailsModel.getDistrictCode() != null ? districtDetailsModel.getDistrictCode() : "N/A")
-					+ ", Error: " + e.getMessage());
+					+ districtDetailsModel.getDistrictName() + ", Error: " + e.getMessage());
 		}
 
 		return response;
@@ -529,15 +540,19 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = (authentication != null) ? authentication.getName() : "SYSTEM";
-
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Fetch existing district
 			DistrictDetails existingDistrict = districtDetailsRepo
@@ -558,23 +573,38 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			districtDetailsRepo.save(existingDistrict);
 
 			// Create new record with updated details
-			DistrictDetails updatedDistrict = new DistrictDetails();
-			updatedDistrict.setDistrictCode(districtDetailsModel.getDistrictCode());
-			updatedDistrict.setDistrictName(districtDetailsModel.getDistrictName());
+			DistrictDetails districtDetails = new DistrictDetails();
+			districtDetails.setDistrictCode(districtDetailsModel.getDistrictCode());
+			districtDetails.setDistrictName(districtDetailsModel.getDistrictName());
+			districtDetails.setActive(true);
+			districtDetails.setCreatedBy(existingDistrict.getCreatedBy());
+			districtDetails.setCreatedDtm(existingDistrict.getCreatedDtm());
+			districtDetails.setUpdatedBy(loginId);
+			districtDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				districtDetails.setStatus(ModelConstant.COMPLETE);
+				districtDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				districtDetails.setStatus(ModelConstant.COMPLETE);
+				districtDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				districtDetails.setStatus(ModelConstant.PEN_S_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				districtDetails.setStatus(ModelConstant.PEN_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				districtDetails.setStatus(ModelConstant.PEN_J_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
-			updatedDistrict.setStatus(ModelConstant.PEN_J_M);
-			updatedDistrict.setStatusCode(ModelConstant.PEN_J_M_CODE);
-			updatedDistrict.setActive(true);
-			updatedDistrict.setCreatedBy(existingDistrict.getCreatedBy());
-			updatedDistrict.setCreatedDtm(existingDistrict.getCreatedDtm());
-			updatedDistrict.setUpdatedBy(loginId);
-			updatedDistrict.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			DistrictDetails savedDistrict = districtDetailsRepo.save(districtDetails);
 
-			DistrictDetails savedDistrict = districtDetailsRepo.save(updatedDistrict);
-
-			logAction(loginId, "District", "UPDATE", "District Code: " + savedDistrict.getDistrictCode(),
-					"District updated successfully with name: " + savedDistrict.getDistrictName(),
-					ModelConstant.PEN_DIST_J_M);
+			logAction(loginId, ModelConstant.DISTRICT, ModelConstant.UPDATE,
+					"District Code: " + savedDistrict.getDistrictCode(),
+					"District updated, name: " + savedDistrict.getDistrictName(), savedDistrict.getStatus(), savedDistrict.getStatusCode(),
+					savedDistrict.getDistrictGenId());
 
 			response.setData(savedDistrict);
 			response.setHttpStatus(HttpStatus.OK);
@@ -613,15 +643,19 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = (authentication != null) ? authentication.getName() : "SYSTEM";
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Fetch existing district
 			DistrictDetails districtDetails = districtDetailsRepo.findByDistrictCodeAndActiveTrue(districtCode);
@@ -636,16 +670,31 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Mark as inactive
 			districtDetails.setActive(false);
-
-			districtDetails.setStatus(ModelConstant.PEN_J_M);
-			districtDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
 			districtDetails.setUpdatedBy(loginId);
 			districtDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				districtDetails.setStatus(ModelConstant.COMPLETE);
+				districtDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				districtDetails.setStatus(ModelConstant.COMPLETE);
+				districtDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				districtDetails.setStatus(ModelConstant.PEN_S_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				districtDetails.setStatus(ModelConstant.PEN_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				districtDetails.setStatus(ModelConstant.PEN_J_M);
+				districtDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 			DistrictDetails savedDistrict = districtDetailsRepo.save(districtDetails);
 
-			logAction(loginId, "District", "DELETE", "District Code: " + savedDistrict.getDistrictCode(),
+			logAction(loginId, ModelConstant.DISTRICT, ModelConstant.DELETE,
+					"District Code: " + savedDistrict.getDistrictCode(),
 					"District deleted (set active=false) , name: " + savedDistrict.getDistrictName(),
-					ModelConstant.PEN_DIST_J_M);
+					savedDistrict.getStatus(),savedDistrict.getStatusCode(), savedDistrict.getDistrictGenId());
 
 			response.setData(savedDistrict);
 			response.setHttpStatus(HttpStatus.OK);
@@ -685,15 +734,19 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = (authentication != null) ? authentication.getName() : "SYSTEM";
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Prepare entity
 			CircleDetails circleDetails = new CircleDetails();
@@ -702,17 +755,32 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			circleDetails.setDistrictCode(circleDetailsModel.getDistrictCode());
 			circleDetails.setCreatedBy(loginId);
 			circleDetails.setActive(true);
-			circleDetails.setStatus(ModelConstant.PEN_J_M);
-			circleDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				circleDetails.setStatus(ModelConstant.COMPLETE);
+				circleDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				circleDetails.setStatus(ModelConstant.COMPLETE);
+				circleDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				circleDetails.setStatus(ModelConstant.PEN_S_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				circleDetails.setStatus(ModelConstant.PEN_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				circleDetails.setStatus(ModelConstant.PEN_J_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			// Save entity
 			CircleDetails savedCircle = circleDetailsRepo.saveAndFlush(circleDetails);
 
 			// Log action
-			logAction(loginId, "Circle", "ADD",
+			logAction(loginId, ModelConstant.CIRCLE, ModelConstant.ADD,
 					"District Code: " + savedCircle.getDistrictCode() + ", Circle Code:" + savedCircle.getCircleCode(),
-					"Circle  added successfully with name: " + savedCircle.getCircleName(),
-					ModelConstant.PEN_CIRCLE_J_M);
+					"Circle  added, name: " + savedCircle.getCircleName(), savedCircle.getStatus(),savedCircle.getStatusCode(),
+					savedCircle.getCircleGenId());
 
 			response.setData(savedCircle);
 			response.setHttpStatus(HttpStatus.OK);
@@ -753,16 +821,19 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = (authentication != null) ? authentication.getName() : "SYSTEM";
-
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Fetch existing circle
 			CircleDetails existingCircle = circleDetailsRepo
@@ -783,26 +854,41 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			circleDetailsRepo.save(existingCircle);
 
 			// Create new record with updated details
-			CircleDetails updatedCircle = new CircleDetails();
+			CircleDetails circleDetails = new CircleDetails();
 
-			updatedCircle.setCircleCode(circleDetailsModel.getCircleCode());
-			updatedCircle.setCircleName(circleDetailsModel.getCircleName());
-			updatedCircle.setDistrictCode(circleDetailsModel.getDistrictCode());
-			updatedCircle.setActive(true);
-			updatedCircle.setCreatedBy(existingCircle.getCreatedBy());
-			updatedCircle.setCreatedDtm(existingCircle.getCreatedDtm());
-			updatedCircle.setUpdatedBy(loginId);
-			updatedCircle.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			updatedCircle.setStatus(ModelConstant.PEN_J_M);
-			updatedCircle.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			circleDetails.setCircleCode(circleDetailsModel.getCircleCode());
+			circleDetails.setCircleName(circleDetailsModel.getCircleName());
+			circleDetails.setDistrictCode(circleDetailsModel.getDistrictCode());
+			circleDetails.setActive(true);
+			circleDetails.setCreatedBy(existingCircle.getCreatedBy());
+			circleDetails.setCreatedDtm(existingCircle.getCreatedDtm());
+			circleDetails.setUpdatedBy(loginId);
+			circleDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				circleDetails.setStatus(ModelConstant.COMPLETE);
+				circleDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				circleDetails.setStatus(ModelConstant.COMPLETE);
+				circleDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				circleDetails.setStatus(ModelConstant.PEN_S_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				circleDetails.setStatus(ModelConstant.PEN_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				circleDetails.setStatus(ModelConstant.PEN_J_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
-			CircleDetails savedCircle = circleDetailsRepo.save(updatedCircle);
+			CircleDetails savedCircle = circleDetailsRepo.save(circleDetails);
 
 			// Log action
-			logAction(loginId, "Circle", "UPDATE",
+			logAction(loginId, ModelConstant.CIRCLE, ModelConstant.UPDATE,
 					"District Code: " + savedCircle.getDistrictCode() + ", Circle Code:" + savedCircle.getCircleCode(),
-					"Circle updated successfully with name: " + savedCircle.getCircleName(),
-					ModelConstant.PEN_CIRCLE_J_M);
+					"Circle updated, name: " + savedCircle.getCircleName(), savedCircle.getStatus(),savedCircle.getStatusCode(),
+					savedCircle.getCircleGenId());
 
 			response.setData(savedCircle);
 			response.setHttpStatus(HttpStatus.OK);
@@ -842,16 +928,19 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = (authentication != null) ? authentication.getName() : "SYSTEM";
-
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Fetch active circle
 			CircleDetails circleDetails = circleDetailsRepo.findByCircleCodeAndActiveTrue(circleCode);
@@ -868,14 +957,29 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			circleDetails.setActive(false);
 			circleDetails.setUpdatedBy(loginId);
 			circleDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			circleDetails.setStatus(ModelConstant.PEN_J_M);
-			circleDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				circleDetails.setStatus(ModelConstant.COMPLETE);
+				circleDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				circleDetails.setStatus(ModelConstant.COMPLETE);
+				circleDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				circleDetails.setStatus(ModelConstant.PEN_S_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				circleDetails.setStatus(ModelConstant.PEN_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				circleDetails.setStatus(ModelConstant.PEN_J_M);
+				circleDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 			CircleDetails savedCircle = circleDetailsRepo.save(circleDetails);
 
 			// Log action
-			logAction(loginId, "Circle", "DELETE", "Circle Code:" + savedCircle.getCircleCode(),
+			logAction(loginId, ModelConstant.CIRCLE, ModelConstant.DELETE, "Circle Code:" + savedCircle.getCircleCode(),
 					"Circle  deleted (set active=false) with name: " + savedCircle.getCircleName(),
-					ModelConstant.PEN_CIRCLE_J_M);
+					savedCircle.getStatus(),savedCircle.getStatusCode(), savedCircle.getCircleGenId());
 
 			response.setData(savedCircle);
 			response.setHttpStatus(HttpStatus.OK);
@@ -915,16 +1019,21 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 				villageCode = villageCode + 1;
 			}
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			VillageDetails villageDetails = new VillageDetails();
 			villageDetails.setVillageCode(villageCode.toString());
@@ -933,17 +1042,31 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			villageDetails.setCircleCode(villageDetailsModel.getCircleCode());
 			villageDetails.setCreatedBy(loginId);
 			villageDetails.setActive(true);
-			villageDetails.setStatus(ModelConstant.PEN_J_M);
-			villageDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
-
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				villageDetails.setStatus(ModelConstant.COMPLETE);
+				villageDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				villageDetails.setStatus(ModelConstant.COMPLETE);
+				villageDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				villageDetails.setStatus(ModelConstant.PEN_S_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				villageDetails.setStatus(ModelConstant.PEN_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				villageDetails.setStatus(ModelConstant.PEN_J_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 			VillageDetails savedVillageDetails = villageDetailsRepo.saveAndFlush(villageDetails);
 			// Log action
-			logAction(loginId, "Village", "ADD",
+			logAction(loginId, ModelConstant.VILLAGE, ModelConstant.ADD,
 					"District Code: " + savedVillageDetails.getDistrictCode() + ", Circle Code: "
 							+ savedVillageDetails.getCircleCode() + ", Village Code: "
 							+ savedVillageDetails.getVillageCode(),
-					"Village added successfully with name: " + savedVillageDetails.getVillageName(),
-					ModelConstant.PEN_VILL_J_M);
+					"Village, name: " + savedVillageDetails.getVillageName(), savedVillageDetails.getStatus(), savedVillageDetails.getStatusCode(),
+					savedVillageDetails.getVillageGenId());
 
 			response.setData(savedVillageDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -979,16 +1102,21 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					villageDetailsModel.getVillageCode(), villageDetailsModel.getVillageName(), methodName,
 					this.getClass().getSimpleName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Fetch active village record
 			VillageDetails oldVillage = villageDetailsRepo
@@ -1006,36 +1134,53 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			oldVillage.setActive(false);
 			oldVillage.setUpdatedBy(loginId);
 			oldVillage.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			villageDetailsRepo.save(oldVillage);
 			// Create new active record
-			VillageDetails newVillage = new VillageDetails();
-			newVillage.setVillageCode(villageDetailsModel.getVillageCode());
-			newVillage.setVillageName(villageDetailsModel.getVillageName());
-			newVillage.setDistrictCode(villageDetailsModel.getDistrictCode());
-			newVillage.setCircleCode(villageDetailsModel.getCircleCode());
-			newVillage.setActive(true);
-			newVillage.setCreatedBy(oldVillage.getCreatedBy());
-			newVillage.setCreatedDtm(oldVillage.getCreatedDtm());
-			newVillage.setUpdatedBy(loginId);
-			newVillage.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			newVillage.setStatus(ModelConstant.PEN_J_M);
-			newVillage.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			VillageDetails villageDetails = new VillageDetails();
+			villageDetails.setVillageCode(villageDetailsModel.getVillageCode());
+			villageDetails.setVillageName(villageDetailsModel.getVillageName());
+			villageDetails.setDistrictCode(villageDetailsModel.getDistrictCode());
+			villageDetails.setCircleCode(villageDetailsModel.getCircleCode());
+			villageDetails.setActive(true);
+			villageDetails.setCreatedBy(oldVillage.getCreatedBy());
+			villageDetails.setCreatedDtm(oldVillage.getCreatedDtm());
+			villageDetails.setUpdatedBy(loginId);
+			villageDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				villageDetails.setStatus(ModelConstant.COMPLETE);
+				villageDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				villageDetails.setStatus(ModelConstant.COMPLETE);
+				villageDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				villageDetails.setStatus(ModelConstant.PEN_S_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				villageDetails.setStatus(ModelConstant.PEN_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				villageDetails.setStatus(ModelConstant.PEN_J_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 			// Save both (old + new) in one go
-			villageDetailsRepo.saveAll(Arrays.asList(oldVillage, newVillage));
+			// villageDetailsRepo.saveAll(Arrays.asList(oldVillage, newVillage));
+			VillageDetails savedVillageDetails = villageDetailsRepo.save(villageDetails);
 			// Log action
-			logAction(loginId, "Village", "UPDATE",
-					"District Code: " + newVillage.getDistrictCode() + ", Circle Code: " + newVillage.getCircleCode()
-							+ ", Village Code: " + newVillage.getVillageCode(),
-					"Village updated successfully with name: " + newVillage.getVillageName(),
-					ModelConstant.PEN_VILL_J_M);
+			logAction(loginId, ModelConstant.VILLAGE, ModelConstant.UPDATE,
+					"District Code: " + savedVillageDetails.getDistrictCode() + ", Circle Code: "
+							+ savedVillageDetails.getCircleCode() + ", Village Code: "
+							+ savedVillageDetails.getVillageCode(),
+					"Village updated, name: " + savedVillageDetails.getVillageName(), savedVillageDetails.getStatus(),savedVillageDetails.getStatusCode(),
+					savedVillageDetails.getVillageGenId());
 
-			response.setData(newVillage);
+			response.setData(savedVillageDetails);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("Village Updated Successfully");
 
 			log.info(
 					"Respond: Village Updated Successfully , Village Code {} , Village Name {} , Method Name {} , Class : {}",
-					villageDetailsModel.getVillageCode(), villageDetailsModel.getVillageName(), methodName,
+					savedVillageDetails.getVillageCode(), savedVillageDetails.getVillageName(), methodName,
 					this.getClass().getSimpleName());
 
 		} catch (Exception e) {
@@ -1060,16 +1205,21 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Delete Village Details | VillageCode: {} | Method: {} | Class: {}", villageCode,
 					methodName, this.getClass().getSimpleName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			VillageDetails villageDetails = villageDetailsRepo.findByVillageCodeAndActiveTrue(villageCode);
 
@@ -1085,14 +1235,29 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			villageDetails.setActive(false);
 			villageDetails.setUpdatedBy(loginId);
 			villageDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			villageDetails.setStatus(ModelConstant.PEN_J_M);
-			villageDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				villageDetails.setStatus(ModelConstant.COMPLETE);
+				villageDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				villageDetails.setStatus(ModelConstant.COMPLETE);
+				villageDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				villageDetails.setStatus(ModelConstant.PEN_S_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				villageDetails.setStatus(ModelConstant.PEN_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				villageDetails.setStatus(ModelConstant.PEN_J_M);
+				villageDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			VillageDetails savedVillageDetails = villageDetailsRepo.save(villageDetails);
-			logAction(loginId, "District", "DELETE", savedVillageDetails.getVillageCode(),
+			logAction(loginId, ModelConstant.VILLAGE, ModelConstant.DELETE, savedVillageDetails.getVillageCode(),
 					"District deleted (set active=false successfully with name: "
 							+ savedVillageDetails.getVillageName(),
-					ModelConstant.PEN_VILL_J_M);
+					savedVillageDetails.getStatus(),savedVillageDetails.getStatusCode(), savedVillageDetails.getVillageGenId());
 			response.setData(savedVillageDetails);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("Village Deleted Successfully");
@@ -1130,16 +1295,21 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 				mouzaCode = mouzaCode + 1;
 			}
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			MouzaDetails mouzaDetails = new MouzaDetails();
 			mouzaDetails.setMouzaCode(mouzaCode.toString());
@@ -1149,17 +1319,32 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			mouzaDetails.setAreaTypeId(mouzaDetailsModel.getAreaTypeId());
 			mouzaDetails.setCreatedBy(loginId);
 			mouzaDetails.setActive(true);
-			mouzaDetails.setStatus(ModelConstant.PEN_J_M);
-			mouzaDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				mouzaDetails.setStatus(ModelConstant.COMPLETE);
+				mouzaDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				mouzaDetails.setStatus(ModelConstant.COMPLETE);
+				mouzaDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				mouzaDetails.setStatus(ModelConstant.PEN_S_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				mouzaDetails.setStatus(ModelConstant.PEN_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				mouzaDetails.setStatus(ModelConstant.PEN_J_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.saveAndFlush(mouzaDetails);
 			// Log action
-			logAction(loginId, "Mauza", "ADD",
+			logAction(loginId, ModelConstant.MAUZA, ModelConstant.ADD,
 					"District Code: " + savedMouzaDetails.getDistrictCode() + ", Circle Code: "
 							+ savedMouzaDetails.getCircleCode() + ", Area Type Id Code: "
 							+ savedMouzaDetails.getAreaTypeId() + ", Mauza Code: " + savedMouzaDetails.getMouzaCode(),
-					"Mauza added successfully with name: " + savedMouzaDetails.getMouzaName(),
-					ModelConstant.PEN_MOUZA_J_M);
+					"Mauza added, name: " + savedMouzaDetails.getMouzaName(), savedMouzaDetails.getStatus(),savedMouzaDetails.getStatusCode(),
+					savedMouzaDetails.getMouzaGenId());
 
 			response.setData(savedMouzaDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1195,16 +1380,21 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					mouzaDetailsModel.getDistrictCode(), mouzaDetailsModel.getCircleCode(),
 					mouzaDetailsModel.getAreaTypeId(), methodName, this.getClass().getSimpleName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication != null ? authentication.getName() : "SYSTEM";
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			MouzaDetails existingMouza = mouzaDetailsRepo
 					.findByMouzaCodeAndActiveTrue(mouzaDetailsModel.getMouzaCode());
@@ -1225,27 +1415,42 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			mouzaDetailsRepo.save(existingMouza);
 
 			// Create new entry with updated details
-			MouzaDetails updatedMouza = new MouzaDetails();
-			updatedMouza.setMouzaCode(mouzaDetailsModel.getMouzaCode());
-			updatedMouza.setMouzaName(mouzaDetailsModel.getMouzaName());
-			updatedMouza.setDistrictCode(mouzaDetailsModel.getDistrictCode());
-			updatedMouza.setCircleCode(mouzaDetailsModel.getCircleCode());
-			updatedMouza.setAreaTypeId(mouzaDetailsModel.getAreaTypeId());
-			updatedMouza.setActive(true);
-			updatedMouza.setCreatedBy(existingMouza.getCreatedBy());
-			updatedMouza.setCreatedDtm(existingMouza.getCreatedDtm());
-			updatedMouza.setUpdatedBy(loginId);
-			updatedMouza.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			updatedMouza.setStatus(ModelConstant.PEN_J_M);
-			updatedMouza.setStatusCode(ModelConstant.PEN_J_M_CODE);
-			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.save(updatedMouza);
+			MouzaDetails mouzaDetails = new MouzaDetails();
+			mouzaDetails.setMouzaCode(mouzaDetailsModel.getMouzaCode());
+			mouzaDetails.setMouzaName(mouzaDetailsModel.getMouzaName());
+			mouzaDetails.setDistrictCode(mouzaDetailsModel.getDistrictCode());
+			mouzaDetails.setCircleCode(mouzaDetailsModel.getCircleCode());
+			mouzaDetails.setAreaTypeId(mouzaDetailsModel.getAreaTypeId());
+			mouzaDetails.setActive(true);
+			mouzaDetails.setCreatedBy(existingMouza.getCreatedBy());
+			mouzaDetails.setCreatedDtm(existingMouza.getCreatedDtm());
+			mouzaDetails.setUpdatedBy(loginId);
+			mouzaDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				mouzaDetails.setStatus(ModelConstant.COMPLETE);
+				mouzaDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				mouzaDetails.setStatus(ModelConstant.COMPLETE);
+				mouzaDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				mouzaDetails.setStatus(ModelConstant.PEN_S_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				mouzaDetails.setStatus(ModelConstant.PEN_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				mouzaDetails.setStatus(ModelConstant.PEN_J_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
+			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.save(mouzaDetails);
 			// Log action
-			logAction(loginId, "Mauza", "UPDATE",
+			logAction(loginId, ModelConstant.MAUZA, ModelConstant.UPDATE,
 					"District Code: " + savedMouzaDetails.getDistrictCode() + ", Circle Code: "
 							+ savedMouzaDetails.getCircleCode() + ", Area Type Id Code: "
 							+ savedMouzaDetails.getAreaTypeId() + ", Mauza Code: " + savedMouzaDetails.getMouzaCode(),
-					"Mauza updated successfully with name: " + savedMouzaDetails.getMouzaName(),
-					ModelConstant.PEN_MOUZA_J_M);
+					"Mauza updated, name: " + savedMouzaDetails.getMouzaName(), savedMouzaDetails.getStatus(),savedMouzaDetails.getStatusCode(),
+					savedMouzaDetails.getMouzaGenId());
 
 			response.setData(savedMouzaDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1281,16 +1486,21 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Delete Mouza Details | MouzaCode: {} | Method: {} | Class: {}", mouzaCode, methodName,
 					this.getClass().getSimpleName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			MouzaDetails mouzaDetails = mouzaDetailsRepo.findByMouzaCodeAndActiveTrue(mouzaCode);
 
@@ -1305,14 +1515,28 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			mouzaDetails.setActive(false);
 			mouzaDetails.setUpdatedBy(loginId);
 			mouzaDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			mouzaDetails.setStatus(ModelConstant.PEN_J_M);
-			mouzaDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
-			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.save(mouzaDetails);
-			// Log action
 
-			logAction(loginId, "Mauza", "DELETE", savedMouzaDetails.getMouzaCode(),
-					"District deleted (set active=false successfully with name: " + savedMouzaDetails.getMouzaName(),
-					ModelConstant.PEN_MOUZA_J_M);
+			// Log action// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				mouzaDetails.setStatus(ModelConstant.COMPLETE);
+				mouzaDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				mouzaDetails.setStatus(ModelConstant.COMPLETE);
+				mouzaDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				mouzaDetails.setStatus(ModelConstant.PEN_S_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				mouzaDetails.setStatus(ModelConstant.PEN_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				mouzaDetails.setStatus(ModelConstant.PEN_J_M);
+				mouzaDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
+			MouzaDetails savedMouzaDetails = mouzaDetailsRepo.save(mouzaDetails);
+			logAction(loginId, ModelConstant.MAUZA, ModelConstant.DELETE, savedMouzaDetails.getMouzaCode(),
+					"Mauza deleted (set active=false successfully with name: " + savedMouzaDetails.getMouzaName(),
+					savedMouzaDetails.getStatus(),savedMouzaDetails.getStatusCode(), savedMouzaDetails.getMouzaGenId());
 
 			response.setData(savedMouzaDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1342,29 +1566,50 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Add LandCategory, Name: {}, Method: {}, Class: {}",
 					landCategoriesModel.getLandCategoryName(), methodName, this.getClass().getSimpleName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			LandCategories landCategories = new LandCategories();
 			landCategories.setLandCategoryName(landCategoriesModel.getLandCategoryName());
 			landCategories.setCreatedBy(loginId);
 			landCategories.setActive(true);
-			landCategories.setStatus(ModelConstant.PEN_J_M);
-			landCategories.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Log action// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				landCategories.setStatus(ModelConstant.COMPLETE);
+				landCategories.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				landCategories.setStatus(ModelConstant.COMPLETE);
+				landCategories.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				landCategories.setStatus(ModelConstant.PEN_S_M);
+				landCategories.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				landCategories.setStatus(ModelConstant.PEN_M);
+				landCategories.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				landCategories.setStatus(ModelConstant.PEN_J_M);
+				landCategories.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			LandCategories savedLandCategory = landCategoriesRepo.saveAndFlush(landCategories);
 			// Log action
-			logAction(loginId, "LandUse", "ADD", "Land Code: Not defined"// + savedLandCategory.getDistrictCode(),
-					, "LandUse added successfully with name: " + savedLandCategory.getLandCategoryName(),
-					ModelConstant.PEN_LAN_CATE_J_M);
+			logAction(loginId, ModelConstant.LANDUSE, ModelConstant.ADD, "Land Code: Not defined"// +
+																									// savedLandCategory.getDistrictCode(),
+					, "LandUse added, name: " + savedLandCategory.getLandCategoryName(), savedLandCategory.getStatus(), savedLandCategory.getStatusCode(),
+					savedLandCategory.getLandCategoryGenId());
 
 			response.setData(savedLandCategory);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1394,19 +1639,23 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Delete LandCategory Details , landCategoryGenId " + landCategoryGenId + "  Method Name"
 					+ methodName + " Class : " + this.getClass());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			LandCategories landCategories = landCategoriesRepo.findByLandCategoryGenIdAndActiveTrue(landCategoryGenId);
-
 			if (landCategories == null) {
 				log.info("Respond: No Data Found - LandCategory Details by landCategoryGenId" + landCategoryGenId
 						+ "  Method Name" + methodName + " Class : " + this.getClass());
@@ -1414,18 +1663,35 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 				response.setMessage("No Data Found");
 				return response;
 			}
-			landCategories.setStatus(ModelConstant.PEN_J_M);
-			landCategories.setStatusCode(ModelConstant.PEN_J_M_CODE);
+
 			landCategories.setActive(false);
 			landCategories.setUpdatedBy(loginId);
 			landCategories.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			// Log action// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				landCategories.setStatus(ModelConstant.COMPLETE);
+				landCategories.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				landCategories.setStatus(ModelConstant.COMPLETE);
+				landCategories.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				landCategories.setStatus(ModelConstant.PEN_S_M);
+				landCategories.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				landCategories.setStatus(ModelConstant.PEN_M);
+				landCategories.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				landCategories.setStatus(ModelConstant.PEN_J_M);
+				landCategories.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 			LandCategories landCategoriesSaved = landCategoriesRepo.save(landCategories);
 			// Log action
-			logAction(loginId, "LandUse", "DELETE", "Land Code: Not defined"// + savedLandCategory.getDistrictCode(),
-					, "LandUse deleted (set active=false) successfully with name: "
+			logAction(loginId, ModelConstant.LANDUSE, ModelConstant.DELETE, "Land Code: Not defined"// +
+																									// savedLandCategory.getDistrictCode(),
+					,
+					"LandUse deleted (set active=false) successfully with name: "
 							+ landCategoriesSaved.getLandCategoryName(),
-					ModelConstant.PEN_LAN_CATE_J_M);
+					landCategoriesSaved.getStatus(), landCategoriesSaved.getStatusCode(),landCategoriesSaved.getLandCategoryGenId());
 
 			response.setData(landCategoriesSaved);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1454,29 +1720,49 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: add AreaType Details , AreaType Name " + areaTypesModel.getAreaType() + "  Method Name"
 					+ methodName + " Class : " + this.getClass());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			AreaTypes areaTypes = new AreaTypes();
 			areaTypes.setAreaType(areaTypesModel.getAreaType());
 			areaTypes.setCreatedBy(loginId);
 			areaTypes.setActive(true);
-			areaTypes.setStatus(ModelConstant.PEN_J_M);
-			areaTypes.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Log action// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				areaTypes.setStatus(ModelConstant.COMPLETE);
+				areaTypes.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				areaTypes.setStatus(ModelConstant.COMPLETE);
+				areaTypes.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				areaTypes.setStatus(ModelConstant.PEN_S_M);
+				areaTypes.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				areaTypes.setStatus(ModelConstant.PEN_M);
+				areaTypes.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				areaTypes.setStatus(ModelConstant.PEN_J_M);
+				areaTypes.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			AreaTypes savedAreaType = areaTypesRepo.saveAndFlush(areaTypes);
 			// Log action
-			logAction(loginId, "AreaType", "ADD", "Area Type: Not defined",
-					"AreaType added successfully with name: " + savedAreaType.getAreaType(),
-					ModelConstant.PEN_AREA_TYPE_J_M);
+			logAction(loginId, ModelConstant.AREATYPE, ModelConstant.ADD, "Area Type: Not defined",
+					"AreaType added, name: " + savedAreaType.getAreaType(), savedAreaType.getStatus(),savedAreaType.getStatusCode(),
+					savedAreaType.getAreaTypesGenId());
 
 			response.setData(savedAreaType);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1505,19 +1791,22 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Delete AreaType, ID: {}, Method: {}, Class: {}", areaTypesGenId, methodName,
 					this.getClass().getSimpleName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication != null ? authentication.getName() : "SYSTEM";
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			AreaTypes areaTypes = areaTypesRepo.findByAreaTypesGenIdAndActiveTrue(areaTypesGenId);
-
 			if (areaTypes == null) {
 				log.warn("Respond: No AreaType found for ID: {}, Method: {}, Class: {}", areaTypesGenId, methodName,
 						this.getClass().getSimpleName());
@@ -1528,18 +1817,33 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			}
 
 			// Soft delete
-			areaTypes.setStatus(ModelConstant.PEN_J_M);
-			areaTypes.setStatusCode(ModelConstant.PEN_J_M_CODE);
+
 			areaTypes.setActive(false);
 			areaTypes.setUpdatedBy(loginId);
 			areaTypes.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-
+			// Log action// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				areaTypes.setStatus(ModelConstant.COMPLETE);
+				areaTypes.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				areaTypes.setStatus(ModelConstant.COMPLETE);
+				areaTypes.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				areaTypes.setStatus(ModelConstant.PEN_S_M);
+				areaTypes.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				areaTypes.setStatus(ModelConstant.PEN_M);
+				areaTypes.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				areaTypes.setStatus(ModelConstant.PEN_J_M);
+				areaTypes.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 			AreaTypes updatedAreaType = areaTypesRepo.save(areaTypes);
 			// Log action
 
-			logAction(loginId, "Area Type", "DELETE", updatedAreaType.getAreaType(),
+			logAction(loginId, ModelConstant.AREATYPE, ModelConstant.DELETE, updatedAreaType.getAreaType(),
 					"Area Type deleted (set active=false successfully with name: " + updatedAreaType.getAreaType(),
-					ModelConstant.PEN_AREA_TYPE_J_M);
+					updatedAreaType.getStatus(),updatedAreaType.getStatusCode(), updatedAreaType.getAreaTypesGenId());
 			response.setData(updatedAreaType);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("AreaType deleted successfully");
@@ -1643,16 +1947,20 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			// Generate next lot code
 			Integer lotCode = Optional.ofNullable(lotDetailsRepo.findMaxLotCode()).orElse(10000) + 1;
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication != null ? authentication.getName() : "SYSTEM";
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			LotDetails lotDetails = new LotDetails();
 			lotDetails.setLotCode(lotCode.toString());
@@ -1662,16 +1970,32 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			lotDetails.setAreaTypeId(lotDetailsModel.getAreaTypeId());
 			lotDetails.setCreatedBy(loginId);
 			lotDetails.setActive(true);
-			lotDetails.setStatus(ModelConstant.PEN_J_M);
-			lotDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Log action// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				lotDetails.setStatus(ModelConstant.COMPLETE);
+				lotDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				lotDetails.setStatus(ModelConstant.COMPLETE);
+				lotDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				lotDetails.setStatus(ModelConstant.PEN_S_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				lotDetails.setStatus(ModelConstant.PEN_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				lotDetails.setStatus(ModelConstant.PEN_J_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			LotDetails savedLotDetails = lotDetailsRepo.saveAndFlush(lotDetails);
 			// Log action
-			logAction(loginId, "Lot", "ADD",
+			logAction(loginId, ModelConstant.LOT, ModelConstant.ADD,
 					"District Code: " + savedLotDetails.getDistrictCode() + ", Circle Code: "
 							+ savedLotDetails.getCircleCode() + ", AreaTypeId Code: " + savedLotDetails.getAreaTypeId()
 							+ ", Lot Code: " + savedLotDetails.getLotCode(),
-					"Lot added successfully with name: " + savedLotDetails.getLotName(), ModelConstant.PEN_LOT_J_M);
+					"Lot added, name: " + savedLotDetails.getLotName(), savedLotDetails.getStatus(), savedLotDetails.getStatusCode(),
+					savedLotDetails.getLotGenId());
 			response.setData(savedLotDetails);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("Lot added successfully");
@@ -1709,19 +2033,22 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					lotDetailsModel.getCircleCode(), lotDetailsModel.getAreaTypeId(), methodName,
 					this.getClass().getName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			LotDetails existingLot = lotDetailsRepo.findByLotCodeAndActiveTrue(lotDetailsModel.getLotCode());
-
 			if (existingLot == null) {
 				log.info("Respond: No Data Found - Lot Details by LotCode {} Method Name {} Class: {}",
 						lotDetailsModel.getLotCode(), methodName, this.getClass().getName());
@@ -1737,26 +2064,44 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			lotDetailsRepo.save(existingLot);
 
 			// Create new entry with updated values
-			LotDetails updatedLot = new LotDetails();
-			updatedLot.setLotCode(lotDetailsModel.getLotCode());
-			updatedLot.setLotName(lotDetailsModel.getLotName());
-			updatedLot.setDistrictCode(lotDetailsModel.getDistrictCode());
-			updatedLot.setCircleCode(lotDetailsModel.getCircleCode());
-			updatedLot.setAreaTypeId(lotDetailsModel.getAreaTypeId());
-			updatedLot.setActive(true);
-			updatedLot.setCreatedBy(existingLot.getCreatedBy()); // keep original
-			updatedLot.setCreatedDtm(existingLot.getCreatedDtm()); // keep original
-			updatedLot.setUpdatedBy(loginId);
-			updatedLot.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			updatedLot.setStatus(ModelConstant.PEN_J_M);
-			updatedLot.setStatusCode(ModelConstant.PEN_J_M_CODE);
-			LotDetails savedLotDetails = lotDetailsRepo.save(updatedLot);
+			LotDetails lotDetails = new LotDetails();
+			lotDetails.setLotCode(lotDetailsModel.getLotCode());
+			lotDetails.setLotName(lotDetailsModel.getLotName());
+			lotDetails.setDistrictCode(lotDetailsModel.getDistrictCode());
+			lotDetails.setCircleCode(lotDetailsModel.getCircleCode());
+			lotDetails.setAreaTypeId(lotDetailsModel.getAreaTypeId());
+			lotDetails.setActive(true);
+			lotDetails.setCreatedBy(existingLot.getCreatedBy()); // keep original
+			lotDetails.setCreatedDtm(existingLot.getCreatedDtm()); // keep original
+			lotDetails.setUpdatedBy(loginId);
+			lotDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
 			// Log action
-			logAction(loginId, "Lot", "UPDATE",
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				lotDetails.setStatus(ModelConstant.COMPLETE);
+				lotDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				lotDetails.setStatus(ModelConstant.COMPLETE);
+				lotDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				lotDetails.setStatus(ModelConstant.PEN_S_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				lotDetails.setStatus(ModelConstant.PEN_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				lotDetails.setStatus(ModelConstant.PEN_J_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
+
+			LotDetails savedLotDetails = lotDetailsRepo.save(lotDetails);
+			// Log action
+			logAction(loginId, ModelConstant.LOT, ModelConstant.UPDATE,
 					"District Code: " + savedLotDetails.getDistrictCode() + ", Circle Code: "
 							+ savedLotDetails.getCircleCode() + ", AreaTypeId Code: " + savedLotDetails.getAreaTypeId()
 							+ ", Lot Code: " + savedLotDetails.getLotCode(),
-					"Lot updated successfully with name: " + savedLotDetails.getLotName(), ModelConstant.PEN_LOT_J_M);
+					"Lot updated, name: " + savedLotDetails.getLotName(), savedLotDetails.getStatus(), savedLotDetails.getStatusCode(),
+					savedLotDetails.getLotGenId());
 
 			response.setData(savedLotDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -1791,21 +2136,24 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Delete Lot Details , LotCode " + lotCode + "  Method Name" + methodName + " Class : "
 					+ this.getClass());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
 
-			LotDetails LotDetails = lotDetailsRepo.findByLotCodeAndActiveTrue(lotCode);
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
-			if (LotDetails == null) {
+			LotDetails lotDetails = lotDetailsRepo.findByLotCodeAndActiveTrue(lotCode);
+
+			if (lotDetails == null) {
 				log.info("Respond: No Data Found - Lot Details by LotCode" + lotCode + "  Method Name" + methodName
 						+ " Class : " + this.getClass());
 				response.setHttpStatus(HttpStatus.NO_CONTENT);
@@ -1813,17 +2161,33 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 				return response;
 			}
 
-			LotDetails.setActive(false);
-			LotDetails.setUpdatedBy(loginId);
-			LotDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			LotDetails.setStatus(ModelConstant.PEN_J_M);
-			LotDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
-			LotDetails savedLotDetails = lotDetailsRepo.save(LotDetails);
+			lotDetails.setActive(false);
+			lotDetails.setUpdatedBy(loginId);
+			lotDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				lotDetails.setStatus(ModelConstant.COMPLETE);
+				lotDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				lotDetails.setStatus(ModelConstant.COMPLETE);
+				lotDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				lotDetails.setStatus(ModelConstant.PEN_S_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				lotDetails.setStatus(ModelConstant.PEN_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				lotDetails.setStatus(ModelConstant.PEN_J_M);
+				lotDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
+
+			LotDetails savedLotDetails = lotDetailsRepo.save(lotDetails);
 			// Log action
 
-			logAction(loginId, "Lot", "DELETE", savedLotDetails.getLotCode(),
+			logAction(loginId, ModelConstant.LOT, ModelConstant.DELETE, savedLotDetails.getLotCode(),
 					"Lot deleted (set active=false successfully with name: " + savedLotDetails.getLotName(),
-					ModelConstant.PEN_LOT_J_M);
+					savedLotDetails.getStatus(),savedLotDetails.getStatusCode(), savedLotDetails.getLotGenId());
 			response.setData(savedLotDetails);
 			response.setHttpStatus(HttpStatus.OK);
 			response.setMessage("Lot Delete Successfully");
@@ -1867,8 +2231,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 //
 //			List<Map<String, String>> lotList = lotDetailsRepo
 //					.findLotByDistrictCodeAndCircleCode(districtCode, circleCode);
-			List<LotDetails> lotList = lotDetailsRepo.findLotByDistrictCodeAndCircleCodeAndActiveTrue(districtCode,
-					circleCode);
+			String status=ModelConstant.COMPLETE;
+			List<LotDetails> lotList = lotDetailsRepo.findLotByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(districtCode,
+					circleCode,status);
 
 			if (lotList == null || lotList.isEmpty()) {
 				log.info("Respond: No Data Found for Lot By District code :  " + districtCode + " and circleCode : "
@@ -1905,8 +2270,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 //
 //			List<Map<String, String>> landSubClassList = landSubClassRepo
 //					.findLandSubClassByLandClassNameAndActiveTrue(landClassName);
+			String status=ModelConstant.COMPLETE;
 			List<LandSubClassDetails> landSubClassList = landSubClassDetailsRepo
-					.findLandSubClassByLandClassNameAndActiveTrue(landClassName);
+					.findLandSubClassByLandClassNameAndActiveTrueAndStatus(landClassName,status);
 
 			if (landSubClassList == null || landSubClassList.isEmpty()) {
 				log.info("Respond: No Data Found for Land Sub Class By Land Class Name :  " + landClassName
@@ -1948,16 +2314,20 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			Integer landSubClassCode = Optional.ofNullable(landSubClassDetailsRepo.findMaxLandSubClassCode())
 					.orElse(10000) + 1;
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication != null ? authentication.getName() : "SYSTEM";
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			LandSubClassDetails landSubClassDetails = new LandSubClassDetails();
 			landSubClassDetails.setLandSubClassCode(landSubClassCode.toString());
@@ -1965,16 +2335,31 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			landSubClassDetails.setLandClassName(landSubClassDetailsModel.getLandClassName());
 			landSubClassDetails.setCreatedBy(loginId);
 			landSubClassDetails.setActive(true);
-			landSubClassDetails.setStatus(ModelConstant.PEN_J_M);
-			landSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				landSubClassDetails.setStatus(ModelConstant.COMPLETE);
+				landSubClassDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				landSubClassDetails.setStatus(ModelConstant.COMPLETE);
+				landSubClassDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				landSubClassDetails.setStatus(ModelConstant.PEN_S_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				landSubClassDetails.setStatus(ModelConstant.PEN_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				landSubClassDetails.setStatus(ModelConstant.PEN_J_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
 			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.saveAndFlush(landSubClassDetails);
 			// Log action
-			logAction(loginId, "Land Sub Class", "ADD",
+			logAction(loginId, ModelConstant.LANDSUBCLASS, ModelConstant.ADD,
 					"Land Class Name: " + savedLandSubClassDetails.getLandClassName() + ", Land Sub Class Code: "
 							+ savedLandSubClassDetails.getLandSubClassCode(),
-					"Land Sub Class added successfully with name: " + savedLandSubClassDetails.getLandSubClassName(),
-					ModelConstant.PEN_LAND_SUB_CLASS_J_M);
+					"Land Sub Class added, name: " + savedLandSubClassDetails.getLandSubClassName(),
+					savedLandSubClassDetails.getStatus(),savedLandSubClassDetails.getStatusCode(), savedLandSubClassDetails.getLandSubClassGenId());
 
 			response.setData(savedLandSubClassDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -2010,17 +2395,20 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					landSubClassDetailsModel.getLandSubClassName(), landSubClassDetailsModel.getLandClassName(),
 					methodName, this.getClass().getSimpleName());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication != null ? authentication.getName() : "anonymousUser";
-
-			// Check if user is authenticated
-			if ("anonymousUser".equals(loginId)) {
-				log.warn("Unauthorized request. Token expired or invalid. | loginId={} | Method={} | Class={}", loginId,
-						methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired or invalid. Login Id: " + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
+
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+			log.info("User '{}' has roles: {}", loginId, userRoles);
 
 			// Fetch existing details
 			LandSubClassDetails existingLandSubClassDetails = landSubClassDetailsRepo
@@ -2042,24 +2430,39 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			landSubClassDetailsRepo.save(existingLandSubClassDetails);
 
 			// Create new entry with updated values
-			LandSubClassDetails updatedLandSubClassDetails = new LandSubClassDetails();
-			updatedLandSubClassDetails.setLandSubClassCode(landSubClassDetailsModel.getLandSubClassCode());
-			updatedLandSubClassDetails.setLandSubClassName(landSubClassDetailsModel.getLandSubClassName());
-			updatedLandSubClassDetails.setLandClassName(landSubClassDetailsModel.getLandClassName());
-			updatedLandSubClassDetails.setActive(true);
-			updatedLandSubClassDetails.setCreatedBy(existingLandSubClassDetails.getCreatedBy());
-			updatedLandSubClassDetails.setCreatedDtm(existingLandSubClassDetails.getCreatedDtm());
-			updatedLandSubClassDetails.setUpdatedBy(loginId);
-			updatedLandSubClassDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			updatedLandSubClassDetails.setStatus(ModelConstant.PEN_J_M);
-			updatedLandSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
-			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.save(updatedLandSubClassDetails);
+			LandSubClassDetails landSubClassDetails = new LandSubClassDetails();
+			landSubClassDetails.setLandSubClassCode(landSubClassDetailsModel.getLandSubClassCode());
+			landSubClassDetails.setLandSubClassName(landSubClassDetailsModel.getLandSubClassName());
+			landSubClassDetails.setLandClassName(landSubClassDetailsModel.getLandClassName());
+			landSubClassDetails.setActive(true);
+			landSubClassDetails.setCreatedBy(existingLandSubClassDetails.getCreatedBy());
+			landSubClassDetails.setCreatedDtm(existingLandSubClassDetails.getCreatedDtm());
+			landSubClassDetails.setUpdatedBy(loginId);
+			landSubClassDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				landSubClassDetails.setStatus(ModelConstant.COMPLETE);
+				landSubClassDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				landSubClassDetails.setStatus(ModelConstant.COMPLETE);
+				landSubClassDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				landSubClassDetails.setStatus(ModelConstant.PEN_S_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				landSubClassDetails.setStatus(ModelConstant.PEN_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				landSubClassDetails.setStatus(ModelConstant.PEN_J_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
+			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.save(landSubClassDetails);
 
-			logAction(loginId, "Land Sub Class", "UPDATE",
+			logAction(loginId, ModelConstant.LANDSUBCLASS, ModelConstant.UPDATE,
 					"Land Class Name: " + savedLandSubClassDetails.getLandClassName() + ", Land Sub Class Code: "
 							+ savedLandSubClassDetails.getLandSubClassCode(),
-					"Land Sub Class updated successfully with name: " + savedLandSubClassDetails.getLandSubClassName(),
-					ModelConstant.PEN_LAND_SUB_CLASS_J_M);
+					"Land Sub Class updated, name: " + savedLandSubClassDetails.getLandSubClassName(),
+					savedLandSubClassDetails.getStatus(),savedLandSubClassDetails.getStatusCode(), savedLandSubClassDetails.getLandSubClassGenId());
 
 			response.setData(savedLandSubClassDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -2093,22 +2496,25 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			log.info("Request: Delete Land Sub Class Details , LandSubClass " + landSubClass + "  Method Name"
 					+ methodName + " Class : " + this.getClass());
 
+			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			String loginId = authentication.getName();
-
-			// checked logged in correct user or not
-			if (loginId == "anonymousUser") {
-				log.info("Your Token is expired Please use the correct Token. Login Id : {} | Method: {} | Class: {}",
-						loginId, methodName, this.getClass().getSimpleName());
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
-				response.setMessage("Your Token is expired Please use the correct Token:" + loginId);
+				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+			String loginId = authentication.getName();
 
-			LandSubClassDetails LandSubClassDetails = landSubClassDetailsRepo
-					.findByLandSubClassNameAndActiveTrue(landSubClass);
+			// Extract roles
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+			log.info("User '{}' has roles: {}", loginId, userRoles);
+			String status=ModelConstant.COMPLETE;
+			LandSubClassDetails landSubClassDetails = landSubClassDetailsRepo
+					.findByLandSubClassNameAndActiveTrueAndStatus(landSubClass,status);
 
-			if (LandSubClassDetails == null) {
+			if (landSubClassDetails == null) {
 				log.info("Respond: No Data Found - LandSubClass Details by Land Sub Class" + landSubClass
 						+ "  Method Name" + methodName + " Class : " + this.getClass());
 				response.setHttpStatus(HttpStatus.NO_CONTENT);
@@ -2116,20 +2522,35 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 				return response;
 			}
 
-			LandSubClassDetails.setActive(false);
-			LandSubClassDetails.setUpdatedBy(loginId);
-			LandSubClassDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			LandSubClassDetails.setStatus(ModelConstant.PEN_J_M);
-			LandSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			landSubClassDetails.setActive(false);
+			landSubClassDetails.setUpdatedBy(loginId);
+			landSubClassDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+			// Determine status based on roles
+			if (userRoles.contains(ModelConstant.ADMIN)) {
+				landSubClassDetails.setStatus(ModelConstant.COMPLETE);
+				landSubClassDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.SMAN)) {
+				landSubClassDetails.setStatus(ModelConstant.COMPLETE);
+				landSubClassDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.MAN)) {
+				landSubClassDetails.setStatus(ModelConstant.PEN_S_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_S_M_CODE);
+			} else if (userRoles.contains(ModelConstant.JMAN)) {
+				landSubClassDetails.setStatus(ModelConstant.PEN_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_M_CODE);
+			} else {
+				landSubClassDetails.setStatus(ModelConstant.PEN_J_M);
+				landSubClassDetails.setStatusCode(ModelConstant.PEN_J_M_CODE);
+			}
 
-			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.save(LandSubClassDetails);
+			LandSubClassDetails savedLandSubClassDetails = landSubClassDetailsRepo.save(landSubClassDetails);
 
 			// Log action
 
-			logAction(loginId, "District", "DELETE", savedLandSubClassDetails.getLandSubClassCode(),
-					"District deleted (set active=false successfully with name: "
+			logAction(loginId, ModelConstant.LANDSUBCLASS, ModelConstant.DELETE, savedLandSubClassDetails.getLandSubClassCode(),
+					"LandSubClassDetails deleted (set active=false successfully with name: "
 							+ savedLandSubClassDetails.getLandSubClassName(),
-					ModelConstant.PEN_LAND_SUB_CLASS_J_M);
+							savedLandSubClassDetails.getStatus(),savedLandSubClassDetails.getStatusCode(), savedLandSubClassDetails.getLandSubClassGenId());
 
 			response.setData(savedLandSubClassDetails);
 			response.setHttpStatus(HttpStatus.OK);
@@ -2150,17 +2571,17 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 
 	}
 
-	public void logAction(String loginId, String featureName, String actionType, String referenceId, String message,
-			String stat) {
+	public void logAction(String loginId, String featureName, String actionType, String featureId, String message,
+			String stat, String statCode,long genId) {
 		AuditLog log = new AuditLog();
 		log.setLoginId(loginId);
 		log.setFeatureName(featureName);
 		log.setActionType(actionType);
 		log.setActionDatetime(new Timestamp(System.currentTimeMillis()));
-		log.setFeatureId(referenceId);
+		log.setFeatureId(featureId);
 		log.setMessage(message);
 		log.setStatus(stat);
-		log.setStatusCode(ModelConstant.PEN_J_M_CODE);
+		log.setReferenceId(genId);
 		auditLogRepo.save(log);
 
 	}

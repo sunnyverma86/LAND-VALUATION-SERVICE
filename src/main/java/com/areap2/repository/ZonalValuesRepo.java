@@ -38,4 +38,7 @@ public interface ZonalValuesRepo extends JpaRepository<ZonalValues, Long> {
 	List<ZonalValues> findMouzaByDistrictCodeAndCircleCodeAndMouzaCodeAndActiveTrue(String districtCode,
 			String circleCode, String mouzaCode);
 
+	List<ZonalValues> findMouzaByDistrictCodeAndCircleCodeAndMouzaCodeAndStatusAndActiveTrue(String districtCode,
+			String circleCode, String mouzaCode, String status);
+
 }

@@ -24,4 +24,11 @@ public interface VillageDetailsRepo extends JpaRepository<VillageDetails, Long> 
 	VillageDetails findByVillageCodeAndActiveTrue(String villageCode);
 
 	List<VillageDetails> findVillageByDistrictCodeAndCircleCodeAndActiveTrue(String districtCode, String circleCode);
+
+	List<VillageDetails> findByStatusCode(String statusCode);
+
+	VillageDetails findByVillageGenId(Long id);
+
+	List<VillageDetails> findVillageByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(String districtCode,
+			String circleCode, String status);
 }

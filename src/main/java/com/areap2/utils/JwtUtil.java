@@ -1,6 +1,8 @@
 package com.areap2.utils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.List;
 
 import javax.crypto.SecretKey;
 
@@ -57,4 +59,17 @@ public class JwtUtil {
 			return null;
 		}
 	}
+
+	// ✅ Extract roles from JWT
+	public List<String> extractRoles(String token) {
+		try {
+			Claims claims = Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload();
+
+			return claims.get("roles", List.class);
+		} catch (JwtException e) {
+			log.error("Failed to extract roles from JWT: {}", e.getMessage(), e);
+			return Collections.emptyList();
+		}
+	}
+
 }

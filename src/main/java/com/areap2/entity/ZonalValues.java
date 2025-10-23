@@ -18,7 +18,7 @@ import lombok.Data;
 @Table(name = "areap2_zonal_values", schema = "areap2landvaluation")
 @NamedQuery(name = "ZonalValues.findAll", query = "SELECT a FROM ZonalValues a")
 public class ZonalValues implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -86,7 +86,7 @@ public class ZonalValues implements Serializable {
 
 	@Column(name = "sub_clause_wise_commercial_per_sqm_rate")
 	private Long subClauseWiseCommercialPerSqmRate;
-	
+
 	@Column(name = "active")
 	private Boolean active;
 
@@ -101,5 +101,11 @@ public class ZonalValues implements Serializable {
 
 	@Column(name = "updated_dtm")
 	private Timestamp updatedDtm;
+
+	@Column(name = "status")
+	private String status;
+
+	@Column(name = "status_code")
+	private String statusCode;
 
 }

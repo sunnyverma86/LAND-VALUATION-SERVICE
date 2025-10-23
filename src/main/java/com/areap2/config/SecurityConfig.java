@@ -25,6 +25,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/masterData/update/**").authenticated() 
+                .requestMatchers("/audit/update/**").authenticated() 
 //                .requestMatchers("/areap2/admin/**").hasRole("10001")
                 .anyRequest().permitAll()
             )

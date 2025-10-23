@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.areap2.entity.LandSubClassDetails;
 import com.areap2.entity.LotDetails;
 
 @Repository
@@ -24,5 +25,12 @@ public interface LotDetailsRepo extends JpaRepository<LotDetails, Long> {
 	LotDetails findByLotCodeAndActiveTrue(String lotCode);
 
 	List<LotDetails> findLotByDistrictCodeAndCircleCodeAndActiveTrue(String districtCode, String circleCode);
+
+	List<LandSubClassDetails> findByStatusCode(String statusCode);
+
+	LotDetails findByLotGenId(Long id);
+
+	List<LotDetails> findLotByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(String districtCode, String circleCode,
+			String status);
 
 }
