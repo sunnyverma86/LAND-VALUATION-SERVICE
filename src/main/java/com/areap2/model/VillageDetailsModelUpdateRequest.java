@@ -9,12 +9,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VillageDetailsModelUpdateRequest {
 
-	private String villageName;
-	
-	private String villageCode;
+	private String districtCode;
 
 	private String circleCode;
 
-	private String districtCode;
+	private String mouzaCode;
+
+	private String lotCode;
+
+	private String villageCode;
+
+	private String areaType;
+
+	private String villageName;
 
 }

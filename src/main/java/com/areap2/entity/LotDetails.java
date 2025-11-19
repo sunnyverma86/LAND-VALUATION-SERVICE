@@ -1,6 +1,7 @@
 package com.areap2.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
@@ -17,7 +18,7 @@ import lombok.Data;
 @Entity
 @Table(name = "areap2_lot_details", schema = "areap2landvaluation")
 @NamedQuery(name = "LotDetails.findAll", query = "SELECT a FROM LotDetails a")
-public class LotDetails implements Serializable{
+public class LotDetails implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,19 +30,22 @@ public class LotDetails implements Serializable{
 
 	@Column(name = "lot_name")
 	private String lotName;
-	
+
 	@Column(name = "lot_code")
 	private String lotCode;
 
 	@Column(name = "area_type_id")
 	private Long areaTypeId;
-	
+
 	@Column(name = "district_code")
 	private String districtCode;
-	
+
 	@Column(name = "circle_code")
 	private String circleCode;
-	
+
+	@Column(name = "mouza_code")
+	private String mouzaCode;
+
 	@Column(name = "active")
 	private Boolean active;
 
@@ -57,13 +61,15 @@ public class LotDetails implements Serializable{
 	@Column(name = "updated_dtm")
 	private Timestamp updatedDtm;
 
-	
 	@Column(name = "status")
 	private String status;
 
-	
 	@Column(name = "status_code")
 	private String statusCode;
+
+	@Column(name = "circle_name")
+	private String circleName;
+
+	@Column(name = "base_price_increase_lot")
+	private BigDecimal basePriceIncreaseLot;
 }
-
-

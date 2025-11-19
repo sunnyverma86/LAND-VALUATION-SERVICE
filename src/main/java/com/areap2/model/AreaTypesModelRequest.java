@@ -11,4 +11,12 @@ public class AreaTypesModelRequest {
 
 	private String areaType;
 
+	private Long basePriceIncreaseAreaType;
+
+	private String districtCode;
+
+	private String circleCode;
+
+	private String mouzaCode;
+
 }

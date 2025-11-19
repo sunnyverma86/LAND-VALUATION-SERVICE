@@ -25,5 +25,10 @@ public interface LandCategoriesRepo extends JpaRepository<LandCategories,Long>{
 	LandCategories findByLandCategoryGenId(Long id);
 
 	List<LandCategories> findAllByActiveTrueAndStatus(String status);
+
+	LandCategories findByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(String districtCode, String circleCode,
+			String status);
+
+	List<LandCategories> findAllByActiveTrueAndStatusAndMouzaCode(String status, String mouzaCode);
 	
 }

@@ -1,5 +1,6 @@
 package com.areap2.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.areap2.entity.CircleDetails;
 import com.areap2.entity.VillageDetails;
 
 @Repository
@@ -16,11 +16,11 @@ public interface VillageDetailsRepo extends JpaRepository<VillageDetails, Long> 
 
 	@Query(value = "SELECT v.villageCode as villageCode,v.villageName as villageName  FROM VillageDetails v where v.districtCode=:districtCode AND v.circleCode=:circleCode And v.active=true")
 	List<Map<String, String>> findVillageByDistrictCodeAndCircleCode(@Param("districtCode") String districtCode,
-			                                                         @Param("circleCode") String circleCode);
-	
+			@Param("circleCode") String circleCode);
+
 	@Query(value = "select MAX(village_code) from areap2landvaluation.areap2_village_details", nativeQuery = true)
 	Integer findMaxVillageCode();
-	
+
 	VillageDetails findByVillageCodeAndActiveTrue(String villageCode);
 
 	List<VillageDetails> findVillageByDistrictCodeAndCircleCodeAndActiveTrue(String districtCode, String circleCode);
@@ -31,4 +31,11 @@ public interface VillageDetailsRepo extends JpaRepository<VillageDetails, Long> 
 
 	List<VillageDetails> findVillageByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(String districtCode,
 			String circleCode, String status);
+
+	List<VillageDetails> findVillageByDistrictCodeAndCircleCodeAndMouzaCodeAndLotCodeAndActiveTrueAndStatus(String districtCode,
+			String circleCode, String mouza, String lot, String status);
+	
+	 @Query("SELECT MAX(l.basePriceVillage) FROM VillageDetails l")
+	    BigDecimal findMaxIncreaseLot();
+
 }

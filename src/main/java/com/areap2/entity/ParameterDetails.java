@@ -23,29 +23,19 @@ public class ParameterDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "cluster_details_cluster_details_gen_id_seq", sequenceName = "cluster_details_cluster_details_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "cluster_details_cluster_details_gen_id_seq")
+	@SequenceGenerator(name = "areap2_parameter_details_parameter_gen_id_seq", sequenceName = "areap2_parameter_details_parameter_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_parameter_details_parameter_gen_id_seq")
+	@Column(name = "parameter_gen_id")
+	private Long parameterGenId;
 
+	@Column(name = "parameter_name")
+	private String parameterName;
+
+	@Column(name = "parameter_code")
+	private String parameterCode;
+	
 	@Column(name = "parameter_id")
-	private Long parameterId;
-
-	@Column(name = "parameter", nullable = false, length = 200)
-	private String parameter;
-
-	@Column(name = "parameter_type", length = 200)
-	private String parameterType;
-
-	@Column(name = "area_type_id", nullable = false)
-	private Long areaTypeId;
-
-	@Column(name = "min_range_in_meters", precision = 10)
-	private BigDecimal minRangeInMeters;
-
-	@Column(name = "max_range_in_meters", precision = 10)
-	private BigDecimal maxRangeInMeters;
-
-	@Column(name = "min_max_range", length = 50)
-	private String minMaxRange;
+	private String parameterId;
 
 	@Column(name = "active")
 	private Boolean active;
@@ -68,11 +58,32 @@ public class ParameterDetails implements Serializable {
 	@Column(name = "approved_dtm")
 	private Timestamp approvedDtm;
 
-	
 	@Column(name = "status")
 	private String status;
 
-	
 	@Column(name = "status_code")
 	private String statusCode;
+
+	@Column(name = "base_price_increase_parameter")
+	private Long basePriceIncreaseParameter;
+	
+//
+//	@Column(name = "parameter", nullable = false, length = 200)
+//	private String parameter;
+//
+//	@Column(name = "parameter_type", length = 200)
+//	private String parameterType;
+//
+//	@Column(name = "area_type_id", nullable = false)
+//	private Long areaTypeId;
+//
+//	@Column(name = "min_range_in_meters", precision = 10)
+//	private BigDecimal minRangeInMeters;
+//
+//	@Column(name = "max_range_in_meters", precision = 10)
+//	private BigDecimal maxRangeInMeters;
+//
+//	@Column(name = "min_max_range", length = 50)
+//	private String minMaxRange;
+
 }

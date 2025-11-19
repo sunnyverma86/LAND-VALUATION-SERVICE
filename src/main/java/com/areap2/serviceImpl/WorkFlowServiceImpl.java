@@ -50,21 +50,21 @@ public class WorkFlowServiceImpl extends AbstractMasterRepository implements Wor
 		}
 
 		List<?> result;
-		if ("DISTRICT".equalsIgnoreCase(masterType)) {
+		if (ModelConstant.DISTRICT.equalsIgnoreCase(masterType)) {
 			result = districtDetailsRepo.findByStatusCode(statusCode);
-		} else if ("CIRCLE".equalsIgnoreCase(masterType)) {
+		} else if (ModelConstant.CIRCLE.equalsIgnoreCase(masterType)) {
 			result = circleDetailsRepo.findByStatusCode(statusCode);
-		} else if ("VILLAGE".equalsIgnoreCase(masterType)) {
+		} else if (ModelConstant.VILLAGE.equalsIgnoreCase(masterType)) {
 			result = villageDetailsRepo.findByStatusCode(statusCode);
-		} else if ("MAUZA".equalsIgnoreCase(masterType)) {
+		} else if (ModelConstant.MAUZA.equalsIgnoreCase(masterType)) {
 			result = mouzaDetailsRepo.findByStatusCode(statusCode);
-		} else if ("LANDUSE".equalsIgnoreCase(masterType)) {
+		} else if (ModelConstant.LANDUSE.equalsIgnoreCase(masterType)) {
 			result = landCategoriesRepo.findByStatusCode(statusCode);
-		} else if ("AREATYPE".equalsIgnoreCase(masterType)) {
+		} else if (ModelConstant.AREATYPE.equalsIgnoreCase(masterType)) {
 			result = areaTypesRepo.findByStatusCode(statusCode);
-		} else if ("LOT".equalsIgnoreCase(masterType)) {
+		} else if (ModelConstant.LOT.equalsIgnoreCase(masterType)) {
 			result = lotDetailsRepo.findByStatusCode(statusCode);
-		} else if ("LANDSUBCLASS".equalsIgnoreCase(masterType)) {
+		} else if (ModelConstant.LANDSUBCLASS.equalsIgnoreCase(masterType)) {
 			result = landSubClassDetailsRepo.findByStatusCode(statusCode);
 		} else {
 			log.warn("Unknown masterType provided | masterType={} | method={}", masterType, methodName);

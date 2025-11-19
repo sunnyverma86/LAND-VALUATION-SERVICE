@@ -9,10 +9,13 @@ import com.areap2.repository.ClusterDetailsRepo;
 import com.areap2.repository.DistrictDetailsRepo;
 import com.areap2.repository.LandCategoriesRepo;
 import com.areap2.repository.LandSubClassDetailsRepo;
+import com.areap2.repository.LandsCategoryDetailsRepo;
 import com.areap2.repository.LotDetailsRepo;
 import com.areap2.repository.MouzaDetailsRepo;
+import com.areap2.repository.ParamDetailsRepo;
 import com.areap2.repository.ParameterDetailsRepo;
 import com.areap2.repository.ProcedureRepo;
+import com.areap2.repository.SubParameterDetailsRepo;
 import com.areap2.repository.VillageDetailsRepo;
 import com.areap2.repository.ZonalValuesRepo;
 import com.areap2.repository.duty.StampDutyCalculationRepo;
@@ -44,6 +47,12 @@ public abstract class AbstractMasterRepository {
 	ParameterDetailsRepo parameterDetailsRepo;
 
 	@Autowired
+	SubParameterDetailsRepo subParameterDetailsRepo;
+
+	@Autowired
+	ParamDetailsRepo paramDetailsRepo;
+
+	@Autowired
 	ClusterDetailsRepo clusterDetailsRepo;
 
 	@Autowired
@@ -60,5 +69,8 @@ public abstract class AbstractMasterRepository {
 
 	@Autowired
 	StampDutyCalculationRepo stampDutyCalculationRepo;
+	
+	@Autowired
+	LandsCategoryDetailsRepo landsCategoryDetailsRepo;
 
 }

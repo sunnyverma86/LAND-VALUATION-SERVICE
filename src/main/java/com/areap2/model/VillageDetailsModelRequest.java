@@ -9,12 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VillageDetailsModelRequest {
 
-	private String villageName;
-
-	
+	private String districtCode;
 
 	private String circleCode;
 
-	private String districtCode;
+	private String mouzaCode;
+
+	private String lotCode;
+
+	private String villageName;
+
+	private String areaType;// Rural/Urban
 
 }

@@ -24,7 +24,9 @@ public class SecurityConfig {
             .cors(cors -> cors.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/masterData/add/**").authenticated() 
                 .requestMatchers("/masterData/update/**").authenticated() 
+                .requestMatchers("/masterData/delete/**").authenticated() 
                 .requestMatchers("/audit/update/**").authenticated() 
 //                .requestMatchers("/areap2/admin/**").hasRole("10001")
                 .anyRequest().permitAll()

@@ -15,29 +15,26 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "areap2_circle_details", schema = "areap2landvaluation")
-@NamedQuery(name = "CircleDetails.findAll", query = "SELECT a FROM CircleDetails a")
-public class CircleDetails implements Serializable{
+@Table(name = "areap2_lands_category_details", schema = "areap2landvaluation")
+@NamedQuery(name = "LandsCategoryDetails.findAll", query = "SELECT a FROM LandsCategoryDetails a")
+public class LandsCategoryDetails implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "areap2_circle_details_circle_gen_id_seq", sequenceName = "areap2_circle_details_circle_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_circle_details_circle_gen_id_seq")
-	@Column(name = "circle_gen_id")
-	private Long circleGenId;
-
-	@Column(name = "circle_name")
-	private String circleName;
+	@SequenceGenerator(name = "areap2_lands_category_gen_id_seq", sequenceName = "areap2_lands_category_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_lands_category_gen_id_seq")
+	@Column(name = "land_category_gen_id")
+	private Long landCategoryGenId;
 	
-	@Column(name = "circle_code")
-	private String circleCode;
+	@Column(name = "land_category_code")
+	private String landCategoryCode;
 
-//	@Column(name = "lot")
-//	private String lot;
-	
-	@Column(name = "district_code")
-	private String districtCode;
+	@Column(name = "land_category_name")
+	private String landCategoryName;
+
+	@Column(name = "land_class_name")
+	private String landClassName;
 
 	@Column(name = "active")
 	private Boolean active;
@@ -61,8 +58,5 @@ public class CircleDetails implements Serializable{
 	
 	@Column(name = "status_code")
 	private String statusCode;
-	
 
-	@Column(name = "base_price")
-	private Long basePrice;
 }

@@ -58,6 +58,10 @@ public class JurisdictionInfoController {
 
 		return response;
 	}
+	
+	
+	
+	
 
 	@PostMapping("/getStampDuty")
 	public ResponseModel getStampDutyAll(@RequestParam Long stampDutyGenid) {

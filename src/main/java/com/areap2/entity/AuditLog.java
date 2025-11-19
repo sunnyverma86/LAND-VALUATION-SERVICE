@@ -2,7 +2,6 @@ package com.areap2.entity;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,18 +26,19 @@ public class AuditLog {
 	private String featureName;
 	private String actionType;
 	private Timestamp actionDatetime;
-	private String featureId;
+	private String featureDescription;
 	private String message;
 	private String status;
-	
+
 	private String statusCode;
-	
+
 	private Long referenceId;
-	
+
 	private Long newReferenceId;
-	
+
 	private Timestamp updateDatetime;
-	
+
+	private String featureId;
 	private String updatedBy;
 
 	// getters and setters

@@ -18,5 +18,7 @@ public class MouzaDetailsModelUpdateRequest {
 	private String districtCode;
 
 	private String circleCode;
+	
+	private Long bPMouza;
 
 }

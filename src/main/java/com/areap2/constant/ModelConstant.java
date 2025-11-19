@@ -37,9 +37,12 @@ public class ModelConstant {
     public static final String VILLAGE = "Village";
     public static final String MAUZA = "Mauza";
     public static final String LANDUSE = "LandUse";
+    public static final String LANDCATEGORY = "LandyCategory";
     public static final String AREATYPE = "AreaType";
     public static final String LOT = "Lot";
-    public static final String LANDSUBCLASS = "landSubClass";
+    public static final String LANDSUBCLASS = "LandSubClass";
+    public static final String PARAMETER = "Parameter";
+    public static final String SUBPARAMETER = "SubParameter";
     
     
     public static final String ADMIN = "admin";
@@ -50,6 +53,23 @@ public class ModelConstant {
     public static final String ADD = "add";
     public static final String DELETE = "delete";
     public static final String UPDATE = "update";
+    
+    public static final Long DEFAULT_BASE_PRICE_MOUZA = 25000L;
+    
+    public static final Long DEFAULT_BASE_PRICE= 25000L;
+    
+    public static final String AGRICULTURAL = "AGRICULTURAL";
+    public static final String RESIDENTIAL = "RESIDENTIAL";
+    public static final String INDUSTRIAL = "INDUSTRIAL";
+    public static final String COMMERCIAL = "COMMERCIAL";
+    public static final String OTHERS = "OTHERS";
+    
+    
+    public static final String RURAL = "RURAL";
+    public static final String URBAN = "URBAN";
+    
+    
+    
     
     
     

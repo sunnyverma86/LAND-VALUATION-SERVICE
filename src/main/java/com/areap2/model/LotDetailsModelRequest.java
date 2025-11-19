@@ -16,5 +16,7 @@ public class LotDetailsModelRequest {
 	private String districtCode;
 
 	private String circleCode;
+	
+	private String mouzaCode;
 
 }

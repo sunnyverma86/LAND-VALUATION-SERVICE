@@ -8,14 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.areap2.entity.AreaTypes;
-import com.areap2.entity.LandCategories;
 
 @Repository
-public interface AreaTypesRepo extends JpaRepository<AreaTypes,Long>{
+public interface AreaTypesRepo extends JpaRepository<AreaTypes, Long> {
 
-	@Query(value="SELECT a.areaTypesGenId as areaTypesId,a.areaType as areaType FROM AreaTypes a WHERE a.active=true")
-	List<Map<String,Object>> findAllAreaType();
-	
+	@Query(value = "SELECT a.areaTypesGenId as areaTypesId,a.areaType as areaType FROM AreaTypes a WHERE a.active=true")
+	List<Map<String, Object>> findAllAreaType();
+
 	AreaTypes findByAreaTypesGenIdAndActiveTrue(Long areaTypesGenId);
 
 	List<AreaTypes> findAllByActiveTrue();
@@ -25,5 +24,12 @@ public interface AreaTypesRepo extends JpaRepository<AreaTypes,Long>{
 	AreaTypes findByAreaTypesGenId(Long id);
 
 	List<AreaTypes> findAllByActiveTrueAndStatus(String status);
-	
+
+	AreaTypes findByDistrictCodeAndCircleCodeAndMouzaCodeAndStatusAndActiveTrue(String districtCode, String circleCode,
+			String mouza,String status);
+
+	List<AreaTypes> findAllByActiveTrueAndStatusAndMouzaCode(String status, String mouzaCode);
+
+	//AreaTypes findByStatus(String status);
+
 }

@@ -48,8 +48,19 @@ public class AreaTypes implements Serializable {
 	@Column(name = "status")
 	private String status;
 
-	
 	@Column(name = "status_code")
 	private String statusCode;
+
+	@Column(name = "base_price_increase_area_type")
+	private Long basePriceIncreaseAreaType;
+
+	@Column(name = "district_code")
+	private String districtCode;
+
+	@Column(name = "circle_code")
+	private String circleCode;
+
+	@Column(name = "mouza_code")
+	private String mouzaCode;
 
 }

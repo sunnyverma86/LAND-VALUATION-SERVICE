@@ -1,5 +1,6 @@
 package com.areap2.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,7 +31,23 @@ public interface LotDetailsRepo extends JpaRepository<LotDetails, Long> {
 
 	LotDetails findByLotGenId(Long id);
 
+	//List<LotDetails> findLotByDistrictCodeAndCircleCodeAndStatusAndActiveTrue(String districtCode, String circleCode,
+		//	String status);
+	
+	LotDetails findLotByDistrictCodeAndCircleCodeAndStatusAndActiveTrue(String districtCode, String circleCode,
+			String status);
+
 	List<LotDetails> findLotByDistrictCodeAndCircleCodeAndActiveTrueAndStatus(String districtCode, String circleCode,
 			String status);
+
+	List<LotDetails> findLotByDistrictCodeAndCircleCodeAndMouzaCodeAndActiveTrueAndStatus(String districtCode,
+			String circleCode,String mouzaCode, String status);
+
+	 @Query("SELECT MAX(l.basePriceIncreaseLot) FROM LotDetails l")
+	    BigDecimal findMaxIncreaseLot();
+
+	//LotDetails findByStatus(String status);
+
+	//List<LotDetails> findByDistrictCode(String districtCode);
 
 }
