@@ -29,6 +29,8 @@ public interface DistrictDetailsRepo extends JpaRepository<DistrictDetails,Long>
 	List<DistrictDetails> findByStatusCode(String statusCode);
 
 	List<DistrictDetails> findAllByActiveTrueAndStatus(String Status);
+	
+	List<DistrictDetails> findByDistrictCode(String districtCode);
 
 	//DistrictDetails findByDistrictId(Long id);
 

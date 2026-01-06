@@ -48,6 +48,9 @@ public class VillageDetails implements Serializable {
 
 	@Column(name = "area_type") // urban/rural
 	private String areaType;
+	
+	@Column(name = "landCategory") // Agricultural/
+	private String landCategory;
 
 	@Column(name = "active")
 	private Boolean active;
@@ -72,5 +75,8 @@ public class VillageDetails implements Serializable {
 
 	@Column(name = "base_price_village")
 	private BigDecimal basePriceVillage;
+	
+	@Column(name = "request_status")
+	private String requestStatus;
 
 }

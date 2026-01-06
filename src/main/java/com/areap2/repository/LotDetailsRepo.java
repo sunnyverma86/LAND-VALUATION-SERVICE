@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.areap2.entity.LandSubClassDetails;
 import com.areap2.entity.LotDetails;
 
 @Repository
@@ -27,13 +26,8 @@ public interface LotDetailsRepo extends JpaRepository<LotDetails, Long> {
 
 	List<LotDetails> findLotByDistrictCodeAndCircleCodeAndActiveTrue(String districtCode, String circleCode);
 
-	List<LandSubClassDetails> findByStatusCode(String statusCode);
-
 	LotDetails findByLotGenId(Long id);
 
-	//List<LotDetails> findLotByDistrictCodeAndCircleCodeAndStatusAndActiveTrue(String districtCode, String circleCode,
-		//	String status);
-	
 	LotDetails findLotByDistrictCodeAndCircleCodeAndStatusAndActiveTrue(String districtCode, String circleCode,
 			String status);
 
@@ -41,13 +35,16 @@ public interface LotDetailsRepo extends JpaRepository<LotDetails, Long> {
 			String status);
 
 	List<LotDetails> findLotByDistrictCodeAndCircleCodeAndMouzaCodeAndActiveTrueAndStatus(String districtCode,
-			String circleCode,String mouzaCode, String status);
+			String circleCode, String mouzaCode, String status);
 
-	 @Query("SELECT MAX(l.basePriceIncreaseLot) FROM LotDetails l")
-	    BigDecimal findMaxIncreaseLot();
+	@Query("SELECT MAX(l.basePriceIncreaseLot) FROM LotDetails l")
+	BigDecimal findMaxIncreaseLot();
 
-	//LotDetails findByStatus(String status);
+	List<LotDetails> findByLotCode(String lotCode);
 
-	//List<LotDetails> findByDistrictCode(String districtCode);
+	List<LotDetails> findByStatusCode(String statusCode);
+
+	List<LotDetails> findLotByDistrictCodeAndCircleCodeAndMouzaCodeAndActiveTrue(String districtCode, String circleCode,
+			String mouzaCode);
 
 }

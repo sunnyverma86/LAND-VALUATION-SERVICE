@@ -26,7 +26,7 @@ public class LandSubClassDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_land_sub_class_gen_id_seq")
 	@Column(name = "land_sub_class_gen_id")
 	private Long landSubClassGenId;
-	
+
 	@Column(name = "land_sub_class_code")
 	private String landSubClassCode;
 
@@ -51,12 +51,13 @@ public class LandSubClassDetails implements Serializable {
 	@Column(name = "updated_dtm")
 	private Timestamp updatedDtm;
 
-	
 	@Column(name = "status")
 	private String status;
 
-	
 	@Column(name = "status_code")
 	private String statusCode;
+
+	@Column(name = "request_status")
+	private String requestStatus;
 
 }

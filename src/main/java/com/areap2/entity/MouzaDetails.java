@@ -67,6 +67,9 @@ public class MouzaDetails implements Serializable{
 	
 	@Column(name = "base_price_mouza")
 	private Long basePriceMouza;
+	
+	@Column(name = "request_status")
+	private String requestStatus;
 }
 
 

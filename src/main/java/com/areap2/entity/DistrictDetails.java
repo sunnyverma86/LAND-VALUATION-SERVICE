@@ -55,5 +55,8 @@ public class DistrictDetails implements Serializable {
 	
 	@Column(name = "status_code")
 	private String statusCode;
+	
+	@Column(name = "request_status")
+	private String requestStatus;
 
 }

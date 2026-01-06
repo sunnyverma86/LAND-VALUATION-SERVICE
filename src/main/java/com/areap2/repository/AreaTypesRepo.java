@@ -30,6 +30,8 @@ public interface AreaTypesRepo extends JpaRepository<AreaTypes, Long> {
 
 	List<AreaTypes> findAllByActiveTrueAndStatusAndMouzaCode(String status, String mouzaCode);
 
+	//List<?> findByAreaTypesGenId(String masterCode);
+
 	//AreaTypes findByStatus(String status);
 
 }

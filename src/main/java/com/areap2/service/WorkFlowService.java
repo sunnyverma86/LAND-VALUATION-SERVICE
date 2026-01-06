@@ -18,12 +18,26 @@ public interface WorkFlowService {
 
 	List<?> getRequestsByStatusCodeAndMaster(String statusCode, String masterType);
 
-	public List<?> getRequestsByIdAndMasterAndAction(Long id, String masterType, String action, String statusCode);
+	public List<?> getRequestsByIdAndMasterAndAction(Long id, String masterType, String masterCode, String action, String statusCode);
 	
-	public List<?> getRequestsByIdAndMasterAndActionMan(Long id, String masterType, String action, String statusCode);
+//	public List<?> getRequestsByIdAndMasterAndActionMan(Long id, String masterType, String action, String statusCode);
 	
-	public List<?> getRequestsByIdAndMasterAndActionSeniorMan(Long id, String masterType, String action, String statusCode);
+	public List<?> getRequestsByIdAndMasterAndActionSeniorMan(Long id, String masterType, String masterCode, String action, String statusCode,String requestType);
 	
-	public List<?> getRequestsByIdAndMasterAndActionAdmin(Long id, String masterType, String action, String statusCode);
+	public List<?> getRequestsByIdAndMasterAndActionAdmin(Long id, String masterType, String masterCode, String action, String statusCode);
+
+	public List<?> getRequestsByIdAndMasterAndActionMan(Long id, String masterType, String masterCode, String action,
+			String currentStatusCode);
+	
+	public List<?> getRequestsByIdAndMasterAndActionLra(Long id, String masterType, String masterCode, String action, String statusCode);
+	
+	public List<?> getRequestsByIdAndMasterAndActionCo(Long id, String masterType, String masterCode, String action, String statusCode);
+	
+	public List<?> getRequestsByIdAndMasterAndActionAdc(Long id, String masterType, String masterCode, String action,
+			String currentStatusCode);
+	public List<?> getRequestsByIdAndMasterAndActionDeputyCom(Long id, String masterType, String masterCode, String action, String statusCode,String requestType);
+	
+	
+	
 
 }

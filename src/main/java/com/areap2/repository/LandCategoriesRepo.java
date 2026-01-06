@@ -30,5 +30,7 @@ public interface LandCategoriesRepo extends JpaRepository<LandCategories,Long>{
 			String status);
 
 	List<LandCategories> findAllByActiveTrueAndStatusAndMouzaCode(String status, String mouzaCode);
+
+	//List<?> findByLandCategoryGenId(String masterCode);
 	
 }

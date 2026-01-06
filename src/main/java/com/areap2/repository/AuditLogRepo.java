@@ -15,6 +15,13 @@ public interface AuditLogRepo extends JpaRepository<AuditLog, Long> {
 	AuditLog findByReferenceId(Long id);
 
 	AuditLog findByReferenceIdAndFeatureNameAndStatusCode(Long id, String featName, String statCode);
+	
+	List<AuditLog> findByReferenceIdAndFeatureName(Long id, String featName);
+
+	AuditLog findTopByReferenceIdAndFeatureNameAndStatusCodeOrderByIdDesc(Long id, String featName,
+			String statCode);
+	
+	
 
 	//List<AuditLog> getRequestsByStatusCode(String statusCode, String masterType);
 }

@@ -16,4 +16,10 @@ public interface LandsCategoryDetailsRepo extends JpaRepository<LandsCategoryDet
 
 	LandsCategoryDetails findByLandCategoryCodeAndActiveTrue(String landCategoryCode);
 
+	LandsCategoryDetails findByLandCategoryGenId(Long id);
+
+	List<LandsCategoryDetails> findByLandCategoryCode(String landCategoryCode);
+
+	List<LandsCategoryDetails> findAllByActiveTrue();
+
 }

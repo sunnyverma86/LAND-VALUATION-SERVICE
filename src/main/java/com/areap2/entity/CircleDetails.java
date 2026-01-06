@@ -17,7 +17,7 @@ import lombok.Data;
 @Entity
 @Table(name = "areap2_circle_details", schema = "areap2landvaluation")
 @NamedQuery(name = "CircleDetails.findAll", query = "SELECT a FROM CircleDetails a")
-public class CircleDetails implements Serializable{
+public class CircleDetails implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,13 +29,13 @@ public class CircleDetails implements Serializable{
 
 	@Column(name = "circle_name")
 	private String circleName;
-	
+
 	@Column(name = "circle_code")
 	private String circleCode;
 
 //	@Column(name = "lot")
 //	private String lot;
-	
+
 	@Column(name = "district_code")
 	private String districtCode;
 
@@ -54,15 +54,15 @@ public class CircleDetails implements Serializable{
 	@Column(name = "updated_dtm")
 	private Timestamp updatedDtm;
 
-	
 	@Column(name = "status")
 	private String status;
 
-	
 	@Column(name = "status_code")
 	private String statusCode;
-	
 
 	@Column(name = "base_price")
 	private Long basePrice;
+
+	@Column(name = "request_status")
+	private String requestStatus;
 }

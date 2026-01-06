@@ -68,31 +68,31 @@ public class AuditController {
 	}
 
 	@GetMapping("/update/action/jm")
-	public ResponseEntity<?> updateRequestAction(@RequestParam Long id, @RequestParam String masterType,
-			@RequestParam String action, @RequestParam String statusCode) {
+	public ResponseEntity<?> updateRequestAction(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode) {
 
 		final String methodName = "updateRequestActionjm";
 		log.info("[START] {} | id={} | masterType={} | action={} | statusCode={} | class={}", methodName, id,
-				masterType, action, statusCode, this.getClass().getSimpleName());
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
 
 		try {
 			// Input validation
 			if (id == null || masterType == null || masterType.isBlank() || action == null || action.isBlank()
-					|| statusCode == null || statusCode.isBlank()) {
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
 
 				log.warn("Invalid request parameters | id={} | masterType={} | action={} | statusCode={} | method={}",
-						id, masterType, action, statusCode, methodName);
+						id, masterType, action, currentStatusCode, methodName);
 
 				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
 			}
 
 			// Service call
-			List<?> result = workFlowService.getRequestsByIdAndMasterAndAction(id, masterType, action,
-					statusCode);
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndAction(id, masterType,masterCode, action,
+					currentStatusCode);
 
 			int count = (result != null ? result.size() : 0);
 			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
-					count, masterType, action, statusCode);
+					count, masterType, action, currentStatusCode);
 
 			// Return successful response
 			return ResponseEntity
@@ -108,31 +108,31 @@ public class AuditController {
 	}
 
 	@GetMapping("/update/action/man")
-	public ResponseEntity<?> updateRequestActionMan(@RequestParam Long id, @RequestParam String masterType,
-			@RequestParam String action, @RequestParam String statusCode) {
+	public ResponseEntity<?> updateRequestActionMan(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode) {
 
 		final String methodName = "updateRequestActionMan";
-		log.info("[START] {} | id={} | masterType={} | action={} | statusCode={} | class={}", methodName, id,
-				masterType, action, statusCode, this.getClass().getSimpleName());
+		log.info("[START] {} | id={} | masterType={} | masterCode={} | action={} | currentStatusCode={} | class={}", methodName, id,
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
 
 		try {
 			// Input validation
-			if (id == null || masterType == null || masterType.isBlank() || action == null || action.isBlank()
-					|| statusCode == null || statusCode.isBlank()) {
+			if (id == null || masterType == null || masterType.isBlank() || masterCode.isBlank() || action == null || action.isBlank()
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
 
-				log.warn("Invalid request parameters | id={} | masterType={} | action={} | statusCode={} | method={}",
-						id, masterType, action, statusCode, methodName);
+				log.warn("Invalid request parameters | id={} | masterType={} | masterCode={} | action={} | currentStatusCode={} | method={}",
+						id, masterType,masterCode, action, currentStatusCode, methodName);
 
 				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
 			}
 
 			// Service call
-			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionMan(id, masterType, action,
-					statusCode);
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionMan(id, masterType,masterCode, action,
+					currentStatusCode);
 
 			int count = (result != null ? result.size() : 0);
 			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
-					count, masterType, action, statusCode);
+					count, masterType, action, currentStatusCode);
 
 			// Return successful response
 			return ResponseEntity
@@ -148,31 +148,31 @@ public class AuditController {
 	}
 	
 	@GetMapping("/update/action/sman")
-	public ResponseEntity<?> updateRequestActionSeniorMan(@RequestParam Long id, @RequestParam String masterType,
-			@RequestParam String action, @RequestParam String statusCode) {
+	public ResponseEntity<?> updateRequestActionSeniorMan(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode, @RequestParam String requestType ) {
 
 		final String methodName = "updateRequestActionSeniorMan";
 		log.info("[START] {} | id={} | masterType={} | action={} | statusCode={} | class={}", methodName, id,
-				masterType, action, statusCode, this.getClass().getSimpleName());
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
 
 		try {
 			// Input validation
 			if (id == null || masterType == null || masterType.isBlank() || action == null || action.isBlank()
-					|| statusCode == null || statusCode.isBlank()) {
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
 
 				log.warn("Invalid request parameters | id={} | masterType={} | action={} | statusCode={} | method={}",
-						id, masterType, action, statusCode, methodName);
+						id, masterType, action, currentStatusCode, methodName);
 
 				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
 			}
 
 			// Service call
-			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionSeniorMan(id, masterType, action,
-					statusCode);
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionSeniorMan(id, masterType,masterCode, action,
+					currentStatusCode,requestType);
 
 			int count = (result != null ? result.size() : 0);
 			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
-					count, masterType, action, statusCode);
+					count, masterType, action, currentStatusCode);
 
 			// Return successful response
 			return ResponseEntity
@@ -188,31 +188,31 @@ public class AuditController {
 	}
 	
 	@GetMapping("/update/action/admin")
-	public ResponseEntity<?> updateRequestActionAdmin(@RequestParam Long id, @RequestParam String masterType,
-			@RequestParam String action, @RequestParam String statusCode) {
+	public ResponseEntity<?> updateRequestActionAdmin(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode) {
 
 		final String methodName = "updateRequestActionAdmin";
 		log.info("[START] {} | id={} | masterType={} | action={} | statusCode={} | class={}", methodName, id,
-				masterType, action, statusCode, this.getClass().getSimpleName());
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
 
 		try {
 			// Input validation
 			if (id == null || masterType == null || masterType.isBlank() || action == null || action.isBlank()
-					|| statusCode == null || statusCode.isBlank()) {
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
 
 				log.warn("Invalid request parameters | id={} | masterType={} | action={} | statusCode={} | method={}",
-						id, masterType, action, statusCode, methodName);
+						id, masterType, action, currentStatusCode, methodName);
 
 				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
 			}
 
 			// Service call
-			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionAdmin(id, masterType, action,
-					statusCode);
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionAdmin(id, masterType,masterCode, action,
+					currentStatusCode);
 
 			int count = (result != null ? result.size() : 0);
 			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
-					count, masterType, action, statusCode);
+					count, masterType, action, currentStatusCode);
 
 			// Return successful response
 			return ResponseEntity
@@ -226,4 +226,167 @@ public class AuditController {
 					.body(Map.of("message", "An unexpected error occurred", "error", ex.getMessage()));
 		}
 	}
+	
+	@GetMapping("/update/action/dc")
+	public ResponseEntity<?> updateRequestActionDeputyCom(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode, @RequestParam String requestType ) {
+
+		final String methodName = "updateRequestActionDeputyCom";
+		log.info("[START] {} | id={} | masterType={} | action={} | statusCode={} | class={}", methodName, id,
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
+
+		try {
+			// Input validation
+			if (id == null || masterType == null || masterType.isBlank() || action == null || action.isBlank()
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
+
+				log.warn("Invalid request parameters | id={} | masterType={} | action={} | statusCode={} | method={}",
+						id, masterType, action, currentStatusCode, methodName);
+
+				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
+			}
+
+			// Service call
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionDeputyCom(id, masterType,masterCode, action,
+					currentStatusCode,requestType);
+
+			int count = (result != null ? result.size() : 0);
+			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
+					count, masterType, action, currentStatusCode);
+
+			// Return successful response
+			return ResponseEntity
+					.ok(Map.of("message", "Action processed successfully", "recordsUpdated", count, "data", result));
+
+		} catch (Exception ex) {
+			log.error("[ERROR] Exception occurred in {} | id={} | masterType={} | action={} | error={}", methodName, id,
+					masterType, action, ex.getMessage(), ex);
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of("message", "An unexpected error occurred", "error", ex.getMessage()));
+		}
+	}
+	
+	@GetMapping("/update/action/adc")
+	public ResponseEntity<?> updateRequestActionAdc(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode) {
+
+		final String methodName = "updateRequestActionAdc";
+		log.info("[START] {} | id={} | masterType={} | masterCode={} | action={} | currentStatusCode={} | class={}", methodName, id,
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
+
+		try {
+			// Input validation
+			if (id == null || masterType == null || masterType.isBlank() || masterCode.isBlank() || action == null || action.isBlank()
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
+
+				log.warn("Invalid request parameters | id={} | masterType={} | masterCode={} | action={} | currentStatusCode={} | method={}",
+						id, masterType,masterCode, action, currentStatusCode, methodName);
+
+				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
+			}
+
+			// Service call
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionAdc(id, masterType,masterCode, action,
+					currentStatusCode);
+
+			int count = (result != null ? result.size() : 0);
+			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
+					count, masterType, action, currentStatusCode);
+
+			// Return successful response
+			return ResponseEntity
+					.ok(Map.of("message", "Action processed successfully", "recordsUpdated", count, "data", result));
+
+		} catch (Exception ex) {
+			log.error("[ERROR] Exception occurred in {} | id={} | masterType={} | action={} | error={}", methodName, id,
+					masterType, action, ex.getMessage(), ex);
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of("message", "An unexpected error occurred", "error", ex.getMessage()));
+		}
+	}
+	
+	@GetMapping("/update/action/co")
+	public ResponseEntity<?> updateRequestActionCo(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode) {
+
+		final String methodName = "updateRequestActionCo";
+		log.info("[START] {} | id={} | masterType={} | action={} | statusCode={} | class={}", methodName, id,
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
+
+		try {
+			// Input validation
+			if (id == null || masterType == null || masterType.isBlank() || action == null || action.isBlank()
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
+
+				log.warn("Invalid request parameters | id={} | masterType={} | action={} | statusCode={} | method={}",
+						id, masterType, action, currentStatusCode, methodName);
+
+				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
+			}
+
+			// Service call
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionCo(id, masterType,masterCode, action,
+					currentStatusCode);
+
+			int count = (result != null ? result.size() : 0);
+			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
+					count, masterType, action, currentStatusCode);
+
+			// Return successful response
+			return ResponseEntity
+					.ok(Map.of("message", "Action processed successfully", "recordsUpdated", count, "data", result));
+
+		} catch (Exception ex) {
+			log.error("[ERROR] Exception occurred in {} | id={} | masterType={} | action={} | error={}", methodName, id,
+					masterType, action, ex.getMessage(), ex);
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of("message", "An unexpected error occurred", "error", ex.getMessage()));
+		}
+	}
+	
+	@GetMapping("/update/action/lra")
+	public ResponseEntity<?> updateRequestActionLra(@RequestParam Long id, @RequestParam String masterType,@RequestParam String masterCode,
+			@RequestParam String action, @RequestParam String currentStatusCode) {
+
+		final String methodName = "updateRequestActionLra";
+		log.info("[START] {} | id={} | masterType={} | action={} | statusCode={} | class={}", methodName, id,
+				masterType, action, currentStatusCode, this.getClass().getSimpleName());
+
+		try {
+			// Input validation
+			if (id == null || masterType == null || masterType.isBlank() || action == null || action.isBlank()
+					|| currentStatusCode == null || currentStatusCode.isBlank()) {
+
+				log.warn("Invalid request parameters | id={} | masterType={} | action={} | statusCode={} | method={}",
+						id, masterType, action, currentStatusCode, methodName);
+
+				return ResponseEntity.badRequest().body(Map.of("message", "Invalid input parameters"));
+			}
+
+			// Service call
+			List<?> result = workFlowService.getRequestsByIdAndMasterAndActionLra(id, masterType,masterCode, action,
+					currentStatusCode);
+
+			int count = (result != null ? result.size() : 0);
+			log.info("[SUCCESS] {} executed | totalRecords={} | masterType={} | action={} | statusCode={}", methodName,
+					count, masterType, action, currentStatusCode);
+
+			// Return successful response
+			return ResponseEntity
+					.ok(Map.of("message", "Action processed successfully", "recordsUpdated", count, "data", result));
+
+		} catch (Exception ex) {
+			log.error("[ERROR] Exception occurred in {} | id={} | masterType={} | action={} | error={}", methodName, id,
+					masterType, action, ex.getMessage(), ex);
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of("message", "An unexpected error occurred", "error", ex.getMessage()));
+		}
+	}
+
+
+
 }

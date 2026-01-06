@@ -69,4 +69,7 @@ public class SubParameterDetails implements Serializable {
 
 	@Column(name = "base_price_increase_sub_parameter")
 	private BigDecimal basePriceIncreaseSubParameter;
+	
+	@Column(name = "request_status")
+	private String requestStatus;
 }

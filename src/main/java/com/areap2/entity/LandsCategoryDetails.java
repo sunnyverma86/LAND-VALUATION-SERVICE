@@ -1,6 +1,7 @@
 package com.areap2.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
@@ -26,7 +27,7 @@ public class LandsCategoryDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_lands_category_gen_id_seq")
 	@Column(name = "land_category_gen_id")
 	private Long landCategoryGenId;
-	
+
 	@Column(name = "land_category_code")
 	private String landCategoryCode;
 
@@ -51,12 +52,16 @@ public class LandsCategoryDetails implements Serializable {
 	@Column(name = "updated_dtm")
 	private Timestamp updatedDtm;
 
-	
 	@Column(name = "status")
 	private String status;
 
-	
 	@Column(name = "status_code")
 	private String statusCode;
+
+	@Column(name = "request_status")
+	private String requestStatus;
+
+	@Column(name = "base_price_land_category")
+	private BigDecimal basePriceLandCategory;
 
 }

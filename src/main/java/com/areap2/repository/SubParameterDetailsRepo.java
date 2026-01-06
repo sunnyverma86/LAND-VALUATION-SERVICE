@@ -19,4 +19,8 @@ public interface SubParameterDetailsRepo extends JpaRepository<SubParameterDetai
 
 	List<SubParameterDetails> findAllByActiveTrueAndStatusAndParameterCode(String status, String parameterCode);
 
+	SubParameterDetails findBySubParameterGenId(Long id);
+
+	List<SubParameterDetails> findBySubParameterCode(String subParameterCode);
+
 }

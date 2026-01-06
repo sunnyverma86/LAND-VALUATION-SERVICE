@@ -38,4 +38,9 @@ public interface VillageDetailsRepo extends JpaRepository<VillageDetails, Long> 
 	 @Query("SELECT MAX(l.basePriceVillage) FROM VillageDetails l")
 	    BigDecimal findMaxIncreaseLot();
 
+	List<VillageDetails> findByVillageCode(String villageCode);
+
+	List<VillageDetails> findVillageByDistrictCodeAndCircleCodeAndMouzaCodeAndLotCodeAndActiveTrue(String districtCode,
+			String circleCode, String mauza, String lot);
+
 }

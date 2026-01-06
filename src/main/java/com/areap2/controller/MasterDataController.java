@@ -2,8 +2,8 @@ package com.areap2.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,21 +28,17 @@ import com.areap2.model.SubParameterDetailsModelRequest;
 import com.areap2.model.SubParameterDetailsModelUpdateRequest;
 import com.areap2.model.VillageDetailsModelRequest;
 import com.areap2.model.VillageDetailsModelUpdateRequest;
-import com.areap2.service.MasterDataService;
-import com.areap2.serviceImpl.MasterDataServiceImpl;
+import com.areap2.service.MasterDataService2;
 
 @RestController
 @RequestMapping("/masterData")
-@CrossOrigin
+//@CrossOrigin
 public class MasterDataController {
 
-	private MasterDataService masterDataService;
+	@Autowired
+	private MasterDataService2 masterDataService;
 
 	Logger log = LoggerFactory.getLogger(MasterDataController.class);
-
-	public MasterDataController(MasterDataServiceImpl masterDataServiceImpl) {
-		this.masterDataService = masterDataServiceImpl;
-	}
 
 	@GetMapping("/getAllDistrictDetails")
 	public ResponseModel getAllDistrictDetails() {
@@ -210,7 +206,7 @@ public class MasterDataController {
 
 		return response;
 	}
-	
+
 	@GetMapping("/getAllLandsCategoryDetails")
 	public ResponseModel getAllLandsCategoryDetails() {
 		String methodName = "getAllLandsCategoryDetails";
@@ -222,7 +218,6 @@ public class MasterDataController {
 			log.info("Fetching all landsCategory details from MasterDataService...");
 
 			response = masterDataService.getAllLandsCategoryDetails();
-
 			log.info("Successfully retrieved landsCategory details  of Active is TRUE. Response status: {}",
 					response.getHttpStatus());
 
@@ -238,7 +233,6 @@ public class MasterDataController {
 
 		return response;
 	}
-
 
 	@GetMapping("/getParameterDetailsAll")
 	public ResponseModel getParameterDetailsAll() {
@@ -933,43 +927,7 @@ public class MasterDataController {
 		return response;
 	}
 
-	// mostImportantFor AdminOnly
-
-	@PostMapping("/update/BasePriceDetails")
-	public ResponseModel updateBasePriceDetails(@RequestBody BasePriceUpdateDetailsModelRequest bPRequest) {
-		String methodName = "updateBasePriceDetails";
-		ResponseModel response = new ResponseModel();
-
-		try {
-			log.info(
-					"Request received to update updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
-					bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
-					bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
-					methodName, this.getClass().getSimpleName());
-
-			response = masterDataService.updateBasePriceDetails(bPRequest);
-
-			log.info(
-					"LandSubClass updated successfully | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
-					bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
-					bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
-					methodName, this.getClass().getSimpleName());
-
-		} catch (Exception e) {
-			log.error(
-					"Error occurred while updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
-					bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
-					bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
-					methodName, this.getClass().getSimpleName(), e);
-
-			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
-			response.setMessage(
-					"An error occurred while updating Base Value Details:  error : " + e.getLocalizedMessage());
-		}
-
-		return response;
-	}
-
+	
 	@PostMapping("/add/parameter")
 	public ResponseModel addParameterDetails(@RequestBody ParameterDetailsModelRequest parameterDetailsModel) {
 		final String methodName = "addParameterDetails";
@@ -1193,5 +1151,44 @@ public class MasterDataController {
 		}
 		return resp;
 	}
+	
+	
+	// mostImportantFor AdminOnly
+
+		@PostMapping("/update/BasePriceDetails")
+		public ResponseModel updateBasePriceDetails(@RequestBody BasePriceUpdateDetailsModelRequest bPRequest) {
+			String methodName = "updateBasePriceDetails";
+			ResponseModel response = new ResponseModel();
+
+			try {
+				log.info(
+						"Request received to update updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
+						bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
+						bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
+						methodName, this.getClass().getSimpleName());
+
+				response = masterDataService.updateBasePriceDetails(bPRequest);
+
+				log.info(
+						"LandSubClass updated successfully | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
+						bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
+						bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
+						methodName, this.getClass().getSimpleName());
+
+			} catch (Exception e) {
+				log.error(
+						"Error occurred while updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
+						bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
+						bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
+						methodName, this.getClass().getSimpleName(), e);
+
+				response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+				response.setMessage(
+						"An error occurred while updating Base Value Details:  error : " + e.getLocalizedMessage());
+			}
+
+			return response;
+		}
+
 
 }

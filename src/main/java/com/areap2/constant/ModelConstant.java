@@ -6,15 +6,28 @@ public class ModelConstant {
     public static final String PEN_M = "Pending From Manager";
     public static final String PEN_S_M = "Pending From Senior Manager";
     
+    public static final String PEN_LRA = "Pending From Land Revenue Assistant";
+    public static final String PEN_CO = "Pending From Circle Officer";
+    public static final String PEN_ADC = "Pending From Assistant Deputy Commissioner";
+    public static final String PEN_DC = "Pending From Deputy Commissioner";
+    
     public static final String PEN_YOU = "Pending From You";
     
+ 
+    public static final String PEN_LRA_CODE = "22-0";
+    public static final String PEN_CO_CODE = "22-1";
+    public static final String PEN_ADC_CODE = "22-2";
+    public static final String PEN_DC_CODE = "22-3";
+    
+
     public static final String PEN_J_M_CODE = "22-1";
     public static final String PEN_M_CODE = "22-2";
     public static final String PEN_S_M_CODE = "22-3";
-    
+   
+   
     public static final String PEN_YOU_CODE = "22-4";
     
-    public static final String APPROVE = "approve";
+    public static final String APPROVE = "Approve";
     public static final String REJECT = "Reject";
     public static final String REFER_BACK = "Refer Back";
     public static final String COMPLETE = "Complete";
@@ -22,6 +35,7 @@ public class ModelConstant {
     public static final String NEXT_LEVEL = "Next Level";
     public static final String REFER_BACK_TO_J_M = "Refer Back to Junior Manager";
     public static final String REFER_BACK_TO_M = "Refer Back to Manager";
+    public static final String REJECTED = "Rejected";
     
     
     public static final String APPROVE_CODE = "23-1";
@@ -29,26 +43,43 @@ public class ModelConstant {
     public static final String REFER_BACK_CODE = "23-3";
     public static final String COMPLETE_CODE = "23-4";
     public static final String HALF_COMPLETE_CODE ="23-5";
-    public static final String NEXT_LEVEL_CODE ="23-5";
+    public static final String NEXT_LEVEL_CODE ="23-6";
+    public static final String REJECTED_CODE = "23-7";
+
     
     
     public static final String DISTRICT = "District";
     public static final String CIRCLE = "Circle";
-    public static final String VILLAGE = "Village";
     public static final String MAUZA = "Mauza";
+    public static final String LOT = "Lot";
+    public static final String VILLAGE = "Village";
+    public static final String LANDSCATEGORY = "LandsCategory";
+    public static final String PARAMETER = "Parameter";
+    public static final String SUBPARAMETER = "SubParameter";
     public static final String LANDUSE = "LandUse";
     public static final String LANDCATEGORY = "LandyCategory";
     public static final String AREATYPE = "AreaType";
-    public static final String LOT = "Lot";
+    
     public static final String LANDSUBCLASS = "LandSubClass";
-    public static final String PARAMETER = "Parameter";
-    public static final String SUBPARAMETER = "SubParameter";
+  
     
     
     public static final String ADMIN = "admin";
     public static final String SMAN = "seniormanager";
     public static final String MAN = "manager";
     public static final String JMAN = "juniormanager";
+
+    
+    
+
+
+
+  
+    public static final String LRA = "Land Revenue Assistant";
+    public static final String CO = "Circle Officer";
+    public static final String ADC = "Assistant Deputy Commisioner";
+    public static final String DC = "Deputy Commisioner";
+    
     
     public static final String ADD = "add";
     public static final String DELETE = "delete";

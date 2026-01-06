@@ -1230,10 +1230,10 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					methodName, savedVillage.getVillageCode(), savedVillage.getStatus(), savedVillage.getStatusCode());
 
 			// --- Log Action (Audit Trail) ---
-			logAction(loginId, ModelConstant.VILLAGE, ModelConstant.UPDATE,
-					String.format("District: %s, Circle: %s, Mauza: %s, Lot: %s, AreaType: %s, VillageCode: %s",
-							savedVillage.getDistrictCode(), savedVillage.getCircleCode(), savedVillage.getMouzaCode(),
-							savedVillage.getLotCode(), savedVillage.getAreaType(), savedVillage.getVillageCode()),
+			logAction(loginId, ModelConstant.VILLAGE, ModelConstant.UPDATE, String.format(
+					"DistrictCode: %s, CircleCode: %s, MauzaCode: %s, LotCode: %s, AreaType: %s, VillageCode: %s",
+					savedVillage.getDistrictCode(), savedVillage.getCircleCode(), savedVillage.getMouzaCode(),
+					savedVillage.getLotCode(), savedVillage.getAreaType(), savedVillage.getVillageCode()),
 					"Village updated, name: " + savedVillage.getVillageName(), savedVillage.getStatus(),
 					savedVillage.getStatusCode(), savedVillage.getVillageGenId());
 
@@ -1320,7 +1320,11 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			}
 
 			VillageDetails savedVillageDetails = villageDetailsRepo.save(villageDetails);
-			logAction(loginId, ModelConstant.VILLAGE, ModelConstant.DELETE, savedVillageDetails.getVillageCode(),
+			logAction(loginId, ModelConstant.VILLAGE, ModelConstant.DELETE, String.format(
+					"DistrictCode: %s | CircleCode: %s | MouzaCode: %s | LotCode: %s | AreaType: %s | VillageCode: %s",
+					savedVillageDetails.getDistrictCode(), savedVillageDetails.getCircleCode(),
+					savedVillageDetails.getMouzaCode(), savedVillageDetails.getLotCode(),
+					savedVillageDetails.getAreaType(), savedVillageDetails.getVillageCode()),
 					"District deleted (set active=false successfully with name: "
 							+ savedVillageDetails.getVillageName(),
 					savedVillageDetails.getStatus(), savedVillageDetails.getStatusCode(),
@@ -1820,9 +1824,11 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			}
 			LandsCategoryDetails landCategoriesSaved = landsCategoryDetailsRepo.save(landCategories);
 			// Log action
-			logAction(loginId, ModelConstant.LANDCATEGORY, ModelConstant.DELETE, "Land Code: Not defined"// +
-			// savedLandCategory.getDistrictCode(),
-					,
+			logAction(loginId, ModelConstant.LANDCATEGORY, ModelConstant.DELETE,
+					"Land Category Name: " + landCategoriesSaved.getLandCategoryName() + ", Land Category Code: "
+							+ landCategoriesSaved.getLandCategoryCode(),
+					// savedLandCategory.getDistrictCode(),
+
 					"LandsCategoryDetails deleted (set active=false) successfully with name: "
 							+ landCategoriesSaved.getLandCategoryName(),
 					landCategoriesSaved.getStatus(), landCategoriesSaved.getStatusCode(),
@@ -2236,8 +2242,9 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			// Log action
 			logAction(loginId, ModelConstant.LOT, ModelConstant.UPDATE,
 					"District Code: " + savedLotDetails.getDistrictCode() + ", Circle Code: "
-							+ savedLotDetails.getCircleCode() + ", AreaTypeId Code: " + savedLotDetails.getAreaTypeId()
-							+ ", Lot Code: " + savedLotDetails.getLotCode(),
+							+ savedLotDetails.getCircleCode() + ", Mauza Code: " + savedLotDetails.getMouzaCode()
+							+ ", AreaTypeId Code: " + savedLotDetails.getAreaTypeId() + ", Lot Code: "
+							+ savedLotDetails.getLotCode(),
 					"Lot updated, name: " + savedLotDetails.getLotName(), savedLotDetails.getStatus(),
 					savedLotDetails.getStatusCode(), savedLotDetails.getLotGenId());
 
@@ -2323,7 +2330,11 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			LotDetails savedLotDetails = lotDetailsRepo.save(lotDetails);
 			// Log action
 
-			logAction(loginId, ModelConstant.LOT, ModelConstant.DELETE, savedLotDetails.getLotCode(),
+			logAction(loginId, ModelConstant.LOT, ModelConstant.DELETE,
+					"District Code: " + savedLotDetails.getDistrictCode() + ", Circle Code: "
+							+ savedLotDetails.getCircleCode() + ", Mauza Code: " + savedLotDetails.getMouzaCode()
+							+ ", AreaTypeId Code: " + savedLotDetails.getAreaTypeId() + ", Lot Code: "
+							+ savedLotDetails.getLotCode(),
 					"Lot deleted (set active=false successfully with name: " + savedLotDetails.getLotName(),
 					savedLotDetails.getStatus(), savedLotDetails.getStatusCode(), savedLotDetails.getLotGenId());
 			response.setData(savedLotDetails);

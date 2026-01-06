@@ -18,4 +18,10 @@ public interface ParameterDetailsRepo extends JpaRepository<ParameterDetails, Lo
 
 	List<ParameterDetails> findAllByActiveTrueAndStatus(String status);
 
+	ParameterDetails findByParameterGenId(Long id);
+
+	List<ParameterDetails> findByParameterCode(String parameterCode);
+
+	List<ParameterDetails> findAllByActiveTrue();
+
 }

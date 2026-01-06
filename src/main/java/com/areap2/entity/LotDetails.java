@@ -72,4 +72,7 @@ public class LotDetails implements Serializable {
 
 	@Column(name = "base_price_increase_lot")
 	private BigDecimal basePriceIncreaseLot;
+	
+	@Column(name = "request_status")
+	private String requestStatus;
 }

@@ -25,6 +25,8 @@ public interface CircleDetailsRepo extends JpaRepository<CircleDetails,Long>{
 	List<CircleDetails> findCircleByDistrictCodeAndActiveTrue(String districtCode);
 
 	List<CircleDetails> findByStatusCode(String statusCode);
+	
+	List<CircleDetails> findByCircleCode(String circleCode);
 
 	CircleDetails findByCircleGenId(Long id);
 

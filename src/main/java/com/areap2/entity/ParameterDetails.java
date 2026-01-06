@@ -67,6 +67,9 @@ public class ParameterDetails implements Serializable {
 	@Column(name = "base_price_increase_parameter")
 	private Long basePriceIncreaseParameter;
 	
+	@Column(name = "request_status")
+	private String requestStatus;
+	
 //
 //	@Column(name = "parameter", nullable = false, length = 200)
 //	private String parameter;

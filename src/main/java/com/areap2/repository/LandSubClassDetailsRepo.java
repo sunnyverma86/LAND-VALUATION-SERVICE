@@ -28,4 +28,6 @@ public interface LandSubClassDetailsRepo extends JpaRepository<LandSubClassDetai
 
 	LandSubClassDetails findByLandSubClassNameAndActiveTrueAndStatus(String landSubClass, String status);
 
+	List<?> findByLandSubClassCode(String landSubClassCode);
+
 }
