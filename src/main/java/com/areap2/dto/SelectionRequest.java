@@ -1,0 +1,19 @@
+package com.areap2.dto;
+
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class SelectionRequest {
+
+	@NotNull
+	private Long instrumentId;
+
+	@NotNull
+	private String selectedOption; // "Male" | "Female" | "Joint"
+
+}
