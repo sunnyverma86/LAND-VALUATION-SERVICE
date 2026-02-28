@@ -36,3 +36,13 @@ INSERT INTO instrument_master (name, male_duty, female_duty, joint_duty) VALUES
 ('Development Agreement', 52, 53, 55),
 ('Other Agreement', 62, 64, 65);
 
+INSERT INTO areap2landvaluation.role_master (role_code, active, created_by, created_dtm, level, role_name)
+VALUES
+('10001', TRUE, 'AssamGovt', CURRENT_TIMESTAMP, 4, 'Admin'),
+('10002', TRUE, 'AssamGovt', CURRENT_TIMESTAMP, 3, 'SeniorManager'),
+('10003', TRUE, 'AssamGovt', CURRENT_TIMESTAMP, 2, 'Manager'),
+('10004', TRUE, 'AssamGovt', CURRENT_TIMESTAMP, 1, 'JuniorManager'),
+('10005', TRUE, 'AssamGovt', CURRENT_TIMESTAMP, 0, 'NormalUser');
+
+
+
