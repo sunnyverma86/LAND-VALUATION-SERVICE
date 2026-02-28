@@ -323,6 +323,51 @@ public class MasterDataController {
 		return response;
 	}
 
+	@GetMapping("/getSubParameterDetailsAllByParameterCodeAndDistrictCode")
+	public ResponseModel getSubParameterDetailsAllByParameterCodeAndDistrictCode(
+			@RequestParam(required = true) String parameterCode, @RequestParam(required = true) String districtCode) {
+
+		String methodName = "getSubParameterDetailsAllByParameterCodeAndDistrictCode";
+		ResponseModel response = new ResponseModel();
+
+		log.info("START | {} | Fetch SubParameter Details | Parameter Code: {} | District Code: {}", methodName,
+				parameterCode, districtCode);
+
+		try {
+
+			log.debug("Calling service: masterDataService.getSubParameterDetailsAllByParameterCodeAndDistrictCode "
+					+ "| Parameter Code: {} | District Code: {}", parameterCode, districtCode);
+
+			response = masterDataService.getSubParameterDetailsAllByParameterCodeAndDistrictCode(parameterCode,
+					districtCode);
+
+			if (response.getHttpStatus() == HttpStatus.OK) {
+
+				log.info(
+						"SUCCESS | {} | SubParameter Details fetched successfully | Parameter Code: {} | District Code: {}",
+						methodName, parameterCode, districtCode);
+
+			} else {
+
+				log.warn("NO DATA | {} | Parameter Code: {} | District Code: {} | Message: {}", methodName,
+						parameterCode, districtCode, response.getMessage());
+			}
+
+		} catch (Exception e) {
+
+			log.error("ERROR | {} | Failed to fetch SubParameter Details | Parameter Code: {} | District Code: {}",
+					methodName, parameterCode, districtCode, e);
+
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage("An error occurred while fetching SubParameter Details. Please try again later.");
+		}
+
+		log.info("END | {} | Response Status: {} | Message: {}", methodName, response.getHttpStatus(),
+				response.getMessage());
+
+		return response;
+	}
+
 	@GetMapping("/getLandSubClassByLandClass") // landSubClassByLandClass
 	public ResponseModel getLandSubClassByLandClass(String landClassName) {
 		String methodName = "getLandSubClassByLandClass";
@@ -927,9 +972,8 @@ public class MasterDataController {
 		return response;
 	}
 
-	
-	@PostMapping("/add/parameter")
-	public ResponseModel addParameterDetails(@RequestBody ParameterDetailsModelRequest parameterDetailsModel) {
+	@PostMapping("/add/parameterOld")
+	public ResponseModel addParameterDetailsOld(@RequestBody ParameterDetailsModelRequest parameterDetailsModel) {
 		final String methodName = "addParameterDetails";
 		final String className = this.getClass().getSimpleName();
 		ResponseModel response = new ResponseModel();
@@ -944,7 +988,7 @@ public class MasterDataController {
 			log.debug("[PROCESS] [{}] - Calling service: masterDataService.addParameterDetails(...) | Payload: {}",
 					methodName, parameterDetailsModel);
 
-			response = masterDataService.addParameterDetails(parameterDetailsModel);
+			response = masterDataService.addParameterDetailsOld(parameterDetailsModel);
 
 			log.info("[SUCCESS] [{}] - Parameter added successfully | Status: {} | Message: {}", methodName,
 					response.getHttpStatus(), response.getMessage());
@@ -1031,63 +1075,94 @@ public class MasterDataController {
 		return response;
 	}
 
-	@PostMapping("/add/subParameter")
-	public ResponseModel addSubParameterDetails(@RequestBody SubParameterDetailsModelRequest subParameterDetailsModel) {
+	@PostMapping("/add/subParameterOld")
+	public ResponseModel addSubParameterOldDetails(
+			@RequestBody SubParameterDetailsModelRequest subParameterDetailsModel) {
+
 		String methodName = "addSubParameterDetails";
 		ResponseModel response = new ResponseModel();
+
 		try {
 			log.info(
-					"Request: Adding SubParameter Details, SubParameter Name: {}, SubParameter Code: {} | Method: {} | Class: {}",
+					"Request received to add SubParameter | "
+							+ "SubParameter Name: {} | Parameter Code: {} | Band: {} | "
+							+ "District Code: {} | Area Type (R/U): {} | " + "Weightage: {} | Effective From: {} | "
+							+ "Method: {} | Class: {}",
 					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getParameterCode(),
-					methodName, this.getClass().getSimpleName());
+					subParameterDetailsModel.getBand(), subParameterDetailsModel.getDistrictCode(),
+					subParameterDetailsModel.getAreaTypeRandU(), subParameterDetailsModel.getWeightage(),
+					subParameterDetailsModel.getEffectiveFrom(), methodName, this.getClass().getSimpleName());
 
 			response = masterDataService.addSubParameterDetails(subParameterDetailsModel);
 
-		} catch (Exception e) {
-			log.error(
-					"Error while adding SubParameter Details, SubParameter Name: {}, SubParameter Code: {} | Method: {} | Class: {}",
+			log.info(
+					"SubParameter added successfully | " + "SubParameter Name: {} | Parameter Code: {} | Band: {} | "
+							+ "Method: {} | Class: {}",
 					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getParameterCode(),
-					methodName, this.getClass().getSimpleName(), e);
+					subParameterDetailsModel.getBand(), methodName, this.getClass().getSimpleName());
+
+		} catch (Exception e) {
+
+			log.error(
+					"Error while adding SubParameter | " + "SubParameter Name: {} | Parameter Code: {} | Band: {} | "
+							+ "District Code: {} | Method: {} | Class: {}",
+					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getParameterCode(),
+					subParameterDetailsModel.getBand(), subParameterDetailsModel.getDistrictCode(), methodName,
+					this.getClass().getSimpleName(), e);
 
 			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
-			response.setMessage("Failed to add SubParameter Details for SubParameter Name: "
+			response.setMessage("Failed to add SubParameter Details | SubParameter Name: "
 					+ subParameterDetailsModel.getSubParameterName() + ", Parameter Code: "
-					+ subParameterDetailsModel.getParameterCode() + ". Please try again later.");
+					+ subParameterDetailsModel.getParameterCode());
 		}
+
 		return response;
 	}
 
 	@PostMapping("/update/subParameter")
 	public ResponseModel updateSubParameterDetails(
 			@RequestBody SubParameterDetailsModelUpdateRequest subParameterDetailsModel) {
+
 		String methodName = "updateSubParameterDetails";
 		ResponseModel response = new ResponseModel();
 
 		try {
 			log.info(
-					"Request received to update SubParameter Details | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Method: {} | Class: {}",
+					"Request received to update SubParameter | "
+							+ "SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Band: {} | "
+							+ "District Code: {} | Area Type (R/U): {} | " + "Weightage: {} | Effective From: {} | "
+							+ "Method: {} | Class: {}",
 					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getSubParameterCode(),
-					subParameterDetailsModel.getParameterCode(), subParameterDetailsModel.getWeightage(),
-					subParameterDetailsModel.getEffectiveFrom(), methodName, this.getClass().getSimpleName());
+					subParameterDetailsModel.getParameterCode(), subParameterDetailsModel.getBand(),
+					subParameterDetailsModel.getDistrictCode(), subParameterDetailsModel.getAreaTypeRandU(),
+					subParameterDetailsModel.getWeightage(), subParameterDetailsModel.getEffectiveFrom(), methodName,
+					this.getClass().getSimpleName());
 
 			response = masterDataService.updateSubParameterDetails(subParameterDetailsModel);
 
 			log.info(
-					"SubParameter updated successfully | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Method: {} | Class: {}",
+					"SubParameter updated successfully | "
+							+ "SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Band: {} | "
+							+ "Method: {} | Class: {}",
 					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getSubParameterCode(),
-					subParameterDetailsModel.getParameterCode(), methodName, this.getClass().getSimpleName());
+					subParameterDetailsModel.getParameterCode(), subParameterDetailsModel.getBand(), methodName,
+					this.getClass().getSimpleName());
 
 		} catch (Exception e) {
+
 			log.error(
-					"Error occurred while updating SubParameter Details | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Method: {} | Class: {}",
+					"Error while updating SubParameter | "
+							+ "SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Band: {} | "
+							+ "Method: {} | Class: {}",
 					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getSubParameterCode(),
-					subParameterDetailsModel.getParameterCode(), methodName, this.getClass().getSimpleName(), e);
+					subParameterDetailsModel.getParameterCode(), subParameterDetailsModel.getBand(), methodName,
+					this.getClass().getSimpleName(), e);
 
 			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
 			response.setMessage("Failed to update SubParameter Details | SubParameter Name: "
 					+ subParameterDetailsModel.getSubParameterName() + ", SubParameter Code: "
 					+ subParameterDetailsModel.getSubParameterCode() + ", Parameter Code: "
-					+ subParameterDetailsModel.getParameterCode() + ", Error: " + e.getMessage());
+					+ subParameterDetailsModel.getParameterCode());
 		}
 
 		return response;
@@ -1151,44 +1226,136 @@ public class MasterDataController {
 		}
 		return resp;
 	}
-	
-	
+
 	// mostImportantFor AdminOnly
 
-		@PostMapping("/update/BasePriceDetails")
-		public ResponseModel updateBasePriceDetails(@RequestBody BasePriceUpdateDetailsModelRequest bPRequest) {
-			String methodName = "updateBasePriceDetails";
-			ResponseModel response = new ResponseModel();
+	@PostMapping("/update/BasePriceDetails")
+	public ResponseModel updateBasePriceDetails(@RequestBody BasePriceUpdateDetailsModelRequest bPRequest) {
+		String methodName = "updateBasePriceDetails";
+		ResponseModel response = new ResponseModel();
 
-			try {
-				log.info(
-						"Request received to update updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
-						bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
-						bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
-						methodName, this.getClass().getSimpleName());
+		try {
+			log.info(
+					"Request received to update updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
+					bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
+					bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
+					methodName, this.getClass().getSimpleName());
 
-				response = masterDataService.updateBasePriceDetails(bPRequest);
+			response = masterDataService.updateBasePriceDetails(bPRequest);
 
-				log.info(
-						"LandSubClass updated successfully | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
-						bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
-						bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
-						methodName, this.getClass().getSimpleName());
+			log.info(
+					"LandSubClass updated successfully | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
+					bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
+					bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
+					methodName, this.getClass().getSimpleName());
 
-			} catch (Exception e) {
-				log.error(
-						"Error occurred while updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
-						bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
-						bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
-						methodName, this.getClass().getSimpleName(), e);
+		} catch (Exception e) {
+			log.error(
+					"Error occurred while updateBasePriceDetails | District,Circle,Mouza Price: {} | Lot Price : {}  | LandUse Price : {}  | LandType Price : {}  | Method: {} | Class: {}",
+					bPRequest.getBasePriceMouza(), bPRequest.getBasePriceMouzaIncreaseLot(),
+					bPRequest.getBasePriceMouzaIncreaseLandUse(), bPRequest.getBasePriceMouzaIncreaseAreaUrbanOrRural(),
+					methodName, this.getClass().getSimpleName(), e);
 
-				response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
-				response.setMessage(
-						"An error occurred while updating Base Value Details:  error : " + e.getLocalizedMessage());
-			}
-
-			return response;
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage(
+					"An error occurred while updating Base Value Details:  error : " + e.getLocalizedMessage());
 		}
 
+		return response;
+	}
+	// -------------------------------------//NEW REQUIREMENT------------BY UI AND
+	// CLIENT
+
+	@PostMapping("/add/parameter")
+	public ResponseModel addParameterDetails(@RequestBody ParameterDetailsModelRequest parameterDetailsModel) {
+
+		final String methodName = "addParameterDetails";
+		final String className = this.getClass().getSimpleName();
+		ResponseModel response = new ResponseModel();
+
+		long startTime = System.currentTimeMillis();
+
+		log.info(
+				"[START] [{}] - Invoked in [{}] | ParameterName: {} | Data: {} | AppreciationType: {} | Description: {} | EffectiveFrom: {}",
+				methodName, className, parameterDetailsModel.getParameterName(), parameterDetailsModel.getData(),
+				parameterDetailsModel.getAppreciationType(), parameterDetailsModel.getDiscription(),
+				parameterDetailsModel.getEffectiveFrom());
+
+		try {
+
+			log.debug("[PROCESS] [{}] - Calling masterDataService.addParameterDetails() | Payload: {}", methodName,
+					parameterDetailsModel);
+
+			response = masterDataService.addParameterDetails(parameterDetailsModel);
+
+			log.info("[SUCCESS] [{}] - Parameter added successfully | Status: {} | Message: {} | ParameterName: {}",
+					methodName, response.getHttpStatus(), response.getMessage(),
+					parameterDetailsModel.getParameterName());
+
+		} catch (Exception e) {
+
+			log.error("[ERROR] [{}] - Exception while adding Parameter | ParameterName: {} | Error: {}", methodName,
+					parameterDetailsModel.getParameterName(), e.getMessage(), e);
+
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage(String.format("An error occurred while adding Parameter '%s'. Reason: %s",
+					parameterDetailsModel.getParameterName(), e.getLocalizedMessage()));
+		}
+
+		long endTime = System.currentTimeMillis();
+
+		log.info("[END] [{}] - Completed in [{}] | Duration: {} ms | ParameterName: {}", methodName, className,
+				(endTime - startTime), parameterDetailsModel.getParameterName());
+
+		return response;
+	}
+
+	@PostMapping("/add/subParameter")
+	public ResponseModel addSubParameterDetails(@RequestBody SubParameterDetailsModelRequest request) {
+
+		String methodName = "addSubParameterDetails";
+		ResponseModel response = new ResponseModel();
+
+		try {
+
+			log.info("Request received to add SubParameter | " + "Parameter Code: {} | Band Code: {} | Band: {} | "
+					+ "District: {} | Area Type: {} | " + "Weightage: {} | Distance From: {} | Distance To: {} | "
+					+ "Effective Till: {} | Perpetual: {} | " + "Method: {} | Class: {}",
+
+					request.getParameterCode(), request.getBandCode(), request.getBand(), request.getDistrict(),
+					request.getAreaType(), request.getWeightage(), request.getDistanceFrom(), request.getDistanceTo(),
+					request.getEffectiveTill(), request.getPerpetual(), methodName, this.getClass().getSimpleName());
+
+			response = masterDataService.addSubParameterDetails(request);
+
+			log.info(
+					"SubParameter added successfully | " + "Parameter Code: {} | Band Code: {} | Band: {} | "
+							+ "Method: {} | Class: {}",
+
+					request.getParameterCode(), request.getBandCode(), request.getBand(), methodName,
+					this.getClass().getSimpleName());
+
+		} catch (Exception e) {
+
+			log.error(
+					"Error while adding SubParameter | " + "Parameter Code: {} | Band Code: {} | Band: {} | "
+							+ "District: {} | Method: {} | Class: {}",
+
+					request.getParameterCode(), request.getBandCode(), request.getBand(), request.getDistrict(),
+					methodName, this.getClass().getSimpleName(), e);
+
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage("Failed to add SubParameter Details | Parameter Code: " + request.getParameterCode()
+					+ ", Band Code: " + request.getBandCode());
+		}
+
+		return response;
+	}
+
+//	@PostMapping("/upload")
+//	public ResponseEntity<String> uploadExcel(@RequestParam("file") MultipartFile file) {
+//		landAreaService.uploadExcel(file);
+//		return ResponseEntity.ok("Excel uploaded successfully");
+//	}
 
 }

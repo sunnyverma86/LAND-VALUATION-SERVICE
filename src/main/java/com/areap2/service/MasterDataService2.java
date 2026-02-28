@@ -117,6 +117,8 @@ public interface MasterDataService2 {
 
 	ResponseModel getLotByDistrictAndCircleAndMouza(String districtCode, String circleCode, String mouzaCode);
 
+	ResponseModel addParameterDetailsOld(ParameterDetailsModelRequest parameterDetailsModel);
+	
 	ResponseModel addParameterDetails(ParameterDetailsModelRequest parameterDetailsModel);
 
 	ResponseModel updateParameterDetails(ParameterDetailsModelUpdateRequest parameterDetailsModel);
@@ -132,6 +134,8 @@ public interface MasterDataService2 {
 	ResponseModel getParameterDetailsAll();
 
 	ResponseModel getSubParameterDetailsAllByParameterCode(String parameterCode);
+	
+	ResponseModel getSubParameterDetailsAllByParameterCodeAndDistrictCode(String parameterCode,String districtCode);
 
 	ResponseModel addLandsCategory(String landCategoryName);
 

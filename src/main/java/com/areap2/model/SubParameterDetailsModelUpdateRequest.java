@@ -14,5 +14,12 @@ public class SubParameterDetailsModelUpdateRequest {
 	private String subParameterCode;
 	private BigDecimal weightage;
 	private Timestamp effectiveFrom;
+	
+	private String districtCode;
+	private String areaTypeRandU;
+	private String band;
+	
+	
+
 
 }

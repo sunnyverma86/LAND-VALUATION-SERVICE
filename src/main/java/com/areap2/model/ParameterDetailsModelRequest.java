@@ -8,6 +8,14 @@ import lombok.Data;
 public class ParameterDetailsModelRequest {
 
 	private String parameterName;
+	
+	private String data;
+	
+	private String appreciationType;
+	
+	private String discription;
+	
+	//private String code;
 
 	private Timestamp effectiveFrom;
 

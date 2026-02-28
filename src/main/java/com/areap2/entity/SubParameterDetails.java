@@ -30,19 +30,34 @@ public class SubParameterDetails implements Serializable {
 
 	@Column(name = "parameter_code")
 	private String parameterCode;
-
-	@Column(name = "sub_parameter_name")
-	private String subParameterName;
-
-	@Column(name = "sub_parameter_code")
-	private String subParameterCode;
-
-	@Column(name = "effective_from")
-	private Timestamp effectiveFrom;
-
-	@Column(name = "active")
-	private Boolean active;
-
+	
+	@Column(name = "band_code")
+	private String bandCode;
+	
+	@Column(name = "weightage")
+	private BigDecimal weightage;
+	
+	@Column(name = "effective_till")
+	private String effectiveTill;
+	
+	@Column(name = "area_type")
+	private String areaType;
+	
+	@Column(name = "district")
+	private String district;
+	
+	@Column(name = "band")
+	private String band;
+	
+	@Column(name = "distance_from")
+	private BigDecimal distanceFrom;
+	
+	@Column(name = "distance_to")
+	private BigDecimal distanceTo;
+	
+	@Column(name = "perpetual")
+	private Boolean perpetual;
+	
 	@Column(name = "created_by")
 	private String createdBy;
 
@@ -66,10 +81,23 @@ public class SubParameterDetails implements Serializable {
 
 	@Column(name = "status_code")
 	private String statusCode;
-
-	@Column(name = "base_price_increase_sub_parameter")
-	private BigDecimal basePriceIncreaseSubParameter;
 	
 	@Column(name = "request_status")
 	private String requestStatus;
+	
+	@Column(name = "district_code")
+	private String districtCode;
+	
+	@Column(name = "sub_parameter_code")
+	private String subParameterCode;
+	
+	@Column(name = "sub_parameter_name")
+	private String subParameterName;
+	
+	@Column(name = "active")
+	private boolean active;
+	
+
+	
+
 }

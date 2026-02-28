@@ -428,6 +428,61 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 	}
 
 	@Override
+	public ResponseModel getSubParameterDetailsAllByParameterCodeAndDistrictCode(String parameterCode,
+			String districtCode) {
+
+		final String methodName = "getSubParameterDetailsAllByParameterCodeAndDistrictCode";
+		ResponseModel response = new ResponseModel();
+
+		log.info("START | {} | Fetch SubParameter Details | Parameter Code: {} | District Code: {}", methodName,
+				parameterCode, districtCode);
+
+		try {
+
+			log.debug(
+					"PROCESSING | {} | Calling repository: "
+							+ "findAllByActiveTrueAndStatusAndParameterCodeAndDistrictCode "
+							+ "| Status: {} | Parameter Code: {} | District Code: {}",
+					methodName, ModelConstant.COMPLETE, parameterCode, districtCode);
+
+			List<SubParameterDetails> subParameterList = subParameterDetailsRepo
+					.findAllByActiveTrueAndStatusAndParameterCodeAndDistrictCode(ModelConstant.COMPLETE, parameterCode,
+							districtCode);
+
+			if (subParameterList == null || subParameterList.isEmpty()) {
+
+				log.warn("NO DATA | {} | No SubParameter Details found | Parameter Code: {} | District Code: {}",
+						methodName, parameterCode, districtCode);
+
+				response.setHttpStatus(HttpStatus.NO_CONTENT);
+				response.setMessage("No SubParameter Details found");
+				return response;
+			}
+
+			response.setData(subParameterList);
+			response.setHttpStatus(HttpStatus.OK);
+			response.setMessage("SubParameter Details fetched successfully");
+
+			log.info(
+					"SUCCESS | {} | SubParameter Details fetched | Parameter Code: {} | District Code: {} | Records: {}",
+					methodName, parameterCode, districtCode, subParameterList.size());
+
+		} catch (Exception e) {
+
+			log.error("ERROR | {} | Failed to fetch SubParameter Details | Parameter Code: {} | District Code: {}",
+					methodName, parameterCode, districtCode, e);
+
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage("An error occurred while fetching SubParameter Details. Please try again later.");
+		}
+
+		log.info("END | {} | Parameter Code: {} | District Code: {} | Response Status: {} | Message: {}", methodName,
+				parameterCode, districtCode, response.getHttpStatus(), response.getMessage());
+
+		return response;
+	}
+
+	@Override
 	public ResponseModel getLandSubClassByLandClassName(String landClassName) {
 		String methodName = "getLandSubClassByLandClass";
 		ResponseModel response = new ResponseModel();
@@ -934,9 +989,9 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 				existingCircle.setActive(true);
 			} else if (userRoles.contains(ModelConstant.CO)) {
 				existingCircle.setActive(true);
-			}  else if (userRoles.contains(ModelConstant.LRA)) {
+			} else if (userRoles.contains(ModelConstant.LRA)) {
 				existingCircle.setActive(true);
-			}else {
+			} else {
 				existingCircle.setActive(true);
 			}
 			circleDetailsRepo.save(existingCircle);
@@ -1315,9 +1370,9 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 				existingMouza.setActive(true);
 			} else if (userRoles.contains(ModelConstant.CO)) {
 				existingMouza.setActive(true);
-			}  else if (userRoles.contains(ModelConstant.LRA)) {
+			} else if (userRoles.contains(ModelConstant.LRA)) {
 				existingMouza.setActive(true);
-			}else {
+			} else {
 				existingMouza.setActive(true);
 			}
 			mouzaDetailsRepo.save(existingMouza);
@@ -1645,9 +1700,9 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 				existingLot.setActive(true);
 			} else if (userRoles.contains(ModelConstant.CO)) {
 				existingLot.setActive(true);
-			}  else if (userRoles.contains(ModelConstant.LRA)) {
+			} else if (userRoles.contains(ModelConstant.LRA)) {
 				existingLot.setActive(true);
-			}else {
+			} else {
 				existingLot.setActive(true);
 			}
 			lotDetailsRepo.save(existingLot);
@@ -1984,7 +2039,7 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 			oldVillage.setUpdatedBy(loginId);
 			oldVillage.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
 			// Determine status based on roles
-			
+
 			if (userRoles.contains(ModelConstant.ADMIN)) {
 				oldVillage.setActive(false);
 			} else if (userRoles.contains(ModelConstant.DC)) {
@@ -1993,9 +2048,9 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 				oldVillage.setActive(true);
 			} else if (userRoles.contains(ModelConstant.CO)) {
 				oldVillage.setActive(true);
-			}  else if (userRoles.contains(ModelConstant.LRA)) {
+			} else if (userRoles.contains(ModelConstant.LRA)) {
 				oldVillage.setActive(true);
-			}else {
+			} else {
 				oldVillage.setActive(true);
 			}
 			villageDetailsRepo.save(oldVillage);
@@ -2530,9 +2585,9 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 				existingLandSubClassDetails.setActive(true);
 			} else if (userRoles.contains(ModelConstant.CO)) {
 				existingLandSubClassDetails.setActive(true);
-			}  else if (userRoles.contains(ModelConstant.LRA)) {
+			} else if (userRoles.contains(ModelConstant.LRA)) {
 				existingLandSubClassDetails.setActive(true);
-			}else {
+			} else {
 				existingLandSubClassDetails.setActive(true);
 			}
 			landSubClassDetailsRepo.save(existingLandSubClassDetails);
@@ -2703,7 +2758,7 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 	}
 
 	@Override
-	public ResponseModel addParameterDetails(ParameterDetailsModelRequest parameterDetailsModel) {
+	public ResponseModel addParameterDetailsOld(ParameterDetailsModelRequest parameterDetailsModel) {
 		String methodName = "addParameterDetails";
 		ResponseModel response = new ResponseModel();
 
@@ -2844,9 +2899,9 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 				existingParameter.setActive(true);
 			} else if (userRoles.contains(ModelConstant.CO)) {
 				existingParameter.setActive(true);
-			}  else if (userRoles.contains(ModelConstant.LRA)) {
+			} else if (userRoles.contains(ModelConstant.LRA)) {
 				existingParameter.setActive(true);
-			}else {
+			} else {
 				existingParameter.setActive(true);
 			}
 			parameterDetailsRepo.save(existingParameter);
@@ -3015,136 +3070,410 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 		return response;
 	}
 
+//	@Override
+//	public ResponseModel addSubParameterDetails(SubParameterDetailsModelRequest subParameterDetailsModel) {
+//		String methodName = "addSubParameterDetails";
+//		ResponseModel response = new ResponseModel();
+//
+//		try {
+//			log.info("Request received to add SubParameter Details | SubParameter Name: {} | Method: {}",
+//					subParameterDetailsModel.getSubParameterName(), methodName);
+//
+//			// Generate new subParameter code
+//			Integer maxSubParameterCode = subParameterDetailsRepo.findMaxSubParameterCode();
+//			Integer newSubParameterCode = (maxSubParameterCode == null) ? 10001 : maxSubParameterCode + 1;
+//
+//			// Get logged-in user
+//			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//			if (authentication == null || !authentication.isAuthenticated()
+//					|| "anonymousUser".equals(authentication.getName())) {
+//				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
+//				response.setMessage("Token is expired or invalid");
+//				return response;
+//			}
+//			String loginId = authentication.getName();
+//
+//			// Extract roles
+//			Set<String> userRoles = authentication.getAuthorities().stream()
+//					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+//
+//			log.info("User '{}' has roles: {}", loginId, userRoles);
+//
+//			// Prepare entity
+//			SubParameterDetails subParameterDetails = new SubParameterDetails();
+//			subParameterDetails.setSubParameterCode(newSubParameterCode.toString());
+//			subParameterDetails.setSubParameterName(subParameterDetailsModel.getSubParameterName());
+//			subParameterDetails.setParameterCode(subParameterDetailsModel.getParameterCode());
+//			subParameterDetails.setBasePriceIncreaseSubParameter(subParameterDetailsModel.getWeightage());
+//			subParameterDetails.setEffectiveFrom(subParameterDetailsModel.getEffectiveFrom());
+//			subParameterDetails.setCreatedBy(loginId);
+//			subParameterDetails.setActive(true);
+//			subParameterDetails.setRequestStatus(ModelConstant.ADD);
+//			// Determine status based on roles
+//			if (userRoles.contains(ModelConstant.ADMIN)) {
+//				subParameterDetails.setActive(true);
+//				subParameterDetails.setStatus(ModelConstant.COMPLETE);
+//				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+//			} else if (userRoles.contains(ModelConstant.DC)) {
+//				subParameterDetails.setActive(true);
+//				subParameterDetails.setStatus(ModelConstant.COMPLETE);
+//				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+//			} else if (userRoles.contains(ModelConstant.ADC)) {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_DC);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_DC_CODE);
+//			} else if (userRoles.contains(ModelConstant.CO)) {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_ADC);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_ADC_CODE);
+//			} else if (userRoles.contains(ModelConstant.LRA)) {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_CO);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_CO_CODE);
+//			} else {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_LRA);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_LRA_CODE);
+//			}
+//			SubParameterDetails savedSubParameterDetails = subParameterDetailsRepo.saveAndFlush(subParameterDetails);
+//
+//			// Log action
+//			logAction(loginId, ModelConstant.SUBPARAMETER, ModelConstant.ADD,
+//					"SubParameter Code: " + savedSubParameterDetails.getSubParameterCode(),
+//					"SubParameter added, name: " + savedSubParameterDetails.getSubParameterName() + ", Parameter Code: "
+//							+ savedSubParameterDetails.getParameterCode() + ",Base Price: "
+//							+ savedSubParameterDetails.getBasePriceIncreaseSubParameter() + ", Effective From: "
+//							+ savedSubParameterDetails.getEffectiveFrom(),
+//					savedSubParameterDetails.getStatus(), savedSubParameterDetails.getStatusCode(),
+//					savedSubParameterDetails.getSubParameterGenId());
+//
+//			// Build response
+//			response.setData(savedSubParameterDetails);
+//			response.setHttpStatus(HttpStatus.OK);
+//			response.setMessage("SubParameter added successfully | SubParameter Name: "
+//					+ savedSubParameterDetails.getSubParameterName() + ", SubParameter Code: "
+//					+ savedSubParameterDetails.getSubParameterCode());
+//
+//		} catch (Exception e) {
+//			log.error("Error occurred while adding SubParameter Details | SubParameter Name: {} | Method: {}",
+//					subParameterDetailsModel.getSubParameterName(), methodName, e);
+//
+//			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+//			response.setMessage("Failed to add SubParameter Details | SubParameter Name: "
+//					+ subParameterDetailsModel.getSubParameterName() + ", Error: " + e.getMessage());
+//		}
+//		return response;
+//	}
+
 	@Override
-	public ResponseModel addSubParameterDetails(SubParameterDetailsModelRequest subParameterDetailsModel) {
+	public ResponseModel addSubParameterDetails(SubParameterDetailsModelRequest request) {
+
 		String methodName = "addSubParameterDetails";
 		ResponseModel response = new ResponseModel();
 
 		try {
-			log.info("Request received to add SubParameter Details | SubParameter Name: {} | Method: {}",
-					subParameterDetailsModel.getSubParameterName(), methodName);
 
-			// Generate new subParameter code
+			log.info("Request received to add SubParameter | " + "Parameter Code: {} | Band Code: {} | Band: {} | "
+					+ "District: {} | Area Type: {} | Weightage: {} | " + "Distance From: {} | Distance To: {} | "
+					+ "Effective Till: {} | Perpetual: {} | Method: {}", request.getParameterCode(),
+					request.getBandCode(), request.getBand(), request.getDistrict(), request.getAreaType(),
+					request.getWeightage(), request.getDistanceFrom(), request.getDistanceTo(),
+					request.getEffectiveTill(), request.getPerpetual(), methodName);
+
+			// Generate new SubParameter Code
 			Integer maxSubParameterCode = subParameterDetailsRepo.findMaxSubParameterCode();
 			Integer newSubParameterCode = (maxSubParameterCode == null) ? 10001 : maxSubParameterCode + 1;
 
-			// Get logged-in user
+			// Authentication check
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			if (authentication == null || !authentication.isAuthenticated()
 					|| "anonymousUser".equals(authentication.getName())) {
+
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
 				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+
 			String loginId = authentication.getName();
 
-			// Extract roles
 			Set<String> userRoles = authentication.getAuthorities().stream()
 					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
 
-			log.info("User '{}' has roles: {}", loginId, userRoles);
+			log.info("Authenticated user: {} | Roles: {}", loginId, userRoles);
+
+			// Validation: distanceFrom < distanceTo
+			if (request.getDistanceFrom() != null && request.getDistanceTo() != null
+					&& request.getDistanceFrom().compareTo(request.getDistanceTo()) >= 0) {
+
+				response.setHttpStatus(HttpStatus.BAD_REQUEST);
+				response.setMessage("Distance From must be less than Distance To");
+				return response;
+			}
 
 			// Prepare entity
-			SubParameterDetails subParameterDetails = new SubParameterDetails();
-			subParameterDetails.setSubParameterCode(newSubParameterCode.toString());
-			subParameterDetails.setSubParameterName(subParameterDetailsModel.getSubParameterName());
-			subParameterDetails.setParameterCode(subParameterDetailsModel.getParameterCode());
-			subParameterDetails.setBasePriceIncreaseSubParameter(subParameterDetailsModel.getWeightage());
-			subParameterDetails.setEffectiveFrom(subParameterDetailsModel.getEffectiveFrom());
-			subParameterDetails.setCreatedBy(loginId);
-			subParameterDetails.setActive(true);
-			subParameterDetails.setRequestStatus(ModelConstant.ADD);
-			// Determine status based on roles
-			if (userRoles.contains(ModelConstant.ADMIN)) {
-				subParameterDetails.setActive(true);
-				subParameterDetails.setStatus(ModelConstant.COMPLETE);
-				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
-			} else if (userRoles.contains(ModelConstant.DC)) {
-				subParameterDetails.setActive(true);
-				subParameterDetails.setStatus(ModelConstant.COMPLETE);
-				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			SubParameterDetails entity = new SubParameterDetails();
+
+			entity.setSubParameterCode(newSubParameterCode.toString());
+			entity.setParameterCode(request.getParameterCode());
+			entity.setBandCode(request.getBandCode());
+			entity.setBand(request.getBand());
+			entity.setDistrict(request.getDistrict());
+			entity.setAreaType(request.getAreaType());
+			entity.setWeightage(request.getWeightage());
+			entity.setDistanceFrom(request.getDistanceFrom());
+			entity.setDistanceTo(request.getDistanceTo());
+			entity.setEffectiveTill(
+					request.getPerpetual() != null && request.getPerpetual() ? null : request.getEffectiveTill());
+			entity.setPerpetual(request.getPerpetual());
+			entity.setCreatedBy(loginId);
+			entity.setRequestStatus(ModelConstant.ADD);
+
+			// Role-based status handling
+			if (userRoles.contains(ModelConstant.ADMIN) || userRoles.contains(ModelConstant.DC)) {
+
+				entity.setActive(true);
+				entity.setStatus(ModelConstant.COMPLETE);
+				entity.setStatusCode(ModelConstant.COMPLETE_CODE);
+
 			} else if (userRoles.contains(ModelConstant.ADC)) {
-				subParameterDetails.setActive(false);
-				subParameterDetails.setStatus(ModelConstant.PEN_DC);
-				subParameterDetails.setStatusCode(ModelConstant.PEN_DC_CODE);
+
+				entity.setActive(false);
+				entity.setStatus(ModelConstant.PEN_DC);
+				entity.setStatusCode(ModelConstant.PEN_DC_CODE);
+
 			} else if (userRoles.contains(ModelConstant.CO)) {
-				subParameterDetails.setActive(false);
-				subParameterDetails.setStatus(ModelConstant.PEN_ADC);
-				subParameterDetails.setStatusCode(ModelConstant.PEN_ADC_CODE);
+
+				entity.setActive(false);
+				entity.setStatus(ModelConstant.PEN_ADC);
+				entity.setStatusCode(ModelConstant.PEN_ADC_CODE);
+
 			} else if (userRoles.contains(ModelConstant.LRA)) {
-				subParameterDetails.setActive(false);
-				subParameterDetails.setStatus(ModelConstant.PEN_CO);
-				subParameterDetails.setStatusCode(ModelConstant.PEN_CO_CODE);
+
+				entity.setActive(false);
+				entity.setStatus(ModelConstant.PEN_CO);
+				entity.setStatusCode(ModelConstant.PEN_CO_CODE);
+
 			} else {
-				subParameterDetails.setActive(false);
-				subParameterDetails.setStatus(ModelConstant.PEN_LRA);
-				subParameterDetails.setStatusCode(ModelConstant.PEN_LRA_CODE);
+
+				entity.setActive(false);
+				entity.setStatus(ModelConstant.PEN_LRA);
+				entity.setStatusCode(ModelConstant.PEN_LRA_CODE);
 			}
-			SubParameterDetails savedSubParameterDetails = subParameterDetailsRepo.saveAndFlush(subParameterDetails);
 
-			// Log action
+			// Save entity
+			SubParameterDetails saved = subParameterDetailsRepo.saveAndFlush(entity);
+
+			// Audit log
 			logAction(loginId, ModelConstant.SUBPARAMETER, ModelConstant.ADD,
-					"SubParameter Code: " + savedSubParameterDetails.getSubParameterCode(),
-					"SubParameter added, name: " + savedSubParameterDetails.getSubParameterName() + ", Parameter Code: "
-							+ savedSubParameterDetails.getParameterCode() + ",Base Price: "
-							+ savedSubParameterDetails.getBasePriceIncreaseSubParameter() + ", Effective From: "
-							+ savedSubParameterDetails.getEffectiveFrom(),
-					savedSubParameterDetails.getStatus(), savedSubParameterDetails.getStatusCode(),
-					savedSubParameterDetails.getSubParameterGenId());
+					"SubParameter Code: " + saved.getSubParameterCode(),
+					"SubParameter added | Parameter Code: " + saved.getParameterCode() + ", Band Code: "
+							+ saved.getBandCode() + ", Band: " + saved.getBand() + ", District: " + saved.getDistrict()
+							+ ", Area Type: " + saved.getAreaType() + ", Weightage: " + saved.getWeightage()
+							+ ", Distance From: " + saved.getDistanceFrom() + ", Distance To: " + saved.getDistanceTo()
+							+ ", Effective Till: " + saved.getEffectiveTill() + ", Perpetual: " + saved.getPerpetual(),
+					saved.getStatus(), saved.getStatusCode(), saved.getSubParameterGenId());
 
-			// Build response
-			response.setData(savedSubParameterDetails);
+			// Response
+			response.setData(saved);
 			response.setHttpStatus(HttpStatus.OK);
-			response.setMessage("SubParameter added successfully | SubParameter Name: "
-					+ savedSubParameterDetails.getSubParameterName() + ", SubParameter Code: "
-					+ savedSubParameterDetails.getSubParameterCode());
+			response.setMessage("SubParameter added successfully | SubParameter Code: " + saved.getSubParameterCode());
+
+			log.info("SubParameter added successfully | Code: {} | Band: {} | Status: {} | Method: {}",
+					saved.getSubParameterCode(), saved.getBand(), saved.getStatus(), methodName);
 
 		} catch (Exception e) {
-			log.error("Error occurred while adding SubParameter Details | SubParameter Name: {} | Method: {}",
-					subParameterDetailsModel.getSubParameterName(), methodName, e);
+
+			log.error("Error while adding SubParameter | Parameter Code: {} | Band Code: {} | Method: {}",
+					request.getParameterCode(), request.getBandCode(), methodName, e);
 
 			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
-			response.setMessage("Failed to add SubParameter Details | SubParameter Name: "
-					+ subParameterDetailsModel.getSubParameterName() + ", Error: " + e.getMessage());
+			response.setMessage("Failed to add SubParameter Details | Parameter Code: " + request.getParameterCode());
 		}
+
 		return response;
 	}
 
+//	@Override
+//	public ResponseModel updateSubParameterDetails(SubParameterDetailsModelUpdateRequest subParameterDetailsModel) {
+//		String methodName = "updateSubParameterDetails";
+//		ResponseModel response = new ResponseModel();
+//
+//		try {
+//			log.info(
+//					"Request received to update SubParameter Details | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Method: {} | Class: {}",
+//					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getSubParameterCode(),
+//					subParameterDetailsModel.getWeightage(), subParameterDetailsModel.getEffectiveFrom(),
+//					subParameterDetailsModel.getParameterCode(), methodName, this.getClass().getSimpleName());
+//
+//			// Get logged-in user
+//			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//			if (authentication == null || !authentication.isAuthenticated()
+//					|| "anonymousUser".equals(authentication.getName())) {
+//				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
+//				response.setMessage("Token is expired or invalid");
+//				return response;
+//			}
+//			String loginId = authentication.getName();
+//
+//			// Extract roles
+//			Set<String> userRoles = authentication.getAuthorities().stream()
+//					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+//
+//			log.info("User '{}' has roles: {}", loginId, userRoles);
+//
+//			// Fetch existing subParameter
+//			SubParameterDetails existingSubParameter = subParameterDetailsRepo
+//					.findBySubParameterCodeAndActiveTrue(subParameterDetailsModel.getSubParameterCode());
+//
+//			if (existingSubParameter == null) {
+//				log.info("No active SubParameter found for SubParameter Code: {} | Method: {} | Class: {}",
+//						subParameterDetailsModel.getSubParameterCode(), methodName, this.getClass().getSimpleName());
+//				response.setHttpStatus(HttpStatus.NO_CONTENT);
+//				response.setMessage(
+//						"No Data Found for SubParameter Code: " + subParameterDetailsModel.getSubParameterCode());
+//				return response;
+//			}
+//
+//			// Deactivate old record
+//			// existingSubParameter.setActive(false);
+//			existingSubParameter.setUpdatedBy(loginId);
+//			existingSubParameter.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+//			// Determine status based on roles
+//			if (userRoles.contains(ModelConstant.ADMIN)) {
+//				existingSubParameter.setActive(false);
+//			} else if (userRoles.contains(ModelConstant.DC)) {
+//				existingSubParameter.setActive(false);
+//			} else if (userRoles.contains(ModelConstant.ADC)) {
+//				existingSubParameter.setActive(true);
+//			} else if (userRoles.contains(ModelConstant.CO)) {
+//				existingSubParameter.setActive(true);
+//			}  else if (userRoles.contains(ModelConstant.LRA)) {
+//				existingSubParameter.setActive(true);
+//			}else {
+//				existingSubParameter.setActive(true);
+//			}
+//			subParameterDetailsRepo.save(existingSubParameter);
+//
+//			// Create new record with updated details
+//			SubParameterDetails subParameterDetails = new SubParameterDetails();
+//
+//			subParameterDetails.setSubParameterCode(subParameterDetailsModel.getSubParameterCode());
+//			subParameterDetails.setSubParameterName(subParameterDetailsModel.getSubParameterName());
+//			subParameterDetails.setEffectiveFrom(subParameterDetailsModel.getEffectiveFrom());
+//			subParameterDetails.setBasePriceIncreaseSubParameter(subParameterDetailsModel.getWeightage());
+//			subParameterDetails.setParameterCode(subParameterDetailsModel.getParameterCode());
+//			// subParameterDetails.setActive(true);
+//
+//			subParameterDetails.setCreatedBy(existingSubParameter.getCreatedBy());
+//			subParameterDetails.setCreatedDtm(existingSubParameter.getCreatedDtm());
+//			subParameterDetails.setUpdatedBy(loginId);
+//			subParameterDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
+//			subParameterDetails.setRequestStatus(ModelConstant.UPDATE);
+//			// Determine status based on roles
+//			if (userRoles.contains(ModelConstant.ADMIN)) {
+//				subParameterDetails.setActive(true);
+//				subParameterDetails.setStatus(ModelConstant.COMPLETE);
+//				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+//			} else if (userRoles.contains(ModelConstant.DC)) {
+//				subParameterDetails.setActive(true);
+//				subParameterDetails.setStatus(ModelConstant.COMPLETE);
+//				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+//			} else if (userRoles.contains(ModelConstant.ADC)) {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_DC);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_DC_CODE);
+//			} else if (userRoles.contains(ModelConstant.CO)) {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_ADC);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_ADC_CODE);
+//			} else if (userRoles.contains(ModelConstant.LRA)) {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_CO);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_CO_CODE);
+//			} else {
+//				subParameterDetails.setActive(false);
+//				subParameterDetails.setStatus(ModelConstant.PEN_LRA);
+//				subParameterDetails.setStatusCode(ModelConstant.PEN_LRA_CODE);
+//			}
+//			SubParameterDetails savedSubParameter = subParameterDetailsRepo.save(subParameterDetails);
+//
+//			// Log action
+//			logAction(loginId, ModelConstant.SUBPARAMETER, ModelConstant.UPDATE,
+//					"Sub Parameter Code: " + savedSubParameter.getParameterCode() + ", SubParameter Code:"
+//							+ savedSubParameter.getSubParameterCode(),
+//					"SubParameter updated, name: " + savedSubParameter.getSubParameterName(),
+//					savedSubParameter.getStatus(), savedSubParameter.getStatusCode(),
+//					savedSubParameter.getSubParameterGenId());
+//
+//			response.setData(savedSubParameter);
+//			response.setHttpStatus(HttpStatus.OK);
+//			response.setMessage(
+//					"SubParameter Updated Successfully | SubParameter Name: " + savedSubParameter.getSubParameterName()
+//							+ ", SubParameter Code: " + savedSubParameter.getSubParameterCode() + ", Parameter Code: "
+//							+ savedSubParameter.getParameterCode());
+//
+//			log.info(
+//					"SubParameter updated successfully | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Updated By: {} | Method: {} | Class: {}",
+//					savedSubParameter.getSubParameterName(), savedSubParameter.getSubParameterCode(),
+//					savedSubParameter.getParameterCode(), loginId, methodName, this.getClass().getSimpleName());
+//
+//		} catch (Exception e) {
+//			log.error(
+//					"Error occurred while updating SubParameter Details | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Method: {} | Class: {}",
+//					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getSubParameterCode(),
+//					subParameterDetailsModel.getParameterCode(), methodName, this.getClass().getSimpleName(), e);
+//
+//			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+//			response.setMessage("Failed to update SubParameter Details | SubParameter Name: "
+//					+ subParameterDetailsModel.getSubParameterName() + ", SubParameter Code: "
+//					+ subParameterDetailsModel.getSubParameterCode() + ", Parameter Code: "
+//					+ subParameterDetailsModel.getParameterCode() + ", Error: " + e.getMessage());
+//		}
+//
+//		return response;
+//	}
 	@Override
 	public ResponseModel updateSubParameterDetails(SubParameterDetailsModelUpdateRequest subParameterDetailsModel) {
+
 		String methodName = "updateSubParameterDetails";
 		ResponseModel response = new ResponseModel();
 
 		try {
-			log.info(
-					"Request received to update SubParameter Details | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Method: {} | Class: {}",
-					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getSubParameterCode(),
-					subParameterDetailsModel.getWeightage(), subParameterDetailsModel.getEffectiveFrom(),
-					subParameterDetailsModel.getParameterCode(), methodName, this.getClass().getSimpleName());
+			log.info("Request received to update SubParameter | "
+					+ "SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | "
+					+ "District Code: {} | Area Type (R/U): {} | Band: {} | Weightage: {} | Effective From: {} | "
+					+ "Method: {} | Class: {}", subParameterDetailsModel.getSubParameterName(),
+					subParameterDetailsModel.getSubParameterCode(), subParameterDetailsModel.getParameterCode(),
+					subParameterDetailsModel.getDistrictCode(), subParameterDetailsModel.getAreaTypeRandU(),
+					subParameterDetailsModel.getBand(), subParameterDetailsModel.getWeightage(),
+					subParameterDetailsModel.getEffectiveFrom(), methodName, this.getClass().getSimpleName());
 
 			// Get logged-in user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			if (authentication == null || !authentication.isAuthenticated()
 					|| "anonymousUser".equals(authentication.getName())) {
+
 				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
 				response.setMessage("Token is expired or invalid");
 				return response;
 			}
+
 			String loginId = authentication.getName();
 
 			// Extract roles
 			Set<String> userRoles = authentication.getAuthorities().stream()
 					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
 
-			log.info("User '{}' has roles: {}", loginId, userRoles);
+			log.info("Authenticated user: {} | Roles: {}", loginId, userRoles);
 
-			// Fetch existing subParameter
+			// Fetch existing SubParameter
 			SubParameterDetails existingSubParameter = subParameterDetailsRepo
 					.findBySubParameterCodeAndActiveTrue(subParameterDetailsModel.getSubParameterCode());
 
 			if (existingSubParameter == null) {
-				log.info("No active SubParameter found for SubParameter Code: {} | Method: {} | Class: {}",
+				log.info("No active SubParameter found | SubParameter Code: {} | Method: {} | Class: {}",
 						subParameterDetailsModel.getSubParameterCode(), methodName, this.getClass().getSimpleName());
+
 				response.setHttpStatus(HttpStatus.NO_CONTENT);
 				response.setMessage(
 						"No Data Found for SubParameter Code: " + subParameterDetailsModel.getSubParameterCode());
@@ -3152,46 +3481,32 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 			}
 
 			// Deactivate old record
-			// existingSubParameter.setActive(false);
 			existingSubParameter.setUpdatedBy(loginId);
 			existingSubParameter.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
-			// Determine status based on roles
-			if (userRoles.contains(ModelConstant.ADMIN)) {
-				existingSubParameter.setActive(false);
-			} else if (userRoles.contains(ModelConstant.DC)) {
-				existingSubParameter.setActive(false);
-			} else if (userRoles.contains(ModelConstant.ADC)) {
-				existingSubParameter.setActive(true);
-			} else if (userRoles.contains(ModelConstant.CO)) {
-				existingSubParameter.setActive(true);
-			}  else if (userRoles.contains(ModelConstant.LRA)) {
-				existingSubParameter.setActive(true);
-			}else {
-				existingSubParameter.setActive(true);
-			}
+			existingSubParameter.setActive(
+					userRoles.contains(ModelConstant.ADMIN) || userRoles.contains(ModelConstant.DC) ? false : true);
 			subParameterDetailsRepo.save(existingSubParameter);
 
-			// Create new record with updated details
+			// Create new updated record
 			SubParameterDetails subParameterDetails = new SubParameterDetails();
 
 			subParameterDetails.setSubParameterCode(subParameterDetailsModel.getSubParameterCode());
 			subParameterDetails.setSubParameterName(subParameterDetailsModel.getSubParameterName());
-			subParameterDetails.setEffectiveFrom(subParameterDetailsModel.getEffectiveFrom());
-			subParameterDetails.setBasePriceIncreaseSubParameter(subParameterDetailsModel.getWeightage());
 			subParameterDetails.setParameterCode(subParameterDetailsModel.getParameterCode());
-			// subParameterDetails.setActive(true);
+			subParameterDetails.setDistrictCode(subParameterDetailsModel.getDistrictCode());
+			//subParameterDetails.setAreaTypeRandU(subParameterDetailsModel.getAreaTypeRandU());
+			subParameterDetails.setBand(subParameterDetailsModel.getBand()); // ✅ NEW
+			//subParameterDetails.setBasePriceIncreaseSubParameter(subParameterDetailsModel.getWeightage());
+			//subParameterDetails.setEffectiveFrom(subParameterDetailsModel.getEffectiveFrom());
 
 			subParameterDetails.setCreatedBy(existingSubParameter.getCreatedBy());
 			subParameterDetails.setCreatedDtm(existingSubParameter.getCreatedDtm());
 			subParameterDetails.setUpdatedBy(loginId);
 			subParameterDetails.setUpdatedDtm(new Timestamp(System.currentTimeMillis()));
 			subParameterDetails.setRequestStatus(ModelConstant.UPDATE);
-			// Determine status based on roles
-			if (userRoles.contains(ModelConstant.ADMIN)) {
-				subParameterDetails.setActive(true);
-				subParameterDetails.setStatus(ModelConstant.COMPLETE);
-				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
-			} else if (userRoles.contains(ModelConstant.DC)) {
+
+			// Role-based status handling
+			if (userRoles.contains(ModelConstant.ADMIN) || userRoles.contains(ModelConstant.DC)) {
 				subParameterDetails.setActive(true);
 				subParameterDetails.setStatus(ModelConstant.COMPLETE);
 				subParameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
@@ -3212,13 +3527,16 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 				subParameterDetails.setStatus(ModelConstant.PEN_LRA);
 				subParameterDetails.setStatusCode(ModelConstant.PEN_LRA_CODE);
 			}
+
 			SubParameterDetails savedSubParameter = subParameterDetailsRepo.save(subParameterDetails);
 
-			// Log action
+			// Audit log
 			logAction(loginId, ModelConstant.SUBPARAMETER, ModelConstant.UPDATE,
-					"Sub Parameter Code: " + savedSubParameter.getParameterCode() + ", SubParameter Code:"
-							+ savedSubParameter.getSubParameterCode(),
-					"SubParameter updated, name: " + savedSubParameter.getSubParameterName(),
+					"SubParameter Code: " + savedSubParameter.getSubParameterCode(),
+					"SubParameter updated | Name: " + savedSubParameter.getSubParameterName() + ", Parameter Code: "
+							+ savedSubParameter.getParameterCode() + ", District Code: "
+							+ savedSubParameter.getDistrictCode() +  ", Band: " + savedSubParameter.getBand()
+							,
 					savedSubParameter.getStatus(), savedSubParameter.getStatusCode(),
 					savedSubParameter.getSubParameterGenId());
 
@@ -3227,24 +3545,25 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 			response.setMessage(
 					"SubParameter Updated Successfully | SubParameter Name: " + savedSubParameter.getSubParameterName()
 							+ ", SubParameter Code: " + savedSubParameter.getSubParameterCode() + ", Parameter Code: "
-							+ savedSubParameter.getParameterCode());
+							+ savedSubParameter.getParameterCode() + ", Band: " + savedSubParameter.getBand());
 
 			log.info(
-					"SubParameter updated successfully | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Updated By: {} | Method: {} | Class: {}",
-					savedSubParameter.getSubParameterName(), savedSubParameter.getSubParameterCode(),
-					savedSubParameter.getParameterCode(), loginId, methodName, this.getClass().getSimpleName());
+					"SubParameter updated successfully | SubParameter Code: {} | Band: {} | Updated By: {} | Status: {} | Method: {} | Class: {}",
+					savedSubParameter.getSubParameterCode(), savedSubParameter.getBand(), loginId,
+					savedSubParameter.getStatus(), methodName, this.getClass().getSimpleName());
 
 		} catch (Exception e) {
+
 			log.error(
-					"Error occurred while updating SubParameter Details | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Method: {} | Class: {}",
+					"Error while updating SubParameter | SubParameter Name: {} | SubParameter Code: {} | Parameter Code: {} | Band: {} | Method: {} | Class: {}",
 					subParameterDetailsModel.getSubParameterName(), subParameterDetailsModel.getSubParameterCode(),
-					subParameterDetailsModel.getParameterCode(), methodName, this.getClass().getSimpleName(), e);
+					subParameterDetailsModel.getParameterCode(), subParameterDetailsModel.getBand(), methodName,
+					this.getClass().getSimpleName(), e);
 
 			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
 			response.setMessage("Failed to update SubParameter Details | SubParameter Name: "
 					+ subParameterDetailsModel.getSubParameterName() + ", SubParameter Code: "
-					+ subParameterDetailsModel.getSubParameterCode() + ", Parameter Code: "
-					+ subParameterDetailsModel.getParameterCode() + ", Error: " + e.getMessage());
+					+ subParameterDetailsModel.getSubParameterCode());
 		}
 
 		return response;
@@ -4310,6 +4629,123 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 	public ResponseModel getLotDetails(String districtCode, String circleCode) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	// -------------------new re
+
+	@Override
+	public ResponseModel addParameterDetails(ParameterDetailsModelRequest parameterDetailsModel) {
+
+		final String methodName = "addParameterDetails";
+		final String className = this.getClass().getSimpleName();
+		long startTime = System.currentTimeMillis();
+
+		ResponseModel response = new ResponseModel();
+
+		log.info(
+				"[START] [{}] - Invoked in [{}] | ParameterName: {} | Data: {} | AppreciationType: {} | EffectiveFrom: {}",
+				methodName, className, parameterDetailsModel.getParameterName(), parameterDetailsModel.getData(),
+				parameterDetailsModel.getAppreciationType(), parameterDetailsModel.getEffectiveFrom());
+
+		try {
+
+			// 🔹 Generate new parameter code
+			Integer maxParameterCode = parameterDetailsRepo.findMaxParameterCode();
+			Integer newParameterCode = (maxParameterCode == null) ? 10001 : maxParameterCode + 1;
+
+			log.debug("[PROCESS] [{}] - Generated new ParameterCode: {} (Previous Max: {})", methodName,
+					newParameterCode, maxParameterCode);
+
+			// 🔹 Get logged-in user
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+			if (authentication == null || !authentication.isAuthenticated()
+					|| "anonymousUser".equals(authentication.getName())) {
+
+				log.warn("[UNAUTHORIZED] [{}] - Invalid or expired token", methodName);
+
+				response.setHttpStatus(HttpStatus.UNAUTHORIZED);
+				response.setMessage("Token is expired or invalid");
+				return response;
+			}
+
+			String loginId = authentication.getName();
+
+			Set<String> userRoles = authentication.getAuthorities().stream()
+					.map(auth -> auth.getAuthority().replace("ROLE_", "").toLowerCase()).collect(Collectors.toSet());
+
+			log.info("[AUTH] [{}] - User: {} | Roles: {}", methodName, loginId, userRoles);
+
+			// 🔹 Prepare entity
+			ParameterDetails parameterDetails = new ParameterDetails();
+			parameterDetails.setParameterCode(newParameterCode.toString());
+			parameterDetails.setParameterName(parameterDetailsModel.getParameterName());
+			parameterDetails.setParameterData(parameterDetailsModel.getData());
+			parameterDetails.setAppreciationType(parameterDetailsModel.getAppreciationType());
+			parameterDetails.setParameterDescription(parameterDetailsModel.getDiscription());
+			parameterDetails.setCreatedBy(loginId);
+			parameterDetails.setRequestStatus(ModelConstant.ADD);
+
+			// 🔹 Status Logic
+			if (userRoles.contains(ModelConstant.ADMIN) || userRoles.contains(ModelConstant.DC)) {
+				parameterDetails.setActive(true);
+				parameterDetails.setStatus(ModelConstant.COMPLETE);
+				parameterDetails.setStatusCode(ModelConstant.COMPLETE_CODE);
+			} else if (userRoles.contains(ModelConstant.ADC)) {
+				parameterDetails.setActive(false);
+				parameterDetails.setStatus(ModelConstant.PEN_DC);
+				parameterDetails.setStatusCode(ModelConstant.PEN_DC_CODE);
+			} else if (userRoles.contains(ModelConstant.CO)) {
+				parameterDetails.setActive(false);
+				parameterDetails.setStatus(ModelConstant.PEN_ADC);
+				parameterDetails.setStatusCode(ModelConstant.PEN_ADC_CODE);
+			} else if (userRoles.contains(ModelConstant.LRA)) {
+				parameterDetails.setActive(false);
+				parameterDetails.setStatus(ModelConstant.PEN_CO);
+				parameterDetails.setStatusCode(ModelConstant.PEN_CO_CODE);
+			} else {
+				parameterDetails.setActive(false);
+				parameterDetails.setStatus(ModelConstant.PEN_LRA);
+				parameterDetails.setStatusCode(ModelConstant.PEN_LRA_CODE);
+			}
+
+			log.debug("[PROCESS] [{}] - Saving Parameter | Code: {} | Status: {} | Active: {}", methodName,
+					parameterDetails.getParameterCode(), parameterDetails.getStatus(), parameterDetails.getActive());
+
+			ParameterDetails savedParameterDetails = parameterDetailsRepo.saveAndFlush(parameterDetails);
+
+			// 🔹 Audit Log
+			logAction(loginId, ModelConstant.PARAMETER, ModelConstant.ADD,
+					"ParameterCode=" + savedParameterDetails.getParameterCode(), "Parameter created successfully",
+					savedParameterDetails.getStatus(), savedParameterDetails.getStatusCode(),
+					savedParameterDetails.getParameterGenId());
+
+			response.setData(savedParameterDetails);
+			response.setHttpStatus(HttpStatus.OK);
+			response.setMessage(
+					"Parameter added successfully | Parameter Name: " + savedParameterDetails.getParameterName()
+							+ ", Parameter Code: " + savedParameterDetails.getParameterCode());
+
+			log.info("[SUCCESS] [{}] - Parameter Saved | GenId: {} | Code: {} | Status: {}", methodName,
+					savedParameterDetails.getParameterGenId(), savedParameterDetails.getParameterCode(),
+					savedParameterDetails.getStatus());
+
+		} catch (Exception e) {
+
+			log.error("[ERROR] [{}] - Exception while adding Parameter | ParameterName: {} | Error: {}", methodName,
+					parameterDetailsModel.getParameterName(), e.getMessage(), e);
+
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage("Failed to add Parameter Details | Parameter Name: "
+					+ parameterDetailsModel.getParameterName() + ", Error: " + e.getMessage());
+		}
+
+		long endTime = System.currentTimeMillis();
+
+		log.info("[END] [{}] - Completed in [{}] | Duration: {} ms | ParameterName: {}", methodName, className,
+				(endTime - startTime), parameterDetailsModel.getParameterName());
+
+		return response;
 	}
 
 }

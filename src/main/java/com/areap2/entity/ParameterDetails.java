@@ -28,8 +28,7 @@ public class ParameterDetails implements Serializable {
 	@Column(name = "parameter_gen_id")
 	private Long parameterGenId;
 
-	@Column(name = "parameter_name")
-	private String parameterName;
+	
 
 	@Column(name = "parameter_code")
 	private String parameterCode;
@@ -69,6 +68,20 @@ public class ParameterDetails implements Serializable {
 	
 	@Column(name = "request_status")
 	private String requestStatus;
+	
+	@Column(name = "parameter_name")
+	private String parameterName;
+	
+	@Column(name = "parameter_data")
+	private String parameterData;
+	
+	@Column(name = "appreciation_type")
+	private String appreciationType;
+
+	@Column(name = "parameter_description")
+	private String parameterDescription;
+	
+	
 	
 //
 //	@Column(name = "parameter", nullable = false, length = 200)

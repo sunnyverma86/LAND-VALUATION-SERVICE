@@ -75,10 +75,10 @@ public class ModelConstant {
 
 
   
-    public static final String LRA = "Land Revenue Assistant";
-    public static final String CO = "Circle Officer";
-    public static final String ADC = "Assistant Deputy Commisioner";
-    public static final String DC = "Deputy Commisioner";
+    public static final String LRA = "lra";//"Land Revenue Assistant";
+    public static final String CO = "co";//"Circle Officer";
+    public static final String ADC = "adc";//"Assistant Deputy Commisioner";
+    public static final String DC = "dc";//"Deputy Commisioner";
     
     
     public static final String ADD = "add";
