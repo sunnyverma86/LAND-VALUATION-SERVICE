@@ -13,16 +13,21 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.areap2.entity.LandDataExcel;
-import com.areap2.repository.LandDataExcelRepository;
+import com.areap2.excel.repository.LandDataExcelRepository;
 import com.areap2.service.LandDataExcelService;
 
 import jakarta.persistence.EntityManager;
+import lombok.extern.log4j.Log4j2;
 
 @Service
+@Log4j2
 public class LandDataExcelServiceImpl implements LandDataExcelService {
 
 	@Autowired
@@ -141,5 +146,19 @@ public class LandDataExcelServiceImpl implements LandDataExcelService {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public Page<LandDataExcel> getLandDataByDistrict(String district, int page, int size) {
+
+		log.info("Fetching land data for district: {}", district);
+
+		Pageable pageable = PageRequest.of(page, size);
+
+		Page<LandDataExcel> result = repository.findByDistrictIgnoreCase(district, pageable);
+
+		log.info("Total records found: {}", result.getTotalElements());
+
+		return result;
 	}
 }

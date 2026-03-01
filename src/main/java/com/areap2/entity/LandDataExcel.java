@@ -68,7 +68,11 @@ public class LandDataExcel implements Serializable {
 	private BigDecimal disSwgPl;
 	private BigDecimal fidWlPrk;
 	private BigDecimal disWlPrk;
-	private BigDecimal dRlCbd;
+
 	private String typeOfCbd;
+	private BigDecimal dRlCbd;
+
+	@Column(name = "d_rl_cbd_slab")
+	private String dRlCbdSlab;
 
 }
