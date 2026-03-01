@@ -1,4 +1,4 @@
-package com.areap2.serviceImpl;
+package com.areap2.excel.service;
 
 import java.io.FileInputStream;
 import java.math.BigDecimal;
@@ -19,9 +19,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.areap2.entity.LandDataExcel;
+import com.areap2.excel.entity.LandDataExcel;
 import com.areap2.excel.repository.LandDataExcelRepository;
-import com.areap2.service.LandDataExcelService;
 
 import jakarta.persistence.EntityManager;
 import lombok.extern.log4j.Log4j2;

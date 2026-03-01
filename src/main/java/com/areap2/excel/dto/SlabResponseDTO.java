@@ -15,6 +15,11 @@ public class SlabResponseDTO {
 	private String distanceTypeCode;
 	private Integer version;
 	private List<SlabRangeDTO> slabs;
+	
+	private String parameterName;
+	private String areaType;
+	private Boolean perpetual;
+	private String band;
 
 	// getters setters
 }

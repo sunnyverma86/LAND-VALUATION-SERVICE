@@ -2,6 +2,7 @@ package com.areap2.excel.entity;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,4 +38,16 @@ public class SlabGroup {
 	@ManyToOne
 	@JoinColumn(name = "distance_type_id")
 	private DistanceType distanceType;
+
+	@Column(name = "parameter_name")
+	private String parameterName;
+
+	@Column(name = "area_type")
+	private String areaType;
+
+	@Column(name = "perpetual")
+	private boolean perpetual;
+
+	@Column(name = "band")
+	private String band;
 }

@@ -11,4 +11,5 @@ public class SlabRangeDTO {
 
 	private Double minValue;
 	private Double maxValue;
+	private Double priceValue;//new changes
 }

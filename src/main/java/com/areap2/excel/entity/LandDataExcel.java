@@ -1,4 +1,4 @@
-package com.areap2.entity;
+package com.areap2.excel.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -74,5 +74,11 @@ public class LandDataExcel implements Serializable {
 
 	@Column(name = "d_rl_cbd_slab")
 	private String dRlCbdSlab;
+	
+	@Column(name = "d_rl_cbd_price_value")
+	private Double drlCbdPriceValue;//new changes
+	
+//	@Column(name = "d_rl_cbd_slab")
+//	private BigDecimal dRlCbdPriceValue;
 
 }
