@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.areap2.dto.SelectionRequest;
-import com.areap2.dto.SelectionResponse;
+import com.areap2.dto.excel.SelectionRequest;
+import com.areap2.dto.excel.SelectionResponse;
 import com.areap2.entity.Instrument;
 import com.areap2.model.ParamsJurisdictionModel;
 import com.areap2.model.ResponseModel;
@@ -58,10 +58,6 @@ public class JurisdictionInfoController {
 
 		return response;
 	}
-	
-	
-	
-	
 
 	@PostMapping("/getStampDuty")
 	public ResponseModel getStampDutyAll(@RequestParam Long stampDutyGenid) {
@@ -95,6 +91,5 @@ public class JurisdictionInfoController {
 		List<SelectionResponse> saved = stampDutyService.saveSelections(requests);
 		return ResponseEntity.ok(saved);
 	}
-	
-	
+
 }

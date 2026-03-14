@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.areap2.dto.SelectionRequest;
-import com.areap2.dto.SelectionResponse;
+import com.areap2.dto.excel.SelectionRequest;
+import com.areap2.dto.excel.SelectionResponse;
 import com.areap2.entity.Instrument;
 import com.areap2.entity.UserSelection;
 import com.areap2.repository.duty.InstrumentRepository;

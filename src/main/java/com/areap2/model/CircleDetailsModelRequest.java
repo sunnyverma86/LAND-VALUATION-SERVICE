@@ -13,4 +13,22 @@ public class CircleDetailsModelRequest {
 
 	private String districtCode;
 
+	public String getCircleName() {
+		return circleName;
+	}
+
+	public void setCircleName(String circleName) {
+		this.circleName = circleName;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+	
+	
+
 }

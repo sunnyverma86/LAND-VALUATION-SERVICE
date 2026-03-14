@@ -25,4 +25,62 @@ public class BasePriceUpdateDetailsModelRequest {
 	
 	private String mouzaCode;
 
+	public Long getBasePriceMouza() {
+		return basePriceMouza;
+	}
+
+	public void setBasePriceMouza(Long basePriceMouza) {
+		this.basePriceMouza = basePriceMouza;
+	}
+
+	public BigDecimal getBasePriceMouzaIncreaseLot() {
+		return basePriceMouzaIncreaseLot;
+	}
+
+	public void setBasePriceMouzaIncreaseLot(BigDecimal basePriceMouzaIncreaseLot) {
+		this.basePriceMouzaIncreaseLot = basePriceMouzaIncreaseLot;
+	}
+
+	public Long getBasePriceMouzaIncreaseLandUse() {
+		return basePriceMouzaIncreaseLandUse;
+	}
+
+	public void setBasePriceMouzaIncreaseLandUse(Long basePriceMouzaIncreaseLandUse) {
+		this.basePriceMouzaIncreaseLandUse = basePriceMouzaIncreaseLandUse;
+	}
+
+	public Long getBasePriceMouzaIncreaseAreaUrbanOrRural() {
+		return basePriceMouzaIncreaseAreaUrbanOrRural;
+	}
+
+	public void setBasePriceMouzaIncreaseAreaUrbanOrRural(Long basePriceMouzaIncreaseAreaUrbanOrRural) {
+		this.basePriceMouzaIncreaseAreaUrbanOrRural = basePriceMouzaIncreaseAreaUrbanOrRural;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+
+	public String getCircleCode() {
+		return circleCode;
+	}
+
+	public void setCircleCode(String circleCode) {
+		this.circleCode = circleCode;
+	}
+
+	public String getMouzaCode() {
+		return mouzaCode;
+	}
+
+	public void setMouzaCode(String mouzaCode) {
+		this.mouzaCode = mouzaCode;
+	}
+	
+	
+
 }

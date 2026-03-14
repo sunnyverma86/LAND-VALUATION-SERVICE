@@ -1,4 +1,4 @@
-package com.areap2.excel.entity;
+package com.areap2.entity.excel.external;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,4 +27,38 @@ public class DistanceType {
 	private String columnName;
 
 	private Boolean active;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getColumnName() {
+		return columnName;
+	}
+
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+	
+	
 }

@@ -65,4 +65,116 @@ public class CircleDetails implements Serializable {
 
 	@Column(name = "request_status")
 	private String requestStatus;
+
+	public Long getCircleGenId() {
+		return circleGenId;
+	}
+
+	public void setCircleGenId(Long circleGenId) {
+		this.circleGenId = circleGenId;
+	}
+
+	public String getCircleName() {
+		return circleName;
+	}
+
+	public void setCircleName(String circleName) {
+		this.circleName = circleName;
+	}
+
+	public String getCircleCode() {
+		return circleCode;
+	}
+
+	public void setCircleCode(String circleCode) {
+		this.circleCode = circleCode;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public Long getBasePrice() {
+		return basePrice;
+	}
+
+	public void setBasePrice(Long basePrice) {
+		this.basePrice = basePrice;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+	
 }

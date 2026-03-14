@@ -64,4 +64,115 @@ public class LandsCategoryDetails implements Serializable {
 	@Column(name = "base_price_land_category")
 	private BigDecimal basePriceLandCategory;
 
+	public Long getLandCategoryGenId() {
+		return landCategoryGenId;
+	}
+
+	public void setLandCategoryGenId(Long landCategoryGenId) {
+		this.landCategoryGenId = landCategoryGenId;
+	}
+
+	public String getLandCategoryCode() {
+		return landCategoryCode;
+	}
+
+	public void setLandCategoryCode(String landCategoryCode) {
+		this.landCategoryCode = landCategoryCode;
+	}
+
+	public String getLandCategoryName() {
+		return landCategoryName;
+	}
+
+	public void setLandCategoryName(String landCategoryName) {
+		this.landCategoryName = landCategoryName;
+	}
+
+	public String getLandClassName() {
+		return landClassName;
+	}
+
+	public void setLandClassName(String landClassName) {
+		this.landClassName = landClassName;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public BigDecimal getBasePriceLandCategory() {
+		return basePriceLandCategory;
+	}
+
+	public void setBasePriceLandCategory(BigDecimal basePriceLandCategory) {
+		this.basePriceLandCategory = basePriceLandCategory;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+
 }

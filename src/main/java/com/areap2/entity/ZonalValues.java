@@ -108,4 +108,236 @@ public class ZonalValues implements Serializable {
 	@Column(name = "status_code")
 	private String statusCode;
 
+	public Long getZonalValuesGenId() {
+		return zonalValuesGenId;
+	}
+
+	public void setZonalValuesGenId(Long zonalValuesGenId) {
+		this.zonalValuesGenId = zonalValuesGenId;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+
+	public String getCircleCode() {
+		return circleCode;
+	}
+
+	public void setCircleCode(String circleCode) {
+		this.circleCode = circleCode;
+	}
+
+	public String getMouzaCode() {
+		return mouzaCode;
+	}
+
+	public void setMouzaCode(String mouzaCode) {
+		this.mouzaCode = mouzaCode;
+	}
+
+	public String getVillageCode() {
+		return villageCode;
+	}
+
+	public void setVillageCode(String villageCode) {
+		this.villageCode = villageCode;
+	}
+
+	public Long getPlotResidentialPerSqmRate() {
+		return plotResidentialPerSqmRate;
+	}
+
+	public void setPlotResidentialPerSqmRate(Long plotResidentialPerSqmRate) {
+		this.plotResidentialPerSqmRate = plotResidentialPerSqmRate;
+	}
+
+	public Long getPlotCommercialPerSqmRate() {
+		return plotCommercialPerSqmRate;
+	}
+
+	public void setPlotCommercialPerSqmRate(Long plotCommercialPerSqmRate) {
+		this.plotCommercialPerSqmRate = plotCommercialPerSqmRate;
+	}
+
+	public Long getIndustrialPerSqmRate() {
+		return industrialPerSqmRate;
+	}
+
+	public void setIndustrialPerSqmRate(Long industrialPerSqmRate) {
+		this.industrialPerSqmRate = industrialPerSqmRate;
+	}
+
+	public Long getRccPerSqmRate() {
+		return rccPerSqmRate;
+	}
+
+	public void setRccPerSqmRate(Long rccPerSqmRate) {
+		this.rccPerSqmRate = rccPerSqmRate;
+	}
+
+	public Long getRbcPerSqmRate() {
+		return rbcPerSqmRate;
+	}
+
+	public void setRbcPerSqmRate(Long rbcPerSqmRate) {
+		this.rbcPerSqmRate = rbcPerSqmRate;
+	}
+
+	public Long getTin_shadePerSqmRate() {
+		return tin_shadePerSqmRate;
+	}
+
+	public void setTin_shadePerSqmRate(Long tin_shadePerSqmRate) {
+		this.tin_shadePerSqmRate = tin_shadePerSqmRate;
+	}
+
+	public Long getKaccha_kabeluPerSqmRate() {
+		return kaccha_kabeluPerSqmRate;
+	}
+
+	public void setKaccha_kabeluPerSqmRate(Long kaccha_kabeluPerSqmRate) {
+		this.kaccha_kabeluPerSqmRate = kaccha_kabeluPerSqmRate;
+	}
+
+	public Long getShopPerSqmRate() {
+		return shopPerSqmRate;
+	}
+
+	public void setShopPerSqmRate(Long shopPerSqmRate) {
+		this.shopPerSqmRate = shopPerSqmRate;
+	}
+
+	public Long getOfficePerSqmRate() {
+		return officePerSqmRate;
+	}
+
+	public void setOfficePerSqmRate(Long officePerSqmRate) {
+		this.officePerSqmRate = officePerSqmRate;
+	}
+
+	public Long getGodownPerSqmRate() {
+		return godownPerSqmRate;
+	}
+
+	public void setGodownPerSqmRate(Long godownPerSqmRate) {
+		this.godownPerSqmRate = godownPerSqmRate;
+	}
+
+	public Long getBuildingrResidentialPerSqmRate() {
+		return buildingrResidentialPerSqmRate;
+	}
+
+	public void setBuildingrResidentialPerSqmRate(Long buildingrResidentialPerSqmRate) {
+		this.buildingrResidentialPerSqmRate = buildingrResidentialPerSqmRate;
+	}
+
+	public Long getBuildingCommercialPerSqmRate() {
+		return buildingCommercialPerSqmRate;
+	}
+
+	public void setBuildingCommercialPerSqmRate(Long buildingCommercialPerSqmRate) {
+		this.buildingCommercialPerSqmRate = buildingCommercialPerSqmRate;
+	}
+
+	public Long getIrrigatedPerSqmRate() {
+		return irrigatedPerSqmRate;
+	}
+
+	public void setIrrigatedPerSqmRate(Long irrigatedPerSqmRate) {
+		this.irrigatedPerSqmRate = irrigatedPerSqmRate;
+	}
+
+	public Long getUnIrrigatedPerSqmRate() {
+		return unIrrigatedPerSqmRate;
+	}
+
+	public void setUnIrrigatedPerSqmRate(Long unIrrigatedPerSqmRate) {
+		this.unIrrigatedPerSqmRate = unIrrigatedPerSqmRate;
+	}
+
+	public Long getSubClauseWiseResidentialPerSqmRate() {
+		return subClauseWiseResidentialPerSqmRate;
+	}
+
+	public void setSubClauseWiseResidentialPerSqmRate(Long subClauseWiseResidentialPerSqmRate) {
+		this.subClauseWiseResidentialPerSqmRate = subClauseWiseResidentialPerSqmRate;
+	}
+
+	public Long getSubClauseWiseCommercialPerSqmRate() {
+		return subClauseWiseCommercialPerSqmRate;
+	}
+
+	public void setSubClauseWiseCommercialPerSqmRate(Long subClauseWiseCommercialPerSqmRate) {
+		this.subClauseWiseCommercialPerSqmRate = subClauseWiseCommercialPerSqmRate;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+	
+
 }

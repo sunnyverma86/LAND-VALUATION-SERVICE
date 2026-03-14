@@ -1357,7 +1357,7 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					"Request: Add Mouza Details | MouzaName: {} | AreaTypeId: {} | DistrictCode: {} | CircleCode: {} | BasePriceMouza: {} | Method: {} | Class: {}",
 					mouzaDetailsModel.getMouzaName(), mouzaDetailsModel.getAreaTypeId(),
 					mouzaDetailsModel.getDistrictCode(), mouzaDetailsModel.getCircleCode(),
-					mouzaDetailsModel.getBPMouza(), methodName, this.getClass().getSimpleName());
+					mouzaDetailsModel.getbPMouza(), methodName, this.getClass().getSimpleName());
 
 			Integer mouzaCode = mouzaDetailsRepo.findMaxMouzaCode();
 			if (mouzaCode == null) {
@@ -1388,11 +1388,11 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			mouzaDetails.setDistrictCode(mouzaDetailsModel.getDistrictCode());
 			mouzaDetails.setCircleCode(mouzaDetailsModel.getCircleCode());
 			mouzaDetails.setAreaTypeId(mouzaDetailsModel.getAreaTypeId());
-			// mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getBPMouza());
-			if (mouzaDetailsModel.getBPMouza() == null || mouzaDetailsModel.getBPMouza() == 0) {
+			// mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getbPMouza());
+			if (mouzaDetailsModel.getbPMouza() == null || mouzaDetailsModel.getbPMouza() == 0) {
 				mouzaDetails.setBasePriceMouza(ModelConstant.DEFAULT_BASE_PRICE_MOUZA);
 			} else {
-				mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getBPMouza());
+				mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getbPMouza());
 			}
 
 			mouzaDetails.setCreatedBy(loginId);
@@ -1500,7 +1500,7 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					"Request: Update Mouza Details [MouzaCode: {}, MouzaName: {}, DistrictCode: {}, CircleCode: {}, BasePriceMouza: {}, AreaTypeId: {}], Method: {}, Class: {}",
 					mouzaDetailsModel.getMouzaCode(), mouzaDetailsModel.getMouzaName(),
 					mouzaDetailsModel.getDistrictCode(), mouzaDetailsModel.getCircleCode(),
-					mouzaDetailsModel.getBPMouza(), mouzaDetailsModel.getAreaTypeId(), methodName,
+					mouzaDetailsModel.getbPMouza(), mouzaDetailsModel.getAreaTypeId(), methodName,
 					this.getClass().getSimpleName());
 
 			// Get logged-in user
@@ -1543,11 +1543,11 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 			mouzaDetails.setMouzaName(mouzaDetailsModel.getMouzaName());
 			mouzaDetails.setDistrictCode(mouzaDetailsModel.getDistrictCode());
 			mouzaDetails.setCircleCode(mouzaDetailsModel.getCircleCode());
-			// mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getBPMouza());
-			if (mouzaDetailsModel.getBPMouza() == null || mouzaDetailsModel.getBPMouza() == 0) {
+			// mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getbPMouza());
+			if (mouzaDetailsModel.getbPMouza() == null || mouzaDetailsModel.getbPMouza() == 0) {
 				mouzaDetails.setBasePriceMouza(ModelConstant.DEFAULT_BASE_PRICE_MOUZA);
 			} else {
-				mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getBPMouza());
+				mouzaDetails.setBasePriceMouza(mouzaDetailsModel.getbPMouza());
 			}
 			mouzaDetails.setAreaTypeId(mouzaDetailsModel.getAreaTypeId());
 			mouzaDetails.setActive(true);
@@ -1597,7 +1597,7 @@ public class MasterDataServiceImpl extends AbstractMasterRepository implements M
 					"Error occurred while updating Mouza Details [MouzaCode: {}, MouzaName: {}, DistrictCode: {}, CircleCode: {}, BasePriceMouza: {}, AreaTypeId: {}], Method: {}, Class: {}",
 					mouzaDetailsModel.getMouzaCode(), mouzaDetailsModel.getMouzaName(),
 					mouzaDetailsModel.getDistrictCode(), mouzaDetailsModel.getCircleCode(),
-					mouzaDetailsModel.getBPMouza(), mouzaDetailsModel.getAreaTypeId(), methodName,
+					mouzaDetailsModel.getbPMouza(), mouzaDetailsModel.getAreaTypeId(), methodName,
 					this.getClass().getSimpleName(), e);
 
 			response.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);

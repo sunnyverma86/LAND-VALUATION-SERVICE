@@ -70,6 +70,133 @@ public class MouzaDetails implements Serializable{
 	
 	@Column(name = "request_status")
 	private String requestStatus;
+
+	public Long getMouzaGenId() {
+		return mouzaGenId;
+	}
+
+	public void setMouzaGenId(Long mouzaGenId) {
+		this.mouzaGenId = mouzaGenId;
+	}
+
+	public String getMouzaName() {
+		return mouzaName;
+	}
+
+	public void setMouzaName(String mouzaName) {
+		this.mouzaName = mouzaName;
+	}
+
+	public String getMouzaCode() {
+		return mouzaCode;
+	}
+
+	public void setMouzaCode(String mouzaCode) {
+		this.mouzaCode = mouzaCode;
+	}
+
+	public Long getAreaTypeId() {
+		return areaTypeId;
+	}
+
+	public void setAreaTypeId(Long areaTypeId) {
+		this.areaTypeId = areaTypeId;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+
+	public String getCircleCode() {
+		return circleCode;
+	}
+
+	public void setCircleCode(String circleCode) {
+		this.circleCode = circleCode;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public Long getBasePriceMouza() {
+		return basePriceMouza;
+	}
+
+	public void setBasePriceMouza(Long basePriceMouza) {
+		this.basePriceMouza = basePriceMouza;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
 }
 
 

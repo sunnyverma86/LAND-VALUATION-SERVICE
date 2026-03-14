@@ -64,4 +64,115 @@ public class LandCategories implements Serializable {
 	@Column(name = "mouza_code")
 	private String mouzaCode;
 
+	public Long getLandCategoryGenId() {
+		return landCategoryGenId;
+	}
+
+	public void setLandCategoryGenId(Long landCategoryGenId) {
+		this.landCategoryGenId = landCategoryGenId;
+	}
+
+	public String getLandCategoryName() {
+		return landCategoryName;
+	}
+
+	public void setLandCategoryName(String landCategoryName) {
+		this.landCategoryName = landCategoryName;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public Long getBasePriceIncreaseLandUse() {
+		return basePriceIncreaseLandUse;
+	}
+
+	public void setBasePriceIncreaseLandUse(Long basePriceIncreaseLandUse) {
+		this.basePriceIncreaseLandUse = basePriceIncreaseLandUse;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+
+	public String getCircleCode() {
+		return circleCode;
+	}
+
+	public void setCircleCode(String circleCode) {
+		this.circleCode = circleCode;
+	}
+
+	public String getMouzaCode() {
+		return mouzaCode;
+	}
+
+	public void setMouzaCode(String mouzaCode) {
+		this.mouzaCode = mouzaCode;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+
 }

@@ -15,4 +15,30 @@ public class SroDetailsModelRequest {
 
 	private String circleCode;
 
+	public String getSroName() {
+		return sroName;
+	}
+
+	public void setSroName(String sroName) {
+		this.sroName = sroName;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+
+	public String getCircleCode() {
+		return circleCode;
+	}
+
+	public void setCircleCode(String circleCode) {
+		this.circleCode = circleCode;
+	}
+	
+	
+
 }

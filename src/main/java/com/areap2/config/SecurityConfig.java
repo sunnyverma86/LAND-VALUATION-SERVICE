@@ -2,6 +2,7 @@ package com.areap2.config;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,16 +18,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-	private final JwtAuthenticationFilter jwtAuthFilter;
+	@Autowired
+	private JwtAuthenticationFilter jwtAuthFilter;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/masterData/add/**").authenticated()
-						.requestMatchers("/masterData/update/**").authenticated()
-						.requestMatchers("/masterData/delete/**").authenticated().requestMatchers("/audit/update/**")
-						.authenticated().anyRequest().permitAll())
+						.requestMatchers("/masterData/update/**").authenticated().requestMatchers("/api/slabs/**")
+						.authenticated().requestMatchers("/masterData/delete/**").authenticated()
+						.requestMatchers("/audit/update/**").authenticated().anyRequest().permitAll())
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
@@ -36,9 +38,11 @@ public class SecurityConfig {
 	public org.springframework.web.cors.CorsConfigurationSource corsConfigurationSource() {
 		org.springframework.web.cors.CorsConfiguration config = new org.springframework.web.cors.CorsConfiguration();
 
-		//config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:4200"));
-	//	config.setAllowedOrigins(List.of("http://localhost:8081", "http://localhost:8081"));
-		config.addAllowedOriginPattern("*");   // VERY IMPORTANT FIX
+		// config.setAllowedOrigins(List.of("http://localhost:3000",
+		// "http://localhost:4200"));
+		// config.setAllowedOrigins(List.of("http://localhost:8081",
+		// "http://localhost:8081"));
+		config.addAllowedOriginPattern("*"); // VERY IMPORTANT FIX
 		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		config.setAllowedHeaders(List.of("*"));
 		config.setExposedHeaders(List.of("Authorization"));

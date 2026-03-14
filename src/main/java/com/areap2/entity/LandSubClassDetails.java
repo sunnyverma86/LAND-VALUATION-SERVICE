@@ -60,4 +60,107 @@ public class LandSubClassDetails implements Serializable {
 	@Column(name = "request_status")
 	private String requestStatus;
 
+	public Long getLandSubClassGenId() {
+		return landSubClassGenId;
+	}
+
+	public void setLandSubClassGenId(Long landSubClassGenId) {
+		this.landSubClassGenId = landSubClassGenId;
+	}
+
+	public String getLandSubClassCode() {
+		return landSubClassCode;
+	}
+
+	public void setLandSubClassCode(String landSubClassCode) {
+		this.landSubClassCode = landSubClassCode;
+	}
+
+	public String getLandSubClassName() {
+		return landSubClassName;
+	}
+
+	public void setLandSubClassName(String landSubClassName) {
+		this.landSubClassName = landSubClassName;
+	}
+
+	public String getLandClassName() {
+		return landClassName;
+	}
+
+	public void setLandClassName(String landClassName) {
+		this.landClassName = landClassName;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+
 }

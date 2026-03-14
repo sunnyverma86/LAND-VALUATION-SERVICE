@@ -1,9 +1,9 @@
-package com.areap2.excel.service;
+package com.areap2.service.excel;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.areap2.excel.entity.DistanceType;
+import com.areap2.entity.excel.external.DistanceType;
 
 import jakarta.transaction.Transactional;
 

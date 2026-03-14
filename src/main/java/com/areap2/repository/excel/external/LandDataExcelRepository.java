@@ -1,4 +1,4 @@
-package com.areap2.excel.repository;
+package com.areap2.repository.excel.external;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.areap2.excel.entity.LandDataExcel;
+import com.areap2.entity.excel.external.LandDataXlsParameter;
 
 import jakarta.transaction.Transactional;
 
 @Repository
-public interface LandDataExcelRepository extends JpaRepository<LandDataExcel, Long> {
+public interface LandDataExcelRepository extends JpaRepository<LandDataXlsParameter, Long> {
 
-	Page<LandDataExcel> findByDistrictIgnoreCase(String district, Pageable pageable);
+	Page<LandDataXlsParameter> findByDistrictIgnoreCase(String district, Pageable pageable);
 	
 	@Modifying
 	@Transactional

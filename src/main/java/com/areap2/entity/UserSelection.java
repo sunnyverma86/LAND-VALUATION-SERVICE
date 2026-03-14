@@ -38,4 +38,47 @@ public class UserSelection {
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private LocalDateTime createdAt;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Instrument getInstrument() {
+		return instrument;
+	}
+
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
+	}
+
+	public String getSelectedOption() {
+		return selectedOption;
+	}
+
+	public void setSelectedOption(String selectedOption) {
+		this.selectedOption = selectedOption;
+	}
+
+	public Integer getDutyValue() {
+		return dutyValue;
+	}
+
+	public void setDutyValue(Integer dutyValue) {
+		this.dutyValue = dutyValue;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+	
+	
+	
+
 }

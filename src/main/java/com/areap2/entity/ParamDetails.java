@@ -82,4 +82,163 @@ public class ParamDetails implements Serializable {
 
 	@Column(name = "base_price_increase_parameter")
 	private Long basePriceIncreaseParameter;
+
+	public Long getParameterId() {
+		return parameterId;
+	}
+
+	public void setParameterId(Long parameterId) {
+		this.parameterId = parameterId;
+	}
+
+	public String getParameter() {
+		return parameter;
+	}
+
+	public void setParameter(String parameter) {
+		this.parameter = parameter;
+	}
+
+	public String getParameterType() {
+		return parameterType;
+	}
+
+	public void setParameterType(String parameterType) {
+		this.parameterType = parameterType;
+	}
+
+	public Long getAreaTypeId() {
+		return areaTypeId;
+	}
+
+	public void setAreaTypeId(Long areaTypeId) {
+		this.areaTypeId = areaTypeId;
+	}
+
+	public BigDecimal getMinRangeInMeters() {
+		return minRangeInMeters;
+	}
+
+	public void setMinRangeInMeters(BigDecimal minRangeInMeters) {
+		this.minRangeInMeters = minRangeInMeters;
+	}
+
+	public BigDecimal getMaxRangeInMeters() {
+		return maxRangeInMeters;
+	}
+
+	public void setMaxRangeInMeters(BigDecimal maxRangeInMeters) {
+		this.maxRangeInMeters = maxRangeInMeters;
+	}
+
+	public String getMinMaxRange() {
+		return minMaxRange;
+	}
+
+	public void setMinMaxRange(String minMaxRange) {
+		this.minMaxRange = minMaxRange;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+
+	public Timestamp getApprovedDtm() {
+		return approvedDtm;
+	}
+
+	public void setApprovedDtm(Timestamp approvedDtm) {
+		this.approvedDtm = approvedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public String getMasterCode() {
+		return masterCode;
+	}
+
+	public void setMasterCode(String masterCode) {
+		this.masterCode = masterCode;
+	}
+
+	public String getMasterSubCode() {
+		return masterSubCode;
+	}
+
+	public void setMasterSubCode(String masterSubCode) {
+		this.masterSubCode = masterSubCode;
+	}
+
+	public Long getBasePriceIncreaseParameter() {
+		return basePriceIncreaseParameter;
+	}
+
+	public void setBasePriceIncreaseParameter(Long basePriceIncreaseParameter) {
+		this.basePriceIncreaseParameter = basePriceIncreaseParameter;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
 }

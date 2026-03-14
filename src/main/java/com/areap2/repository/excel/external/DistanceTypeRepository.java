@@ -1,12 +1,12 @@
-package com.areap2.excel.repository;
+package com.areap2.repository.excel.external;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.areap2.excel.entity.DistanceType;
-import com.areap2.excel.entity.SlabGroup;
+import com.areap2.entity.excel.external.DistanceType;
+import com.areap2.entity.excel.external.SlabGroup;
 
 @Repository
 public interface DistanceTypeRepository extends JpaRepository<DistanceType, Long> {

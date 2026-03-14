@@ -1,4 +1,4 @@
-package com.areap2.modelConstant;
+package com.areap2.constant;
 
 public class Constants {
 

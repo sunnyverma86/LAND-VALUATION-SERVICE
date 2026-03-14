@@ -575,21 +575,21 @@ public class MasterDataController {
 					"Request: Add Mouza Details | MouzaName: {} | AreaTypeId: {} | DistrictCode: {} | CircleCode: {} | BasePriceMouza: {} | Method: {} | Class: {}",
 					mouzaDetailsModel.getMouzaName(), mouzaDetailsModel.getAreaTypeId(),
 					mouzaDetailsModel.getDistrictCode(), mouzaDetailsModel.getCircleCode(),
-					mouzaDetailsModel.getBPMouza(), methodName, this.getClass().getSimpleName());
+					mouzaDetailsModel.getbPMouza(), methodName, this.getClass().getSimpleName());
 
 			response = masterDataService.addMouzaDetails(mouzaDetailsModel);
 
 			log.info(
 					"Respond: Mouza Details Added Successfully | MouzaName: {} | DistrictCode: {} | CircleCode: {} | BasePriceMouza: {} | Method: {} | Class: {}",
 					mouzaDetailsModel.getMouzaName(), mouzaDetailsModel.getDistrictCode(),
-					mouzaDetailsModel.getCircleCode(), mouzaDetailsModel.getBPMouza(), methodName,
+					mouzaDetailsModel.getCircleCode(), mouzaDetailsModel.getbPMouza(), methodName,
 					this.getClass().getSimpleName());
 
 		} catch (Exception e) {
 			log.error(
 					"Error while Adding Mouza Details | MouzaName: {} | DistrictCode: {} | CircleCode: {} | BasePriceMouza: {} | Method: {} | Class: {} | Error: {}",
 					mouzaDetailsModel.getMouzaName(), mouzaDetailsModel.getDistrictCode(),
-					mouzaDetailsModel.getCircleCode(), mouzaDetailsModel.getBPMouza(), methodName,
+					mouzaDetailsModel.getCircleCode(), mouzaDetailsModel.getbPMouza(), methodName,
 					this.getClass().getSimpleName(), e.getMessage(), e);
 
 			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
@@ -609,7 +609,7 @@ public class MasterDataController {
 					"Request: Update Mouza Details, MouzaCode: {}, MouzaName: {}, AreaTypeId: {}, DistrictCode: {}, CircleCode: {}, BasePriceMouza: {}, Method: {}, Class: {}",
 					mouzaDetailsModel.getMouzaCode(), mouzaDetailsModel.getMouzaName(),
 					mouzaDetailsModel.getAreaTypeId(), mouzaDetailsModel.getDistrictCode(),
-					mouzaDetailsModel.getCircleCode(), mouzaDetailsModel.getBPMouza(), methodName,
+					mouzaDetailsModel.getCircleCode(), mouzaDetailsModel.getbPMouza(), methodName,
 					this.getClass().getSimpleName());
 
 			response = masterDataService.updateMouzaDetails(mouzaDetailsModel);

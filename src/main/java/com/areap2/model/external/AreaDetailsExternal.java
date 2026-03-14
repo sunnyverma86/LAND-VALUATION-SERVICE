@@ -7,4 +7,14 @@ public class AreaDetailsExternal {
 
 	private int totalLessa; // or BigDecimal
 
+	public int getTotalLessa() {
+		return totalLessa;
+	}
+
+	public void setTotalLessa(int totalLessa) {
+		this.totalLessa = totalLessa;
+	}
+	
+	
+
 }

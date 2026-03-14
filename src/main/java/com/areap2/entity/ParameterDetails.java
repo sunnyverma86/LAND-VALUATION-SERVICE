@@ -80,6 +80,154 @@ public class ParameterDetails implements Serializable {
 
 	@Column(name = "parameter_description")
 	private String parameterDescription;
+
+	public Long getParameterGenId() {
+		return parameterGenId;
+	}
+
+	public void setParameterGenId(Long parameterGenId) {
+		this.parameterGenId = parameterGenId;
+	}
+
+	public String getParameterCode() {
+		return parameterCode;
+	}
+
+	public void setParameterCode(String parameterCode) {
+		this.parameterCode = parameterCode;
+	}
+
+	public String getParameterId() {
+		return parameterId;
+	}
+
+	public void setParameterId(String parameterId) {
+		this.parameterId = parameterId;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+
+	public Timestamp getApprovedDtm() {
+		return approvedDtm;
+	}
+
+	public void setApprovedDtm(Timestamp approvedDtm) {
+		this.approvedDtm = approvedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public Long getBasePriceIncreaseParameter() {
+		return basePriceIncreaseParameter;
+	}
+
+	public void setBasePriceIncreaseParameter(Long basePriceIncreaseParameter) {
+		this.basePriceIncreaseParameter = basePriceIncreaseParameter;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public String getParameterName() {
+		return parameterName;
+	}
+
+	public void setParameterName(String parameterName) {
+		this.parameterName = parameterName;
+	}
+
+	public String getParameterData() {
+		return parameterData;
+	}
+
+	public void setParameterData(String parameterData) {
+		this.parameterData = parameterData;
+	}
+
+	public String getAppreciationType() {
+		return appreciationType;
+	}
+
+	public void setAppreciationType(String appreciationType) {
+		this.appreciationType = appreciationType;
+	}
+
+	public String getParameterDescription() {
+		return parameterDescription;
+	}
+
+	public void setParameterDescription(String parameterDescription) {
+		this.parameterDescription = parameterDescription;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
 	
@@ -102,4 +250,6 @@ public class ParameterDetails implements Serializable {
 //	@Column(name = "min_max_range", length = 50)
 //	private String minMaxRange;
 
+	
+	
 }

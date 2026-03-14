@@ -280,4 +280,976 @@ public class StampDutyCalculationModel {
 	private String trustNotBeingWill;//64B
 
 	private String warrentGoods;// 65
+
+	public String getAcknowledgement() {
+		return acknowledgement;
+	}
+
+	public void setAcknowledgement(String acknowledgement) {
+		this.acknowledgement = acknowledgement;
+	}
+
+	public String getAdministrativeBond() {
+		return administrativeBond;
+	}
+
+	public void setAdministrativeBond(String administrativeBond) {
+		this.administrativeBond = administrativeBond;
+	}
+
+	public String getAdoptionDeed() {
+		return adoptionDeed;
+	}
+
+	public void setAdoptionDeed(String adoptionDeed) {
+		this.adoptionDeed = adoptionDeed;
+	}
+
+	public String getAffidavitIncludingAffirmationOfDeclaration() {
+		return affidavitIncludingAffirmationOfDeclaration;
+	}
+
+	public void setAffidavitIncludingAffirmationOfDeclaration(String affidavitIncludingAffirmationOfDeclaration) {
+		this.affidavitIncludingAffirmationOfDeclaration = affidavitIncludingAffirmationOfDeclaration;
+	}
+
+	public String getAgreementOfConveyance() {
+		return agreementOfConveyance;
+	}
+
+	public void setAgreementOfConveyance(String agreementOfConveyance) {
+		this.agreementOfConveyance = agreementOfConveyance;
+	}
+
+	public String getAgreementDevelopment() {
+		return agreementDevelopment;
+	}
+
+	public void setAgreementDevelopment(String agreementDevelopment) {
+		this.agreementDevelopment = agreementDevelopment;
+	}
+
+	public String getAgreementOthers() {
+		return agreementOthers;
+	}
+
+	public void setAgreementOthers(String agreementOthers) {
+		this.agreementOthers = agreementOthers;
+	}
+
+	public String getAgreementRelatingDawnOrPledgeExceed() {
+		return agreementRelatingDawnOrPledgeExceed;
+	}
+
+	public void setAgreementRelatingDawnOrPledgeExceed(String agreementRelatingDawnOrPledgeExceed) {
+		this.agreementRelatingDawnOrPledgeExceed = agreementRelatingDawnOrPledgeExceed;
+	}
+
+	public String getAgreementRelatingDawnOrPledgeNotExceed() {
+		return agreementRelatingDawnOrPledgeNotExceed;
+	}
+
+	public void setAgreementRelatingDawnOrPledgeNotExceed(String agreementRelatingDawnOrPledgeNotExceed) {
+		this.agreementRelatingDawnOrPledgeNotExceed = agreementRelatingDawnOrPledgeNotExceed;
+	}
+
+	public String getAgreementRelatingDawnOrPledgeExcess() {
+		return agreementRelatingDawnOrPledgeExcess;
+	}
+
+	public void setAgreementRelatingDawnOrPledgeExcess(String agreementRelatingDawnOrPledgeExcess) {
+		this.agreementRelatingDawnOrPledgeExcess = agreementRelatingDawnOrPledgeExcess;
+	}
+
+	public String getAgreementRelatingDawnOrPledgeThreeMonths() {
+		return agreementRelatingDawnOrPledgeThreeMonths;
+	}
+
+	public void setAgreementRelatingDawnOrPledgeThreeMonths(String agreementRelatingDawnOrPledgeThreeMonths) {
+		this.agreementRelatingDawnOrPledgeThreeMonths = agreementRelatingDawnOrPledgeThreeMonths;
+	}
+
+	public String getAppointmentInExecutionOfPowerExceed() {
+		return appointmentInExecutionOfPowerExceed;
+	}
+
+	public void setAppointmentInExecutionOfPowerExceed(String appointmentInExecutionOfPowerExceed) {
+		this.appointmentInExecutionOfPowerExceed = appointmentInExecutionOfPowerExceed;
+	}
+
+	public String getAppointmentInExecutionOfPowerOther() {
+		return appointmentInExecutionOfPowerOther;
+	}
+
+	public void setAppointmentInExecutionOfPowerOther(String appointmentInExecutionOfPowerOther) {
+		this.appointmentInExecutionOfPowerOther = appointmentInExecutionOfPowerOther;
+	}
+
+	public String getAppraisementOrValuationNotExceed() {
+		return appraisementOrValuationNotExceed;
+	}
+
+	public void setAppraisementOrValuationNotExceed(String appraisementOrValuationNotExceed) {
+		this.appraisementOrValuationNotExceed = appraisementOrValuationNotExceed;
+	}
+
+	public String getAppraisementOrValuationOtherCase() {
+		return appraisementOrValuationOtherCase;
+	}
+
+	public void setAppraisementOrValuationOtherCase(String appraisementOrValuationOtherCase) {
+		this.appraisementOrValuationOtherCase = appraisementOrValuationOtherCase;
+	}
+
+	public String getApprenticeshipDeed() {
+		return apprenticeshipDeed;
+	}
+
+	public void setApprenticeshipDeed(String apprenticeshipDeed) {
+		this.apprenticeshipDeed = apprenticeshipDeed;
+	}
+
+	public String getArticlesOfAssociationOfCompanyNotExceed() {
+		return articlesOfAssociationOfCompanyNotExceed;
+	}
+
+	public void setArticlesOfAssociationOfCompanyNotExceed(String articlesOfAssociationOfCompanyNotExceed) {
+		this.articlesOfAssociationOfCompanyNotExceed = articlesOfAssociationOfCompanyNotExceed;
+	}
+
+	public String getArticlesOfAssociationOfCompanyAbove() {
+		return articlesOfAssociationOfCompanyAbove;
+	}
+
+	public void setArticlesOfAssociationOfCompanyAbove(String articlesOfAssociationOfCompanyAbove) {
+		this.articlesOfAssociationOfCompanyAbove = articlesOfAssociationOfCompanyAbove;
+	}
+
+	public String getArticlesOfClerkship() {
+		return articlesOfClerkship;
+	}
+
+	public void setArticlesOfClerkship(String articlesOfClerkship) {
+		this.articlesOfClerkship = articlesOfClerkship;
+	}
+
+	public String getAwardNotExceed() {
+		return awardNotExceed;
+	}
+
+	public void setAwardNotExceed(String awardNotExceed) {
+		this.awardNotExceed = awardNotExceed;
+	}
+
+	public String getAwardExceed() {
+		return awardExceed;
+	}
+
+	public void setAwardExceed(String awardExceed) {
+		this.awardExceed = awardExceed;
+	}
+
+	public String getBillOfExchangeWherePayableOtherwise() {
+		return billOfExchangeWherePayableOtherwise;
+	}
+
+	public void setBillOfExchangeWherePayableOtherwise(String billOfExchangeWherePayableOtherwise) {
+		this.billOfExchangeWherePayableOtherwise = billOfExchangeWherePayableOtherwise;
+	}
+
+	public String getBillOfLading() {
+		return billOfLading;
+	}
+
+	public void setBillOfLading(String billOfLading) {
+		this.billOfLading = billOfLading;
+	}
+
+	public String getBond() {
+		return bond;
+	}
+
+	public void setBond(String bond) {
+		this.bond = bond;
+	}
+
+	public String getBottomryBond() {
+		return bottomryBond;
+	}
+
+	public void setBottomryBond(String bottomryBond) {
+		this.bottomryBond = bottomryBond;
+	}
+
+	public String getCancellation() {
+		return cancellation;
+	}
+
+	public void setCancellation(String cancellation) {
+		this.cancellation = cancellation;
+	}
+
+	public String getCertificateOfSale() {
+		return certificateOfSale;
+	}
+
+	public void setCertificateOfSale(String certificateOfSale) {
+		this.certificateOfSale = certificateOfSale;
+	}
+
+	public String getCertificateOrOtherDocument() {
+		return certificateOrOtherDocument;
+	}
+
+	public void setCertificateOrOtherDocument(String certificateOrOtherDocument) {
+		this.certificateOrOtherDocument = certificateOrOtherDocument;
+	}
+
+	public String getCharterParty() {
+		return charterParty;
+	}
+
+	public void setCharterParty(String charterParty) {
+		this.charterParty = charterParty;
+	}
+
+	public String getCompositionDeed() {
+		return compositionDeed;
+	}
+
+	public void setCompositionDeed(String compositionDeed) {
+		this.compositionDeed = compositionDeed;
+	}
+
+	public String getSaleConveyance() {
+		return saleConveyance;
+	}
+
+	public void setSaleConveyance(String saleConveyance) {
+		this.saleConveyance = saleConveyance;
+	}
+
+	public String getCertifiedCopy() {
+		return certifiedCopy;
+	}
+
+	public void setCertifiedCopy(String certifiedCopy) {
+		this.certifiedCopy = certifiedCopy;
+	}
+
+	public String getCounterpartOrDuplicateOfAnyInstrument() {
+		return counterpartOrDuplicateOfAnyInstrument;
+	}
+
+	public void setCounterpartOrDuplicateOfAnyInstrument(String counterpartOrDuplicateOfAnyInstrument) {
+		this.counterpartOrDuplicateOfAnyInstrument = counterpartOrDuplicateOfAnyInstrument;
+	}
+
+	public String getCustomsBondNotExceed() {
+		return customsBondNotExceed;
+	}
+
+	public void setCustomsBondNotExceed(String customsBondNotExceed) {
+		this.customsBondNotExceed = customsBondNotExceed;
+	}
+
+	public String getCustomsBondOtherCase() {
+		return customsBondOtherCase;
+	}
+
+	public void setCustomsBondOtherCase(String customsBondOtherCase) {
+		this.customsBondOtherCase = customsBondOtherCase;
+	}
+
+	public String getDebenture() {
+		return debenture;
+	}
+
+	public void setDebenture(String debenture) {
+		this.debenture = debenture;
+	}
+
+	public String getDebentureEndorsedNotExceed() {
+		return debentureEndorsedNotExceed;
+	}
+
+	public void setDebentureEndorsedNotExceed(String debentureEndorsedNotExceed) {
+		this.debentureEndorsedNotExceed = debentureEndorsedNotExceed;
+	}
+
+	public String getDebentureEndorsedExcess() {
+		return debentureEndorsedExcess;
+	}
+
+	public void setDebentureEndorsedExcess(String debentureEndorsedExcess) {
+		this.debentureEndorsedExcess = debentureEndorsedExcess;
+	}
+
+	public String getDebentureDeliveryNotExceed() {
+		return debentureDeliveryNotExceed;
+	}
+
+	public void setDebentureDeliveryNotExceed(String debentureDeliveryNotExceed) {
+		this.debentureDeliveryNotExceed = debentureDeliveryNotExceed;
+	}
+
+	public String getDebentureDeliveryExcess() {
+		return debentureDeliveryExcess;
+	}
+
+	public void setDebentureDeliveryExcess(String debentureDeliveryExcess) {
+		this.debentureDeliveryExcess = debentureDeliveryExcess;
+	}
+
+	public String getDeliveryOrderInRespectofGoods() {
+		return deliveryOrderInRespectofGoods;
+	}
+
+	public void setDeliveryOrderInRespectofGoods(String deliveryOrderInRespectofGoods) {
+		this.deliveryOrderInRespectofGoods = deliveryOrderInRespectofGoods;
+	}
+
+	public String getDivorceDeed() {
+		return divorceDeed;
+	}
+
+	public void setDivorceDeed(String divorceDeed) {
+		this.divorceDeed = divorceDeed;
+	}
+
+	public String getEntryAsAnAdvocateAdvocate() {
+		return entryAsAnAdvocateAdvocate;
+	}
+
+	public void setEntryAsAnAdvocateAdvocate(String entryAsAnAdvocateAdvocate) {
+		this.entryAsAnAdvocateAdvocate = entryAsAnAdvocateAdvocate;
+	}
+
+	public String getEntryAsAnAdvocateAttorney() {
+		return entryAsAnAdvocateAttorney;
+	}
+
+	public void setEntryAsAnAdvocateAttorney(String entryAsAnAdvocateAttorney) {
+		this.entryAsAnAdvocateAttorney = entryAsAnAdvocateAttorney;
+	}
+
+	public String getExchangeOfProperty() {
+		return exchangeOfProperty;
+	}
+
+	public void setExchangeOfProperty(String exchangeOfProperty) {
+		this.exchangeOfProperty = exchangeOfProperty;
+	}
+
+	public String getFutherChargeWithPossession() {
+		return futherChargeWithPossession;
+	}
+
+	public void setFutherChargeWithPossession(String futherChargeWithPossession) {
+		this.futherChargeWithPossession = futherChargeWithPossession;
+	}
+
+	public String getFutherChargeWithoutPossession() {
+		return futherChargeWithoutPossession;
+	}
+
+	public void setFutherChargeWithoutPossession(String futherChargeWithoutPossession) {
+		this.futherChargeWithoutPossession = futherChargeWithoutPossession;
+	}
+
+	public String getFutherChargtPossessionGiven() {
+		return futherChargtPossessionGiven;
+	}
+
+	public void setFutherChargtPossessionGiven(String futherChargtPossessionGiven) {
+		this.futherChargtPossessionGiven = futherChargtPossessionGiven;
+	}
+
+	public String getFutherChargePossessionNotGiven() {
+		return futherChargePossessionNotGiven;
+	}
+
+	public void setFutherChargePossessionNotGiven(String futherChargePossessionNotGiven) {
+		this.futherChargePossessionNotGiven = futherChargePossessionNotGiven;
+	}
+
+	public String getGiftDeed() {
+		return giftDeed;
+	}
+
+	public void setGiftDeed(String giftDeed) {
+		this.giftDeed = giftDeed;
+	}
+
+	public String getIndemnityBond() {
+		return indemnityBond;
+	}
+
+	public void setIndemnityBond(String indemnityBond) {
+		this.indemnityBond = indemnityBond;
+	}
+
+	public String getLeaseRentFixed() {
+		return leaseRentFixed;
+	}
+
+	public void setLeaseRentFixed(String leaseRentFixed) {
+		this.leaseRentFixed = leaseRentFixed;
+	}
+
+	public String getLeaseLessThanOneYear() {
+		return leaseLessThanOneYear;
+	}
+
+	public void setLeaseLessThanOneYear(String leaseLessThanOneYear) {
+		this.leaseLessThanOneYear = leaseLessThanOneYear;
+	}
+
+	public String getLeaseLessThanFiveYear() {
+		return leaseLessThanFiveYear;
+	}
+
+	public void setLeaseLessThanFiveYear(String leaseLessThanFiveYear) {
+		this.leaseLessThanFiveYear = leaseLessThanFiveYear;
+	}
+
+	public String getLeaseLessThanTenYear() {
+		return leaseLessThanTenYear;
+	}
+
+	public void setLeaseLessThanTenYear(String leaseLessThanTenYear) {
+		this.leaseLessThanTenYear = leaseLessThanTenYear;
+	}
+
+	public String getLeaseLessThanTwentyYear() {
+		return leaseLessThanTwentyYear;
+	}
+
+	public void setLeaseLessThanTwentyYear(String leaseLessThanTwentyYear) {
+		this.leaseLessThanTwentyYear = leaseLessThanTwentyYear;
+	}
+
+	public String getLeaseLessThanThirtyYear() {
+		return leaseLessThanThirtyYear;
+	}
+
+	public void setLeaseLessThanThirtyYear(String leaseLessThanThirtyYear) {
+		this.leaseLessThanThirtyYear = leaseLessThanThirtyYear;
+	}
+
+	public String getLeaseLessThanHundredYear() {
+		return leaseLessThanHundredYear;
+	}
+
+	public void setLeaseLessThanHundredYear(String leaseLessThanHundredYear) {
+		this.leaseLessThanHundredYear = leaseLessThanHundredYear;
+	}
+
+	public String getLeaseMoreThanHundredYear() {
+		return leaseMoreThanHundredYear;
+	}
+
+	public void setLeaseMoreThanHundredYear(String leaseMoreThanHundredYear) {
+		this.leaseMoreThanHundredYear = leaseMoreThanHundredYear;
+	}
+
+	public String getLeaseNotDefiniteTerm() {
+		return leaseNotDefiniteTerm;
+	}
+
+	public void setLeaseNotDefiniteTerm(String leaseNotDefiniteTerm) {
+		this.leaseNotDefiniteTerm = leaseNotDefiniteTerm;
+	}
+
+	public String getLeaseNoRentReserved() {
+		return leaseNoRentReserved;
+	}
+
+	public void setLeaseNoRentReserved(String leaseNoRentReserved) {
+		this.leaseNoRentReserved = leaseNoRentReserved;
+	}
+
+	public String getLeaseAdditionOnRentReserved() {
+		return leaseAdditionOnRentReserved;
+	}
+
+	public void setLeaseAdditionOnRentReserved(String leaseAdditionOnRentReserved) {
+		this.leaseAdditionOnRentReserved = leaseAdditionOnRentReserved;
+	}
+
+	public String getLeaseRevisionNotification() {
+		return leaseRevisionNotification;
+	}
+
+	public void setLeaseRevisionNotification(String leaseRevisionNotification) {
+		this.leaseRevisionNotification = leaseRevisionNotification;
+	}
+
+	public String getLetterOfAllotmentOfShares() {
+		return letterOfAllotmentOfShares;
+	}
+
+	public void setLetterOfAllotmentOfShares(String letterOfAllotmentOfShares) {
+		this.letterOfAllotmentOfShares = letterOfAllotmentOfShares;
+	}
+
+	public String getLetterOfCredit() {
+		return letterOfCredit;
+	}
+
+	public void setLetterOfCredit(String letterOfCredit) {
+		this.letterOfCredit = letterOfCredit;
+	}
+
+	public String getLetterOfLicence() {
+		return letterOfLicence;
+	}
+
+	public void setLetterOfLicence(String letterOfLicence) {
+		this.letterOfLicence = letterOfLicence;
+	}
+
+	public String getMemorandumOfAssociationOfCompany() {
+		return memorandumOfAssociationOfCompany;
+	}
+
+	public void setMemorandumOfAssociationOfCompany(String memorandumOfAssociationOfCompany) {
+		this.memorandumOfAssociationOfCompany = memorandumOfAssociationOfCompany;
+	}
+
+	public String getMortgageWithPossession() {
+		return mortgageWithPossession;
+	}
+
+	public void setMortgageWithPossession(String mortgageWithPossession) {
+		this.mortgageWithPossession = mortgageWithPossession;
+	}
+
+	public String getMortgageWithoutPossession() {
+		return mortgageWithoutPossession;
+	}
+
+	public void setMortgageWithoutPossession(String mortgageWithoutPossession) {
+		this.mortgageWithoutPossession = mortgageWithoutPossession;
+	}
+
+	public String getMortgageOfCropLessThanThree() {
+		return mortgageOfCropLessThanThree;
+	}
+
+	public void setMortgageOfCropLessThanThree(String mortgageOfCropLessThanThree) {
+		this.mortgageOfCropLessThanThree = mortgageOfCropLessThanThree;
+	}
+
+	public String getMortgageOfCropMoreThanThree() {
+		return mortgageOfCropMoreThanThree;
+	}
+
+	public void setMortgageOfCropMoreThanThree(String mortgageOfCropMoreThanThree) {
+		this.mortgageOfCropMoreThanThree = mortgageOfCropMoreThanThree;
+	}
+
+	public String getNotarialAct() {
+		return notarialAct;
+	}
+
+	public void setNotarialAct(String notarialAct) {
+		this.notarialAct = notarialAct;
+	}
+
+	public String getNoteOrMemorandum() {
+		return noteOrMemorandum;
+	}
+
+	public void setNoteOrMemorandum(String noteOrMemorandum) {
+		this.noteOrMemorandum = noteOrMemorandum;
+	}
+
+	public String getNoteOfProtestByTheMasterOfShip() {
+		return noteOfProtestByTheMasterOfShip;
+	}
+
+	public void setNoteOfProtestByTheMasterOfShip(String noteOfProtestByTheMasterOfShip) {
+		this.noteOfProtestByTheMasterOfShip = noteOfProtestByTheMasterOfShip;
+	}
+
+	public String getPartitionDeed() {
+		return partitionDeed;
+	}
+
+	public void setPartitionDeed(String partitionDeed) {
+		this.partitionDeed = partitionDeed;
+	}
+
+	public String getPartnerShip() {
+		return partnerShip;
+	}
+
+	public void setPartnerShip(String partnerShip) {
+		this.partnerShip = partnerShip;
+	}
+
+	public String getPartnerShipDissolution() {
+		return partnerShipDissolution;
+	}
+
+	public void setPartnerShipDissolution(String partnerShipDissolution) {
+		this.partnerShipDissolution = partnerShipDissolution;
+	}
+
+	public String getPolicyOfInsuranceLessThanEighteen() {
+		return policyOfInsuranceLessThanEighteen;
+	}
+
+	public void setPolicyOfInsuranceLessThanEighteen(String policyOfInsuranceLessThanEighteen) {
+		this.policyOfInsuranceLessThanEighteen = policyOfInsuranceLessThanEighteen;
+	}
+
+	public String getPolicyOfInsuranceOneThousandFiveHundred() {
+		return policyOfInsuranceOneThousandFiveHundred;
+	}
+
+	public void setPolicyOfInsuranceOneThousandFiveHundred(String policyOfInsuranceOneThousandFiveHundred) {
+		this.policyOfInsuranceOneThousandFiveHundred = policyOfInsuranceOneThousandFiveHundred;
+	}
+
+	public String getPolicyOfInsuranceOneThousand() {
+		return policyOfInsuranceOneThousand;
+	}
+
+	public void setPolicyOfInsuranceOneThousand(String policyOfInsuranceOneThousand) {
+		this.policyOfInsuranceOneThousand = policyOfInsuranceOneThousand;
+	}
+
+	public String getPolicyOfInsuranceFireInsurance() {
+		return policyOfInsuranceFireInsurance;
+	}
+
+	public void setPolicyOfInsuranceFireInsurance(String policyOfInsuranceFireInsurance) {
+		this.policyOfInsuranceFireInsurance = policyOfInsuranceFireInsurance;
+	}
+
+	public String getPolicyOfInsuranceOthers() {
+		return policyOfInsuranceOthers;
+	}
+
+	public void setPolicyOfInsuranceOthers(String policyOfInsuranceOthers) {
+		this.policyOfInsuranceOthers = policyOfInsuranceOthers;
+	}
+
+	public String getPolicyOfInsuranceRenewalOriginalPolicy() {
+		return policyOfInsuranceRenewalOriginalPolicy;
+	}
+
+	public void setPolicyOfInsuranceRenewalOriginalPolicy(String policyOfInsuranceRenewalOriginalPolicy) {
+		this.policyOfInsuranceRenewalOriginalPolicy = policyOfInsuranceRenewalOriginalPolicy;
+	}
+
+	public String getPolicyOfInsuranceAccidental() {
+		return policyOfInsuranceAccidental;
+	}
+
+	public void setPolicyOfInsuranceAccidental(String policyOfInsuranceAccidental) {
+		this.policyOfInsuranceAccidental = policyOfInsuranceAccidental;
+	}
+
+	public String getPolicyOfInsuranceNotExceedOneThousand() {
+		return policyOfInsuranceNotExceedOneThousand;
+	}
+
+	public void setPolicyOfInsuranceNotExceedOneThousand(String policyOfInsuranceNotExceedOneThousand) {
+		this.policyOfInsuranceNotExceedOneThousand = policyOfInsuranceNotExceedOneThousand;
+	}
+
+	public String getPolicyOfInsuranceIndemnity() {
+		return policyOfInsuranceIndemnity;
+	}
+
+	public void setPolicyOfInsuranceIndemnity(String policyOfInsuranceIndemnity) {
+		this.policyOfInsuranceIndemnity = policyOfInsuranceIndemnity;
+	}
+
+	public String getPolicyOfInsuranceLifeInsurance() {
+		return policyOfInsuranceLifeInsurance;
+	}
+
+	public void setPolicyOfInsuranceLifeInsurance(String policyOfInsuranceLifeInsurance) {
+		this.policyOfInsuranceLifeInsurance = policyOfInsuranceLifeInsurance;
+	}
+
+	public String getPolicyOfInsuranceLessThanFiveHundred() {
+		return policyOfInsuranceLessThanFiveHundred;
+	}
+
+	public void setPolicyOfInsuranceLessThanFiveHundred(String policyOfInsuranceLessThanFiveHundred) {
+		this.policyOfInsuranceLessThanFiveHundred = policyOfInsuranceLessThanFiveHundred;
+	}
+
+	public String getPolicyOfInsuranceLessThanOneThousand() {
+		return policyOfInsuranceLessThanOneThousand;
+	}
+
+	public void setPolicyOfInsuranceLessThanOneThousand(String policyOfInsuranceLessThanOneThousand) {
+		this.policyOfInsuranceLessThanOneThousand = policyOfInsuranceLessThanOneThousand;
+	}
+
+	public String getPolicyOfInsuranceReInsurance() {
+		return policyOfInsuranceReInsurance;
+	}
+
+	public void setPolicyOfInsuranceReInsurance(String policyOfInsuranceReInsurance) {
+		this.policyOfInsuranceReInsurance = policyOfInsuranceReInsurance;
+	}
+
+	public String getPowerOfAttorneySpecial() {
+		return powerOfAttorneySpecial;
+	}
+
+	public void setPowerOfAttorneySpecial(String powerOfAttorneySpecial) {
+		this.powerOfAttorneySpecial = powerOfAttorneySpecial;
+	}
+
+	public String getPowerOfAttorneyGeneral() {
+		return powerOfAttorneyGeneral;
+	}
+
+	public void setPowerOfAttorneyGeneral(String powerOfAttorneyGeneral) {
+		this.powerOfAttorneyGeneral = powerOfAttorneyGeneral;
+	}
+
+	public String getPromissoryNoteLessThanOneThousand() {
+		return promissoryNoteLessThanOneThousand;
+	}
+
+	public void setPromissoryNoteLessThanOneThousand(String promissoryNoteLessThanOneThousand) {
+		this.promissoryNoteLessThanOneThousand = promissoryNoteLessThanOneThousand;
+	}
+
+	public String getPromissoryNoteOtherCases() {
+		return promissoryNoteOtherCases;
+	}
+
+	public void setPromissoryNoteOtherCases(String promissoryNoteOtherCases) {
+		this.promissoryNoteOtherCases = promissoryNoteOtherCases;
+	}
+
+	public String getPromissoryNoteDemand() {
+		return promissoryNoteDemand;
+	}
+
+	public void setPromissoryNoteDemand(String promissoryNoteDemand) {
+		this.promissoryNoteDemand = promissoryNoteDemand;
+	}
+
+	public String getProtestOfBillOrNote() {
+		return protestOfBillOrNote;
+	}
+
+	public void setProtestOfBillOrNote(String protestOfBillOrNote) {
+		this.protestOfBillOrNote = protestOfBillOrNote;
+	}
+
+	public String getProtestByTheMasterOfShip() {
+		return protestByTheMasterOfShip;
+	}
+
+	public void setProtestByTheMasterOfShip(String protestByTheMasterOfShip) {
+		this.protestByTheMasterOfShip = protestByTheMasterOfShip;
+	}
+
+	public String getProxy() {
+		return proxy;
+	}
+
+	public void setProxy(String proxy) {
+		this.proxy = proxy;
+	}
+
+	public String getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(String receipt) {
+		this.receipt = receipt;
+	}
+
+	public String getReconveyanceLessThanOneThousand() {
+		return reconveyanceLessThanOneThousand;
+	}
+
+	public void setReconveyanceLessThanOneThousand(String reconveyanceLessThanOneThousand) {
+		this.reconveyanceLessThanOneThousand = reconveyanceLessThanOneThousand;
+	}
+
+	public String getReconveyanceOthers() {
+		return reconveyanceOthers;
+	}
+
+	public void setReconveyanceOthers(String reconveyanceOthers) {
+		this.reconveyanceOthers = reconveyanceOthers;
+	}
+
+	public String getReleaseRelinquishmentOfRightLessThanOneThousand() {
+		return releaseRelinquishmentOfRightLessThanOneThousand;
+	}
+
+	public void setReleaseRelinquishmentOfRightLessThanOneThousand(String releaseRelinquishmentOfRightLessThanOneThousand) {
+		this.releaseRelinquishmentOfRightLessThanOneThousand = releaseRelinquishmentOfRightLessThanOneThousand;
+	}
+
+	public String getReleaseRelinquishmentOfRightOthers() {
+		return releaseRelinquishmentOfRightOthers;
+	}
+
+	public void setReleaseRelinquishmentOfRightOthers(String releaseRelinquishmentOfRightOthers) {
+		this.releaseRelinquishmentOfRightOthers = releaseRelinquishmentOfRightOthers;
+	}
+
+	public String getRespondentiaBond() {
+		return respondentiaBond;
+	}
+
+	public void setRespondentiaBond(String respondentiaBond) {
+		this.respondentiaBond = respondentiaBond;
+	}
+
+	public String getSecurityBond() {
+		return securityBond;
+	}
+
+	public void setSecurityBond(String securityBond) {
+		this.securityBond = securityBond;
+	}
+
+	public String getSettlementInstrument() {
+		return settlementInstrument;
+	}
+
+	public void setSettlementInstrument(String settlementInstrument) {
+		this.settlementInstrument = settlementInstrument;
+	}
+
+	public String getShareWarrents() {
+		return shareWarrents;
+	}
+
+	public void setShareWarrents(String shareWarrents) {
+		this.shareWarrents = shareWarrents;
+	}
+
+	public String getShippingOrder() {
+		return shippingOrder;
+	}
+
+	public void setShippingOrder(String shippingOrder) {
+		this.shippingOrder = shippingOrder;
+	}
+
+	public String getSurrenderOfLeaseNotExceesTen() {
+		return surrenderOfLeaseNotExceesTen;
+	}
+
+	public void setSurrenderOfLeaseNotExceesTen(String surrenderOfLeaseNotExceesTen) {
+		this.surrenderOfLeaseNotExceesTen = surrenderOfLeaseNotExceesTen;
+	}
+
+	public String getSurrenderOfLeaseOthers() {
+		return surrenderOfLeaseOthers;
+	}
+
+	public void setSurrenderOfLeaseOthers(String surrenderOfLeaseOthers) {
+		this.surrenderOfLeaseOthers = surrenderOfLeaseOthers;
+	}
+
+	public String getTransferOfShares() {
+		return transferOfShares;
+	}
+
+	public void setTransferOfShares(String transferOfShares) {
+		this.transferOfShares = transferOfShares;
+	}
+
+	public String getTransferOfDebentures() {
+		return transferOfDebentures;
+	}
+
+	public void setTransferOfDebentures(String transferOfDebentures) {
+		this.transferOfDebentures = transferOfDebentures;
+	}
+
+	public String getTransferSecuredBond() {
+		return transferSecuredBond;
+	}
+
+	public void setTransferSecuredBond(String transferSecuredBond) {
+		this.transferSecuredBond = transferSecuredBond;
+	}
+
+	public String getTransferMorgageDeed() {
+		return transferMorgageDeed;
+	}
+
+	public void setTransferMorgageDeed(String transferMorgageDeed) {
+		this.transferMorgageDeed = transferMorgageDeed;
+	}
+
+	public String getTransferOthers() {
+		return transferOthers;
+	}
+
+	public void setTransferOthers(String transferOthers) {
+		this.transferOthers = transferOthers;
+	}
+
+	public String getTransferAdministratorGeneral() {
+		return transferAdministratorGeneral;
+	}
+
+	public void setTransferAdministratorGeneral(String transferAdministratorGeneral) {
+		this.transferAdministratorGeneral = transferAdministratorGeneral;
+	}
+
+	public String getTransferTrustProperty() {
+		return transferTrustProperty;
+	}
+
+	public void setTransferTrustProperty(String transferTrustProperty) {
+		this.transferTrustProperty = transferTrustProperty;
+	}
+
+	public String getTransferofLease() {
+		return transferofLease;
+	}
+
+	public void setTransferofLease(String transferofLease) {
+		this.transferofLease = transferofLease;
+	}
+
+	public String getTrustBeingWill() {
+		return trustBeingWill;
+	}
+
+	public void setTrustBeingWill(String trustBeingWill) {
+		this.trustBeingWill = trustBeingWill;
+	}
+
+	public String getTrustNotBeingWill() {
+		return trustNotBeingWill;
+	}
+
+	public void setTrustNotBeingWill(String trustNotBeingWill) {
+		this.trustNotBeingWill = trustNotBeingWill;
+	}
+
+	public String getWarrentGoods() {
+		return warrentGoods;
+	}
+
+	public void setWarrentGoods(String warrentGoods) {
+		this.warrentGoods = warrentGoods;
+	}
+	
+	
+	
+	
 }

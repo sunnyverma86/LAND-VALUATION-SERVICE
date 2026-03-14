@@ -79,4 +79,154 @@ public class VillageDetails implements Serializable {
 	@Column(name = "request_status")
 	private String requestStatus;
 
+	public Long getVillageGenId() {
+		return villageGenId;
+	}
+
+	public void setVillageGenId(Long villageGenId) {
+		this.villageGenId = villageGenId;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
+
+	public String getCircleCode() {
+		return circleCode;
+	}
+
+	public void setCircleCode(String circleCode) {
+		this.circleCode = circleCode;
+	}
+
+	public String getMouzaCode() {
+		return mouzaCode;
+	}
+
+	public void setMouzaCode(String mouzaCode) {
+		this.mouzaCode = mouzaCode;
+	}
+
+	public String getLotCode() {
+		return lotCode;
+	}
+
+	public void setLotCode(String lotCode) {
+		this.lotCode = lotCode;
+	}
+
+	public String getVillageCode() {
+		return villageCode;
+	}
+
+	public void setVillageCode(String villageCode) {
+		this.villageCode = villageCode;
+	}
+
+	public String getVillageName() {
+		return villageName;
+	}
+
+	public void setVillageName(String villageName) {
+		this.villageName = villageName;
+	}
+
+	public String getAreaType() {
+		return areaType;
+	}
+
+	public void setAreaType(String areaType) {
+		this.areaType = areaType;
+	}
+
+	public String getLandCategory() {
+		return landCategory;
+	}
+
+	public void setLandCategory(String landCategory) {
+		this.landCategory = landCategory;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public BigDecimal getBasePriceVillage() {
+		return basePriceVillage;
+	}
+
+	public void setBasePriceVillage(BigDecimal basePriceVillage) {
+		this.basePriceVillage = basePriceVillage;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+	
 }

@@ -1,4 +1,4 @@
-package com.areap2.excel.service;
+package com.areap2.service.excel;
 
 import java.io.FileInputStream;
 import java.math.BigDecimal;
@@ -12,6 +12,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,15 +21,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.areap2.excel.entity.LandDataExcel;
-import com.areap2.excel.repository.LandDataExcelRepository;
+import com.areap2.entity.excel.external.LandDataXlsParameter;
+import com.areap2.repository.excel.external.LandDataExcelRepository;
 
 import jakarta.persistence.EntityManager;
-import lombok.extern.log4j.Log4j2;
 
 @Service
-@Log4j2
-public class LandDataExcelServiceImpl implements LandDataExcelService {
+public class LandDataExcelServiceImpl implements LandDataXlsPropertyParameterService {
+
+	private static final Logger log = LoggerFactory.getLogger(LandDataExcelServiceImpl.class);
 
 	@Autowired
 	private LandDataExcelRepository repository;
@@ -36,12 +38,12 @@ public class LandDataExcelServiceImpl implements LandDataExcelService {
 	private EntityManager entityManager;
 
 	@Transactional
-	public void readExcel(String filePath) {
+	public void processExcel(String filePath) {
 
 		int batchSize = 1000;
 		int count = 0;
 
-		List<LandDataExcel> batchList = new ArrayList<>(batchSize);
+		List<LandDataXlsParameter> batchList = new ArrayList<>(batchSize);
 
 		try (FileInputStream fis = new FileInputStream(filePath); Workbook workbook = WorkbookFactory.create(fis)) {
 
@@ -56,7 +58,7 @@ public class LandDataExcelServiceImpl implements LandDataExcelService {
 			while (rows.hasNext()) {
 
 				Row row = rows.next();
-				LandDataExcel data = new LandDataExcel();
+				LandDataXlsParameter data = new LandDataXlsParameter();
 
 				data.setGmLayer(getString(row.getCell(0)));
 				data.setGmType(getString(row.getCell(1)));
@@ -97,7 +99,7 @@ public class LandDataExcelServiceImpl implements LandDataExcelService {
 				data.setDisSwgPl(getBigDecimal(row.getCell(36)));
 				data.setFidWlPrk(getBigDecimal(row.getCell(37)));
 				data.setDisWlPrk(getBigDecimal(row.getCell(38)));
-				data.setDRlCbd(getBigDecimal(row.getCell(39)));
+				data.setdRlCbd(getBigDecimal(row.getCell(39)));
 				data.setTypeOfCbd(getString(row.getCell(40)));
 
 				batchList.add(data);
@@ -148,13 +150,13 @@ public class LandDataExcelServiceImpl implements LandDataExcelService {
 	}
 
 	@Override
-	public Page<LandDataExcel> getLandDataByDistrict(String district, int page, int size) {
+	public Page<LandDataXlsParameter> getLandDataByDistrict(String district, int page, int size) {
 
 		log.info("Fetching land data for district: {}", district);
 
 		Pageable pageable = PageRequest.of(page, size);
 
-		Page<LandDataExcel> result = repository.findByDistrictIgnoreCase(district, pageable);
+		Page<LandDataXlsParameter> result = repository.findByDistrictIgnoreCase(district, pageable);
 
 		log.info("Total records found: {}", result.getTotalElements());
 

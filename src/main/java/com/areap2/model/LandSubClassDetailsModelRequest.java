@@ -13,4 +13,22 @@ public class LandSubClassDetailsModelRequest {
 
 	private String landSubClassName;
 
+	public String getLandClassName() {
+		return landClassName;
+	}
+
+	public void setLandClassName(String landClassName) {
+		this.landClassName = landClassName;
+	}
+
+	public String getLandSubClassName() {
+		return landSubClassName;
+	}
+
+	public void setLandSubClassName(String landSubClassName) {
+		this.landSubClassName = landSubClassName;
+	}
+
+	
+	
 }

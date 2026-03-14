@@ -73,4 +73,172 @@ public class LandDetails implements Serializable {
 	
 	@Column(name = "status_code")
 	private String statusCode;
+
+
+	public Long getLandDetailsGenId() {
+		return landDetailsGenId;
+	}
+
+
+	public void setLandDetailsGenId(Long landDetailsGenId) {
+		this.landDetailsGenId = landDetailsGenId;
+	}
+
+
+	public String getMouzaCode() {
+		return mouzaCode;
+	}
+
+
+	public void setMouzaCode(String mouzaCode) {
+		this.mouzaCode = mouzaCode;
+	}
+
+
+	public String getRange() {
+		return range;
+	}
+
+
+	public void setRange(String range) {
+		this.range = range;
+	}
+
+
+	public Integer getPlotFrom() {
+		return plotFrom;
+	}
+
+
+	public void setPlotFrom(Integer plotFrom) {
+		this.plotFrom = plotFrom;
+	}
+
+
+	public Integer getPlotTo() {
+		return plotTo;
+	}
+
+
+	public void setPlotTo(Integer plotTo) {
+		this.plotTo = plotTo;
+	}
+
+
+	public Long getMarketValue() {
+		return marketValue;
+	}
+
+
+	public void setMarketValue(Long marketValue) {
+		this.marketValue = marketValue;
+	}
+
+
+	public Long getLandCategoryId() {
+		return landCategoryId;
+	}
+
+
+	public void setLandCategoryId(Long landCategoryId) {
+		this.landCategoryId = landCategoryId;
+	}
+
+
+	public Boolean getActive() {
+		return active;
+	}
+
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+
+	public Timestamp getCreatedDtm() {
+		return createdDtm;
+	}
+
+
+	public void setCreatedDtm(Timestamp createdDtm) {
+		this.createdDtm = createdDtm;
+	}
+
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+
+	public Timestamp getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+
+	public void setUpdatedDtm(Timestamp updatedDtm) {
+		this.updatedDtm = updatedDtm;
+	}
+
+
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+
+
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+
+
+	public Timestamp getApprovedDtm() {
+		return approvedDtm;
+	}
+
+
+	public void setApprovedDtm(Timestamp approvedDtm) {
+		this.approvedDtm = approvedDtm;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
 }
