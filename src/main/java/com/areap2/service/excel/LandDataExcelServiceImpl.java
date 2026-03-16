@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.areap2.entity.excel.external.LandDataXlsParameter;
-import com.areap2.repository.excel.external.LandDataExcelRepository;
+import com.areap2.repository.excel.external.LandDataExcelParameterRepository;
 
 import jakarta.persistence.EntityManager;
 
@@ -32,7 +32,7 @@ public class LandDataExcelServiceImpl implements LandDataXlsPropertyParameterSer
 	private static final Logger log = LoggerFactory.getLogger(LandDataExcelServiceImpl.class);
 
 	@Autowired
-	private LandDataExcelRepository repository;
+	private LandDataExcelParameterRepository repository;
 
 	@Autowired
 	private EntityManager entityManager;
@@ -63,14 +63,14 @@ public class LandDataExcelServiceImpl implements LandDataXlsPropertyParameterSer
 				data.setGmLayer(getString(row.getCell(0)));
 				data.setGmType(getString(row.getCell(1)));
 				data.setObjectid(getBigDecimal(row.getCell(2)));
-				data.setTextparcel(getBigDecimal(row.getCell(3)));
+				data.setTextParcel(getString(row.getCell(3)));
 				data.setVillage(getString(row.getCell(4)));
 				data.setMouza(getString(row.getCell(5)));
 				data.setDistrict(getString(row.getCell(6)));
 				data.setType(getString(row.getCell(7)));
 				data.setArea(getBigDecimal(row.getCell(8)));
-				data.setNicCode(getBigDecimal(row.getCell(9)));
-				data.setNicVill(getBigDecimal(row.getCell(10)));
+				data.setNicCode(getString(row.getCell(9)));
+				data.setPlotCode(getBigDecimal(row.getCell(10)));
 				data.setCircle(getString(row.getCell(11)));
 				data.setShapeLeng(getBigDecimal(row.getCell(12)));
 				data.setShapeArea(getBigDecimal(row.getCell(13)));
@@ -81,26 +81,16 @@ public class LandDataExcelServiceImpl implements LandDataXlsPropertyParameterSer
 				data.setDistPwd(getBigDecimal(row.getCell(18)));
 				data.setFidTr(getBigDecimal(row.getCell(19)));
 				data.setDistTr(getBigDecimal(row.getCell(20)));
-				data.setFidEdu(getBigDecimal(row.getCell(21)));
-				data.setDistEdu(getBigDecimal(row.getCell(22)));
-				data.setFidBrkl(getBigDecimal(row.getCell(23)));
-				data.setDistBrkl(getBigDecimal(row.getCell(24)));
-				data.setFidCnal(getBigDecimal(row.getCell(25)));
-				data.setDistCnal(getBigDecimal(row.getCell(26)));
-				data.setFidCntBt(getBigDecimal(row.getCell(27)));
-				data.setDistCntBt(getBigDecimal(row.getCell(28)));
-				data.setFidDstPa(getBigDecimal(row.getCell(29)));
-				data.setDistDstPa(getBigDecimal(row.getCell(30)));
-				data.setFidHliPa(getBigDecimal(row.getCell(31)));
-				data.setDistHliPa(getBigDecimal(row.getCell(32)));
-				data.setFidPrk(getBigDecimal(row.getCell(33)));
-				data.setDistPrk(getBigDecimal(row.getCell(34)));
-				data.setFidSwgPl(getBigDecimal(row.getCell(35)));
-				data.setDisSwgPl(getBigDecimal(row.getCell(36)));
-				data.setFidWlPrk(getBigDecimal(row.getCell(37)));
-				data.setDisWlPrk(getBigDecimal(row.getCell(38)));
-				data.setdRlCbd(getBigDecimal(row.getCell(39)));
-				data.setTypeOfCbd(getString(row.getCell(40)));
+				data.setFidPrk(getBigDecimal(row.getCell(21)));
+				data.setDistPrk(getBigDecimal(row.getCell(22)));
+				data.setFidWtrLg(getBigDecimal(row.getCell(23)));
+				data.setDisWtrLg(getBigDecimal(row.getCell(24)));
+				data.setfUrMjcbd(getBigDecimal(row.getCell(25)));
+				data.setdUrMjcbd(getBigDecimal(row.getCell(26)));
+				data.setfUrMncbd(getBigDecimal(row.getCell(27)));
+				data.setdUrMncbd(getBigDecimal(row.getCell(28)));
+				data.setfRlMjcbd(getBigDecimal(row.getCell(29)));
+				data.setdRlMjcbd(getBigDecimal(row.getCell(30)));
 
 				batchList.add(data);
 				count++;

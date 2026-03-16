@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "land_data", schema = "areap2landvaluationexcel")
+@Table(name = "land_data_property_measurement", schema = "areap2landvaluationexcel")
 @Data
 public class LandDataXlsPropertyMeasurement {
 
@@ -21,14 +21,14 @@ public class LandDataXlsPropertyMeasurement {
 	private String mouza;
 	private String lot;
 	private String village;
-	private String textparcel;
+	private String textParcel;
 	private String landuse;
 	private Double zonalValue;
 	private String landArea;
 	private String dagRevenue;
 	private String dagLocalTax;
 	private String ruralUrban;
-	private String niccode;
+	private String nicCode;
 	
 	
 	
@@ -69,11 +69,14 @@ public class LandDataXlsPropertyMeasurement {
 	public void setVillage(String village) {
 		this.village = village;
 	}
-	public String getTextparcel() {
-		return textparcel;
+
+	
+	
+	public String getTextParcel() {
+		return textParcel;
 	}
-	public void setTextparcel(String textparcel) {
-		this.textparcel = textparcel;
+	public void setTextParcel(String textParcel) {
+		this.textParcel = textParcel;
 	}
 	public String getLanduse() {
 		return landuse;
@@ -106,18 +109,21 @@ public class LandDataXlsPropertyMeasurement {
 	public void setRuralUrban(String ruralUrban) {
 		this.ruralUrban = ruralUrban;
 	}
-	public String getNiccode() {
-		return niccode;
-	}
-	public void setNiccode(String niccode) {
-		this.niccode = niccode;
-	}
+	
 	public String getLandArea() {
 		return landArea;
 	}
 	public void setLandArea(String landArea) {
 		this.landArea = landArea;
 	}
+	public String getNicCode() {
+		return nicCode;
+	}
+	public void setNicCode(String nicCode) {
+		this.nicCode = nicCode;
+	}
+	
+	
 	
 	
 	//

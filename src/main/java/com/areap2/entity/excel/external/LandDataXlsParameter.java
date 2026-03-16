@@ -3,12 +3,7 @@ package com.areap2.entity.excel.external;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -16,67 +11,104 @@ import lombok.Data;
 @Table(name = "land_data_xls_parameter", schema = "areap2landvaluationexcel")
 public class LandDataXlsParameter implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	// First required fields
-	private String district;
-	private String circle;
-	private String mouza;
-	private String village;
-	private BigDecimal textparcel;
+    @Column(name = "GM_LAYER")
+    private String gmLayer;
 
-	// Remaining fields
-	private String gmLayer;
-	private String gmType;
-	private BigDecimal objectid;
-	private String type;
-	private BigDecimal area;
-	private BigDecimal nicCode;
-	private BigDecimal nicVill;
-	private BigDecimal shapeLeng;
-	private BigDecimal shapeArea;
+    @Column(name = "GM_TYPE")
+    private String gmType;
 
-	private BigDecimal fid2;
-	private BigDecimal fid1;
-	private BigDecimal origFid;
-	private BigDecimal fidPwd;
-	private BigDecimal distPwd;
-	private BigDecimal fidTr;
-	private BigDecimal distTr;
-	private BigDecimal fidEdu;
-	private BigDecimal distEdu;
-	private BigDecimal fidBrkl;
-	private BigDecimal distBrkl;
-	private BigDecimal fidCnal;
-	private BigDecimal distCnal;
-	private BigDecimal fidCntBt;
-	private BigDecimal distCntBt;
-	private BigDecimal fidDstPa;
-	private BigDecimal distDstPa;
-	private BigDecimal fidHliPa;
-	private BigDecimal distHliPa;
-	private BigDecimal fidPrk;
-	private BigDecimal distPrk;
-	private BigDecimal fidSwgPl;
-	private BigDecimal disSwgPl;
-	private BigDecimal fidWlPrk;
-	private BigDecimal disWlPrk;
+    @Column(name = "OBJECTID")
+    private BigDecimal objectid;
 
-	private String typeOfCbd;
-	private BigDecimal dRlCbd;
+    @Column(name = "TEXTPARCEL")
+    private String textParcel;
 
-	@Column(name = "d_rl_cbd_slab")
-	private String dRlCbdSlab;
+    @Column(name = "VILLAGE")
+    private String village;
 
-	@Column(name = "d_rl_cbd_price_value")
-	private Double drlCbdPriceValue;// new changes
+    @Column(name = "MOUZA")
+    private String mouza;
 
+    @Column(name = "DISTRICT")
+    private String district;
 
-	
+    @Column(name = "CIRCLE")
+    private String circle;
+
+    @Column(name = "TYPE")
+    private String type;
+
+    @Column(name = "AREA")
+    private BigDecimal area;
+
+    @Column(name = "NIC_Code")
+    private String nicCode;
+
+    @Column(name = "Plot_Code")
+    private BigDecimal plotCode;
+
+    @Column(name = "Shape_Leng")
+    private BigDecimal shapeLeng;
+
+    @Column(name = "Shape_Area")
+    private BigDecimal shapeArea;
+
+    @Column(name = "FID_2")
+    private BigDecimal fid2;
+
+    @Column(name = "FID_1")
+    private BigDecimal fid1;
+
+    @Column(name = "ORIG_FID")
+    private BigDecimal origFid;
+
+    @Column(name = "FID_PWD")
+    private BigDecimal fidPwd;
+
+    @Column(name = "DIST_PWD")
+    private BigDecimal distPwd;
+
+    @Column(name = "FID_TR")
+    private BigDecimal fidTr;
+
+    @Column(name = "DIST_TR")
+    private BigDecimal distTr;
+
+    @Column(name = "FID_PRK")
+    private BigDecimal fidPrk;
+
+    @Column(name = "DIST_PRK")
+    private BigDecimal distPrk;
+
+    @Column(name = "FID_WTR_LG")
+    private BigDecimal fidWtrLg;
+
+    @Column(name = "DIS_WTR_LG")
+    private BigDecimal disWtrLg;
+
+    @Column(name = "F_UR_MJCBD")
+    private BigDecimal fUrMjcbd;
+
+    @Column(name = "D_UR_MJCBD")
+    private BigDecimal dUrMjcbd;
+
+    @Column(name = "F_UR_MNCBD")
+    private BigDecimal fUrMncbd;
+
+    @Column(name = "D_UR_MNCBD")
+    private BigDecimal dUrMncbd;
+
+    @Column(name = "F_RL_MJCBD")
+    private BigDecimal fRlMjcbd;
+
+    @Column(name = "D_RL_MJCBD")
+    private BigDecimal dRlMjcbd;
 
 	public Long getId() {
 		return id;
@@ -84,46 +116,6 @@ public class LandDataXlsParameter implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public String getCircle() {
-		return circle;
-	}
-
-	public void setCircle(String circle) {
-		this.circle = circle;
-	}
-
-	public String getMouza() {
-		return mouza;
-	}
-
-	public void setMouza(String mouza) {
-		this.mouza = mouza;
-	}
-
-	public String getVillage() {
-		return village;
-	}
-
-	public void setVillage(String village) {
-		this.village = village;
-	}
-
-	public BigDecimal getTextparcel() {
-		return textparcel;
-	}
-
-	public void setTextparcel(BigDecimal textparcel) {
-		this.textparcel = textparcel;
 	}
 
 	public String getGmLayer() {
@@ -150,6 +142,40 @@ public class LandDataXlsParameter implements Serializable {
 		this.objectid = objectid;
 	}
 
+
+
+	public String getVillage() {
+		return village;
+	}
+
+	public void setVillage(String village) {
+		this.village = village;
+	}
+
+	public String getMouza() {
+		return mouza;
+	}
+
+	public void setMouza(String mouza) {
+		this.mouza = mouza;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getCircle() {
+		return circle;
+	}
+
+	public void setCircle(String circle) {
+		this.circle = circle;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -166,20 +192,31 @@ public class LandDataXlsParameter implements Serializable {
 		this.area = area;
 	}
 
-	public BigDecimal getNicCode() {
+	
+
+
+	public String getTextParcel() {
+		return textParcel;
+	}
+
+	public void setTextParcel(String textParcel) {
+		this.textParcel = textParcel;
+	}
+
+	public String getNicCode() {
 		return nicCode;
 	}
 
-	public void setNicCode(BigDecimal nicCode) {
+	public void setNicCode(String nicCode) {
 		this.nicCode = nicCode;
 	}
 
-	public BigDecimal getNicVill() {
-		return nicVill;
+	public BigDecimal getPlotCode() {
+		return plotCode;
 	}
 
-	public void setNicVill(BigDecimal nicVill) {
-		this.nicVill = nicVill;
+	public void setPlotCode(BigDecimal plotCode) {
+		this.plotCode = plotCode;
 	}
 
 	public BigDecimal getShapeLeng() {
@@ -254,102 +291,6 @@ public class LandDataXlsParameter implements Serializable {
 		this.distTr = distTr;
 	}
 
-	public BigDecimal getFidEdu() {
-		return fidEdu;
-	}
-
-	public void setFidEdu(BigDecimal fidEdu) {
-		this.fidEdu = fidEdu;
-	}
-
-	public BigDecimal getDistEdu() {
-		return distEdu;
-	}
-
-	public void setDistEdu(BigDecimal distEdu) {
-		this.distEdu = distEdu;
-	}
-
-	public BigDecimal getFidBrkl() {
-		return fidBrkl;
-	}
-
-	public void setFidBrkl(BigDecimal fidBrkl) {
-		this.fidBrkl = fidBrkl;
-	}
-
-	public BigDecimal getDistBrkl() {
-		return distBrkl;
-	}
-
-	public void setDistBrkl(BigDecimal distBrkl) {
-		this.distBrkl = distBrkl;
-	}
-
-	public BigDecimal getFidCnal() {
-		return fidCnal;
-	}
-
-	public void setFidCnal(BigDecimal fidCnal) {
-		this.fidCnal = fidCnal;
-	}
-
-	public BigDecimal getDistCnal() {
-		return distCnal;
-	}
-
-	public void setDistCnal(BigDecimal distCnal) {
-		this.distCnal = distCnal;
-	}
-
-	public BigDecimal getFidCntBt() {
-		return fidCntBt;
-	}
-
-	public void setFidCntBt(BigDecimal fidCntBt) {
-		this.fidCntBt = fidCntBt;
-	}
-
-	public BigDecimal getDistCntBt() {
-		return distCntBt;
-	}
-
-	public void setDistCntBt(BigDecimal distCntBt) {
-		this.distCntBt = distCntBt;
-	}
-
-	public BigDecimal getFidDstPa() {
-		return fidDstPa;
-	}
-
-	public void setFidDstPa(BigDecimal fidDstPa) {
-		this.fidDstPa = fidDstPa;
-	}
-
-	public BigDecimal getDistDstPa() {
-		return distDstPa;
-	}
-
-	public void setDistDstPa(BigDecimal distDstPa) {
-		this.distDstPa = distDstPa;
-	}
-
-	public BigDecimal getFidHliPa() {
-		return fidHliPa;
-	}
-
-	public void setFidHliPa(BigDecimal fidHliPa) {
-		this.fidHliPa = fidHliPa;
-	}
-
-	public BigDecimal getDistHliPa() {
-		return distHliPa;
-	}
-
-	public void setDistHliPa(BigDecimal distHliPa) {
-		this.distHliPa = distHliPa;
-	}
-
 	public BigDecimal getFidPrk() {
 		return fidPrk;
 	}
@@ -366,75 +307,76 @@ public class LandDataXlsParameter implements Serializable {
 		this.distPrk = distPrk;
 	}
 
-	public BigDecimal getFidSwgPl() {
-		return fidSwgPl;
+	public BigDecimal getFidWtrLg() {
+		return fidWtrLg;
 	}
 
-	public void setFidSwgPl(BigDecimal fidSwgPl) {
-		this.fidSwgPl = fidSwgPl;
+	public void setFidWtrLg(BigDecimal fidWtrLg) {
+		this.fidWtrLg = fidWtrLg;
 	}
 
-	public BigDecimal getDisSwgPl() {
-		return disSwgPl;
+	public BigDecimal getDisWtrLg() {
+		return disWtrLg;
 	}
 
-	public void setDisSwgPl(BigDecimal disSwgPl) {
-		this.disSwgPl = disSwgPl;
+	public void setDisWtrLg(BigDecimal disWtrLg) {
+		this.disWtrLg = disWtrLg;
 	}
 
-	public BigDecimal getFidWlPrk() {
-		return fidWlPrk;
+	public BigDecimal getfUrMjcbd() {
+		return fUrMjcbd;
 	}
 
-	public void setFidWlPrk(BigDecimal fidWlPrk) {
-		this.fidWlPrk = fidWlPrk;
+	public void setfUrMjcbd(BigDecimal fUrMjcbd) {
+		this.fUrMjcbd = fUrMjcbd;
 	}
 
-	public BigDecimal getDisWlPrk() {
-		return disWlPrk;
+	public BigDecimal getdUrMjcbd() {
+		return dUrMjcbd;
 	}
 
-	public void setDisWlPrk(BigDecimal disWlPrk) {
-		this.disWlPrk = disWlPrk;
+	public void setdUrMjcbd(BigDecimal dUrMjcbd) {
+		this.dUrMjcbd = dUrMjcbd;
 	}
 
-	public String getTypeOfCbd() {
-		return typeOfCbd;
+	public BigDecimal getfUrMncbd() {
+		return fUrMncbd;
 	}
 
-	public void setTypeOfCbd(String typeOfCbd) {
-		this.typeOfCbd = typeOfCbd;
+	public void setfUrMncbd(BigDecimal fUrMncbd) {
+		this.fUrMncbd = fUrMncbd;
 	}
 
-	public BigDecimal getdRlCbd() {
-		return dRlCbd;
+	public BigDecimal getdUrMncbd() {
+		return dUrMncbd;
 	}
 
-	public void setdRlCbd(BigDecimal dRlCbd) {
-		this.dRlCbd = dRlCbd;
+	public void setdUrMncbd(BigDecimal dUrMncbd) {
+		this.dUrMncbd = dUrMncbd;
 	}
 
-	public String getdRlCbdSlab() {
-		return dRlCbdSlab;
+	public BigDecimal getfRlMjcbd() {
+		return fRlMjcbd;
 	}
 
-	public void setdRlCbdSlab(String dRlCbdSlab) {
-		this.dRlCbdSlab = dRlCbdSlab;
+	public void setfRlMjcbd(BigDecimal fRlMjcbd) {
+		this.fRlMjcbd = fRlMjcbd;
 	}
 
-	public Double getDrlCbdPriceValue() {
-		return drlCbdPriceValue;
+	public BigDecimal getdRlMjcbd() {
+		return dRlMjcbd;
 	}
 
-	public void setDrlCbdPriceValue(Double drlCbdPriceValue) {
-		this.drlCbdPriceValue = drlCbdPriceValue;
+	public void setdRlMjcbd(BigDecimal dRlMjcbd) {
+		this.dRlMjcbd = dRlMjcbd;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-//	@Column(name = "d_rl_cbd_slab")
-//	private BigDecimal dRlCbdPriceValue;
-
+    
+    
+    
+    
 }

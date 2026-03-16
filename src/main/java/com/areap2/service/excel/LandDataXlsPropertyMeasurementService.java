@@ -112,14 +112,14 @@ public class LandDataXlsPropertyMeasurementService {
                         data.setMouza(getValue(2));
                         data.setLot(getValue(3));
                         data.setVillage(getValue(4));
-                        data.setTextparcel(getValue(5));
+                        data.setTextParcel(getValue(5));
                         data.setLanduse(getValue(6));
                         data.setZonalValue(parseDouble(getValue(7)));
                         data.setLandArea(getValue(8));   // <-- FIX
                         data.setDagRevenue(getValue(9));
                         data.setDagLocalTax(getValue(10));
                         data.setRuralUrban(getValue(11));
-                        data.setNiccode(getValue(12));
+                        data.setNicCode(getValue(12));
 
                         batch.add(data);
 

@@ -35,7 +35,7 @@ public class LandDataExcelController {
 	private LandDataXlsPropertyOriginalPhaseOneService migrationService;
 
 	/**
-	 * Step 1: Import Excel data into land_data table
+	 * Step 1: Import Excel data into land_data_property_measurement table
 	 */
 	@GetMapping("/import-excel-data-phasei")
 	public ResponseEntity<String> importExcelDataPhasei(@RequestParam String path) {
@@ -59,7 +59,7 @@ public class LandDataExcelController {
 	}
 
 	/**
-	 * Step 2: Migrate land_data → land_data_original
+	 * Step 2: Migrate land_data_property_measurement → land_data_original
 	 */
 	@GetMapping("/export-data-db-to-db-phasei")
 	public ResponseEntity<String> migrateLandData() {
@@ -83,7 +83,7 @@ public class LandDataExcelController {
 	}
 
 	/**
-	 * Alternative Excel Import
+	 * Step 1: Import Excel data into land_data_xls_parameter table
 	 */
 	@PostMapping("/import-excel-data-phaseii")
 	public ResponseEntity<String> importExcelDataPhaseii(@RequestParam String path) {
@@ -107,29 +107,30 @@ public class LandDataExcelController {
 	}
 	
 	
-	
+	/**
+	 * Step 2: Migrate land_data_property_measurement → land_data_original
+	 */
 	@GetMapping("/export-data-db-to-db-phaseii")
 	public ResponseEntity<String> migrateLandDataPhaseii() {
 
-		log.info("START :: Land Data Migration Phase II");
+	    log.info("START :: Land Data Migration Phase II");
 
-		try {
+	    try {
 
-			migrationService.migrateData();
+	        migrationService.migrateLandDataPhaseii();
 
-			log.info("SUCCESS :: Migration Completed");
+	        log.info("SUCCESS :: Migration Completed");
 
-			return ResponseEntity.ok("Migration Completed Successfully");
+	        return ResponseEntity.ok("Migration Phase II Completed Successfully");
 
-		} catch (Exception e) {
+	    } catch (Exception e) {
 
-			log.error("ERROR :: Migration Failed", e);
+	        log.error("ERROR :: Migration Failed", e);
 
-			return ResponseEntity.internalServerError().body("Migration Failed: " + e.getMessage());
-		}
+	        return ResponseEntity.internalServerError()
+	                .body("Migration Failed: " + e.getMessage());
+	    }
 	}
-
-
 	/**
 	 * Get land data by district
 	 */

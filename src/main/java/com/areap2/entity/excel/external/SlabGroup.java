@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "slab_group")
+@Table(name = "slab_group", schema = "areap2landvaluationexcel")
 public class SlabGroup {
 
 	@Id

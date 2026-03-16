@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "slab_detail")
+@Table(name = "slab_detail", schema = "areap2landvaluationexcel")
 public class SlabDetail {
 
 	@Id

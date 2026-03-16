@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "distance_type")
+@Table(name = "distance_type", schema = "areap2landvaluationexcel")
 public class DistanceType {
 
 	@Id

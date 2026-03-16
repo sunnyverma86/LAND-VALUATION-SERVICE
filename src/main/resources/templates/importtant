@@ -1,0 +1,19 @@
+private static final String TABLE_NAME = "areap2landvaluationexcel.land_data_original";
+
+	private static final Map<String, ColumnMapping> COLUMN_MAPPING = Map.of(
+			"DISTANCE FROM PWD",
+				new ColumnMapping("dist_pwd", "dist_pwd_slab", "dist_pwd_weightage","dist_pwd_slab"), 
+			"DISTANCE FROM TRANSPORT",
+				new ColumnMapping("dist_tr", "dist_tr_slab", "dist_tr_weightage","dist_tr_slab"), 
+			"DISTANCE FROM PARK",
+				new ColumnMapping("dist_prk", "dist_prk_slab", "dist_prk_weightage","dist_prk_slab"), 
+			"DISTANCE FROM WATER LOGGING",
+				new ColumnMapping("dis_wtr_lg", "dis_wtr_lg_slab", "dis_wtr_lg_weightage","dis_wtr_lg_slab"), 
+			"DISTANCE FROM URBAN MAJOR CBD",
+				new ColumnMapping("d_ur_mjcbd", "d_ur_mjcbd_slab", "d_ur_mjcbd_weightage","d_ur_mjcbd_slab"), 
+			"DISTANCE FROM URBAN MINOR CBD",
+				new ColumnMapping("d_ur_mncbd", "d_ur_mncbd_slab", "d_ur_mncbd_weightage","d_ur_mncbd_slab"),
+			"DISTANCE FROM RURAL MAJOR CBD",
+				new ColumnMapping("d_rl_mjcbd", "d_rl_mjcbd_slab", "d_rl_mjcbd_weightage","d_rl_mjcbd_slab"),
+			"DISTANCE FROM RURAL MINOR CBD",
+				new ColumnMapping("d_rl_mncbd", "d_rl_mjcbd_slab", "d_rl_mncbd_weightage","d_rl_mncbd_slab"));

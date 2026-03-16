@@ -1,5 +1,8 @@
 package com.areap2.repository.excel.external;
 
+import java.math.BigDecimal;
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +15,7 @@ import com.areap2.entity.excel.external.LandDataXlsParameter;
 import jakarta.transaction.Transactional;
 
 @Repository
-public interface LandDataExcelRepository extends JpaRepository<LandDataXlsParameter, Long> {
+public interface LandDataExcelParameterRepository extends JpaRepository<LandDataXlsParameter, Long> {
 
 	Page<LandDataXlsParameter> findByDistrictIgnoreCase(String district, Pageable pageable);
 	
@@ -62,6 +65,8 @@ public interface LandDataExcelRepository extends JpaRepository<LandDataXlsParame
 			      AND ld.d_rl_cbd BETWEEN sd.min_value AND sd.max_value
 			""", nativeQuery = true)
 	int updateDRlCbdSlabWorking();
+
+	Optional<LandDataXlsParameter> findByNicCodeAndTextParcel(String nicCode, String textParcelValue);
 	
 	//
 	
