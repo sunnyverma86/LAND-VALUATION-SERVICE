@@ -4683,6 +4683,7 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 			parameterDetails.setParameterData(parameterDetailsModel.getData());
 			parameterDetails.setAppreciationType(parameterDetailsModel.getAppreciationType());
 			parameterDetails.setParameterDescription(parameterDetailsModel.getDiscription());
+			parameterDetails.setVisibleToCitizen(parameterDetailsModel.getVisibleToCitizen());
 			parameterDetails.setCreatedBy(loginId);
 			parameterDetails.setRequestStatus(ModelConstant.ADD);
 

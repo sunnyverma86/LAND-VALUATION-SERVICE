@@ -2,6 +2,7 @@ package com.areap2.service.excel;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.areap2.constant.ModelConstant;
+import com.areap2.dto.excel.SlabDetailDTO;
+import com.areap2.dto.excel.SlabGroupResponseDTO;
 import com.areap2.dto.excel.SlabRangeDTO;
 import com.areap2.dto.excel.SlabRequestDTO;
 import com.areap2.entity.excel.external.DistanceType;
@@ -63,23 +66,21 @@ public class SlabService {
 
 	private static final String TABLE_NAME = "areap2landvaluationexcel.land_data_original";
 
-	private static final Map<String, ColumnMapping> COLUMN_MAPPING = Map.of(
-			"DISTANCE FROM PWD",
-				new ColumnMapping("dist_pwd", "dist_pwd_slab", "dist_pwd_weightage", "dist_pwd_band"),
+	private static final Map<String, ColumnMapping> COLUMN_MAPPING = Map.of("DISTANCE FROM PWD",
+			new ColumnMapping("dist_pwd", "dist_pwd_slab", "dist_pwd_weightage", "dist_pwd_band"),
 			"DISTANCE FROM TRANSPORT",
-				new ColumnMapping("dist_tr", "dist_tr_slab", "dist_tr_weightage", "dist_tr_band"), 
-			"DISTANCE FROM PARK",
-				new ColumnMapping("dist_prk", "dist_prk_slab", "dist_prk_weightage", "dist_prk_band"),
+			new ColumnMapping("dist_tr", "dist_tr_slab", "dist_tr_weightage", "dist_tr_band"), "DISTANCE FROM PARK",
+			new ColumnMapping("dist_prk", "dist_prk_slab", "dist_prk_weightage", "dist_prk_band"),
 			"DISTANCE FROM WATER LOGGING",
-				new ColumnMapping("dis_wtr_lg", "dis_wtr_lg_slab", "dis_wtr_lg_weightage", "dis_wtr_lg_band"),
+			new ColumnMapping("dis_wtr_lg", "dis_wtr_lg_slab", "dis_wtr_lg_weightage", "dis_wtr_lg_band"),
 			"DISTANCE FROM URBAN MAJOR CBD",
-				new ColumnMapping("d_ur_mjcbd", "d_ur_mjcbd_slab", "d_ur_mjcbd_weightage", "d_ur_mjcbd_band"),
+			new ColumnMapping("d_ur_mjcbd", "d_ur_mjcbd_slab", "d_ur_mjcbd_weightage", "d_ur_mjcbd_band"),
 			"DISTANCE FROM URBAN MINOR CBD",
-				new ColumnMapping("d_ur_mncbd", "d_ur_mncbd_slab", "d_ur_mncbd_weightage", "d_ur_mncbd_band"),
+			new ColumnMapping("d_ur_mncbd", "d_ur_mncbd_slab", "d_ur_mncbd_weightage", "d_ur_mncbd_band"),
 			"DISTANCE FROM RURAL MAJOR CBD",
-				new ColumnMapping("d_rl_mjcbd", "d_rl_mjcbd_slab", "d_rl_mjcbd_weightage", "d_rl_mjcbd_band"),
+			new ColumnMapping("d_rl_mjcbd", "d_rl_mjcbd_slab", "d_rl_mjcbd_weightage", "d_rl_mjcbd_band"),
 			"DISTANCE FROM RURAL MINOR CBD",
-				new ColumnMapping("d_rl_mncbd", "d_rl_mjcbd_slab", "d_rl_mncbd_weightage", "d_rl_mncbd_band"));
+			new ColumnMapping("d_rl_mncbd", "d_rl_mjcbd_slab", "d_rl_mncbd_weightage", "d_rl_mncbd_band"));
 	// "DISTANCE FROM TRANSPORT",
 	// new ColumnMapping("dUrMncbd", "dis_swg_pl_slab", "dis_swg_pl_price_value"));
 
@@ -94,7 +95,7 @@ public class SlabService {
 
 		validateRequest(request);
 
-		DistanceType distanceType = getOrCreateDistanceType(request.getDistanceTypeCode());
+		DistanceType distanceType = getOrCreateDistanceType(request.getDistanceTypeCode(), request.getDistrict());
 
 		SlabGroup group = buildSlabGroup(request, distanceType, loginId);
 		applyRoleBasedStatus(group, roles);
@@ -270,63 +271,54 @@ public class SlabService {
 //	}
 
 	private void applySlabToLandTable(SlabGroup group) {
-	    log.info("🔹 Entering applySlabToLandTable for district='{}', distanceType='{}'",
-	             group.getDistrict(), group.getDistanceType().getCode());
+		log.info("🔹 Entering applySlabToLandTable for district='{}', distanceType='{}'", group.getDistrict(),
+				group.getDistanceType().getCode());
 
-	    ColumnMapping mapping = COLUMN_MAPPING.get(group.getDistanceType().getCode());
-	    List<SlabDetail> slabs = slabDetailRepository.findBySlabGroup(group);
-	    log.info("📊 Found {} slab(s) for group '{}'", slabs.size(), group.getId());
+		ColumnMapping mapping = COLUMN_MAPPING.get(group.getDistanceType().getCode());
+		List<SlabDetail> slabs = slabDetailRepository.findBySlabGroup(group);
+		log.info("📊 Found {} slab(s) for group '{}'", slabs.size(), group.getId());
 
-	    for (SlabDetail slab : slabs) {
-	        log.debug("⏩ Applying slab: band='{}', weightage={}, minVal={}, maxVal={}",
-	                  slab.getBandNameStr(), slab.getWeightage(),
-	                  slab.getMinValue(), slab.getMaxValue());
+		for (SlabDetail slab : slabs) {
+			log.debug("⏩ Applying slab: band='{}', weightage={}, minVal={}, maxVal={}", slab.getBandNameStr(),
+					slab.getWeightage(), slab.getMinValue(), slab.getMaxValue());
 
-	        String sql = """
-	            UPDATE %s
-	            SET %s = :slabRange,
-	                %s = :weightage,
-	                %s = :band
-	            WHERE %s BETWEEN :minVal AND :maxVal
-	            AND district = :district
-	            """.formatted(
-	                TABLE_NAME,
-	                mapping.slabColumn(),
-	                mapping.priceColumn(),
-	                mapping.bandColumn(),
-	                mapping.sourceColumn()
-	        );
+			String sql = """
+					UPDATE %s
+					SET %s = :slabRange,
+					    %s = :weightage,
+					    %s = :band
+					WHERE %s BETWEEN :minVal AND :maxVal
+					AND district = :district
+					""".formatted(TABLE_NAME, mapping.slabColumn(), mapping.priceColumn(), mapping.bandColumn(),
+					mapping.sourceColumn());
 
-	        // Format min-max as integer-like string (51-900 instead of 51.0-900.0)
-	        String slabRange = String.format("%d-%d",
-	                Math.round(slab.getMinValue()), Math.round(slab.getMaxValue()));
+			// Format min-max as integer-like string (51-900 instead of 51.0-900.0)
+			String slabRange = String.format("%d-%d", Math.round(slab.getMinValue()), Math.round(slab.getMaxValue()));
 
-	        // Convert Double weightage to BigDecimal
-	        BigDecimal weightage = slab.getWeightage() != null
-	                ? BigDecimal.valueOf(slab.getWeightage())
-	                : null;
+			// Convert Double weightage to BigDecimal
+			BigDecimal weightage = slab.getWeightage() != null ? BigDecimal.valueOf(slab.getWeightage()) : null;
 
-	        String band = slab.getBandNameStr(); // e.g., "band2"
+			String band = slab.getBandNameStr(); // e.g., "band2"
 
-	        try {
-	            int updatedRows = entityManager.createNativeQuery(sql)
-	                    .setParameter("slabRange", slabRange)   // dist_pwd_slab = "min-max"
-	                    .setParameter("weightage", weightage)   // dist_pwd_weightage = 1.1
-	                    .setParameter("band", band)             // dist_pwd_band = band2
-	                    .setParameter("minVal", slab.getMinValue())
-	                    .setParameter("maxVal", slab.getMaxValue())
-	                    .setParameter("district", group.getDistrict())
-	                    .executeUpdate();
+			try {
+				int updatedRows = entityManager.createNativeQuery(sql).setParameter("slabRange", slabRange) // dist_pwd_slab
+																											// =
+																											// "min-max"
+						.setParameter("weightage", weightage) // dist_pwd_weightage = 1.1
+						.setParameter("band", band) // dist_pwd_band = band2
+						.setParameter("minVal", slab.getMinValue()).setParameter("maxVal", slab.getMaxValue())
+						.setParameter("district", group.getDistrict()).executeUpdate();
 
-	            log.debug("✅ Updated {} row(s) for slab '{}'", updatedRows, slab.getBandNameStr());
-	        } catch (Exception e) {
-	            log.error("❌ Error applying slab '{}': {}", slab.getBandNameStr(), e.getMessage(), e);
-	        }
-	    }
+				log.debug("✅ Updated {} row(s) for slab '{}'", updatedRows, slab.getBandNameStr());
+			} catch (Exception e) {
+				log.error("❌ Error applying slab '{}': {}", slab.getBandNameStr(), e.getMessage(), e);
+			}
+		}
 
-	    log.info("✅ Completed applySlabToLandTable for district='{}', distanceType='{}'",
-	             group.getDistrict(), group.getDistanceType().getCode());
+		log.info("✅ Completed applySlabToLandTable for district='{}', distanceType='{}'", group.getDistrict(),
+				group.getDistanceType().getCode());
 	}
+
 	private void rollbackLandTable(SlabGroup group) {
 
 		ColumnMapping mapping = COLUMN_MAPPING.get(group.getDistanceType().getCode());
@@ -421,12 +413,14 @@ public class SlabService {
 		}
 	}
 
-	private DistanceType getOrCreateDistanceType(String code) {
+	private DistanceType getOrCreateDistanceType(String code, String district) {
 
 		return distanceTypeRepository.findByCodeIgnoreCaseAndActiveTrue(code).orElseGet(() -> {
 			DistanceType type = new DistanceType();
 			type.setCode(code.toUpperCase());
+			type.setDistrict(district);
 			type.setActive(true);
+
 			// type.setActive(false);
 			return distanceTypeRepository.save(type);
 		});
@@ -479,9 +473,35 @@ public class SlabService {
 			List<SlabGroup> slabs = slabGroupRepository.findByDistrictAndDistanceType_CodeAndActiveTrue(district,
 					distanceTypeCode);
 
+			// NEW LOGIC
+			List<SlabGroupResponseDTO> finalResponse = new ArrayList<>();
+
+			for (SlabGroup slabGroup : slabs) {
+
+				List<SlabDetail> details = slabDetailRepository.findBySlabGroup_IdOrderByIdDesc(slabGroup.getId());
+
+				// 🔥 Convert to DTO (IMPORTANT)
+				List<SlabDetailDTO> detailDTOList = details.stream().map(d -> {
+					SlabDetailDTO dto = new SlabDetailDTO();
+					dto.setId(d.getId());
+					dto.setMinValue(d.getMinValue());
+					dto.setMaxValue(d.getMaxValue());
+					dto.setBandNameStr(d.getBandNameStr());
+					dto.setWeightage(d.getWeightage());
+					return dto;
+				}).toList();
+
+				SlabGroupResponseDTO dto = new SlabGroupResponseDTO();
+				dto.setSlabGroup(slabGroup);
+				dto.setSlabDetails(detailDTOList);
+
+				finalResponse.add(dto);
+			}
+
 			response.setHttpStatus(HttpStatus.OK);
-			response.setData(slabs);
-			response.setMessage(slabs.isEmpty() ? "No active slabs found" : "Active slabs fetched successfully");
+			response.setData(finalResponse);
+			response.setMessage(
+					finalResponse.isEmpty() ? "No active slabs found" : "Active slabs fetched successfully");
 
 		} catch (Exception e) {
 
@@ -491,4 +511,26 @@ public class SlabService {
 
 		return response;
 	}
+
+//	public ResponseModel getActiveSlabs(String district, String distanceTypeCode) {
+//
+//		ResponseModel response = new ResponseModel();
+//
+//		try {
+//
+//			List<SlabGroup> slabs = slabGroupRepository.findByDistrictAndDistanceType_CodeAndActiveTrue(district,
+//					distanceTypeCode);
+//
+//			response.setHttpStatus(HttpStatus.OK);
+//			response.setData(slabs);
+//			response.setMessage(slabs.isEmpty() ? "No active slabs found" : "Active slabs fetched successfully");
+//
+//		} catch (Exception e) {
+//
+//			response.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+//			response.setMessage("Error fetching active slabs");
+//		}
+//
+//		return response;
+//	}
 }

@@ -51,7 +51,7 @@ public class LandDataXlsParameter implements Serializable {
     private String nicCode;
 
     @Column(name = "Plot_Code")
-    private BigDecimal plotCode;
+    private String plotCode;
 
     @Column(name = "Shape_Leng")
     private BigDecimal shapeLeng;
@@ -211,11 +211,11 @@ public class LandDataXlsParameter implements Serializable {
 		this.nicCode = nicCode;
 	}
 
-	public BigDecimal getPlotCode() {
+	public String getPlotCode() {
 		return plotCode;
 	}
 
-	public void setPlotCode(BigDecimal plotCode) {
+	public void setPlotCode(String plotCode) {
 		this.plotCode = plotCode;
 	}
 

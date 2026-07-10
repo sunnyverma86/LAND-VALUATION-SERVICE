@@ -20,6 +20,8 @@ public interface AuditLogRepo extends JpaRepository<AuditLog, Long> {
 
 	AuditLog findTopByReferenceIdAndFeatureNameAndStatusCodeOrderByIdDesc(Long id, String featName,
 			String statCode);
+
+	List<AuditLog> findAllByReferenceId(Long refId);
 	
 	
 

@@ -10,13 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Entity
 @Table(name = "slab_group", schema = "areap2landvaluationexcel")
 public class SlabGroup {
@@ -56,8 +53,11 @@ public class SlabGroup {
 	private String status;
 
 	private String statusCode;
-	
+
 	private Boolean isActive;
+
+	public SlabGroup() {
+	}
 
 	public Long getId() {
 		return id;
@@ -178,8 +178,7 @@ public class SlabGroup {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	
-	
-	
+
+
+
 }

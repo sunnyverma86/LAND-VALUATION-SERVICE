@@ -107,7 +107,7 @@ public class SlabService_Old_Latest_ButNotChecked {
 
 			DistanceType newType = new DistanceType();
 			newType.setCode(code.toUpperCase());
-			newType.setColumnName(generateColumnName(code));
+			newType.setDistrict(generateColumnName(code));
 			newType.setActive(true);
 
 			return distanceTypeRepository.save(newType);

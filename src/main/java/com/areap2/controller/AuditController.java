@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.areap2.model.ResponseModel;
 import com.areap2.service.WorkFlowService;
 
 @RestController
@@ -386,6 +387,62 @@ public class AuditController {
 					.body(Map.of("message", "An unexpected error occurred", "error", ex.getMessage()));
 		}
 	}
+	
+	@GetMapping("/getAllAuditDetails")
+	public ResponseModel getAllAuditDetails() {
+		String methodName = "getAllAuditDetails";
+		ResponseModel response = new ResponseModel();
+
+		log.info("START - [{}] in class [{}]", methodName, this.getClass().getSimpleName());
+
+		try {
+			log.info("Fetching all Audit details from workFlowService...");
+
+			response = workFlowService.getAllAuditDetails();
+
+			log.info("Successfully retrieved Audit details. Response status: {}",
+					response.getHttpStatus());
+
+		} catch (Exception e) {
+			log.error("Exception in [{}] of class [{}]: {}", methodName, this.getClass().getSimpleName(),
+					e.getMessage(), e);
+
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage("Failed to fetch Audit details. Reason: " + e.getLocalizedMessage());
+		}
+
+		log.info("END - [{}] in class [{}]", methodName, this.getClass().getSimpleName());
+
+		return response;
+	}
+	@GetMapping("/getAllAuditDetailsRid")
+	public ResponseModel getAllAuditDetailsByReferenceId(@RequestParam Long refId) {
+		String methodName = "getAllAuditDetailsByReferenceId";
+		ResponseModel response = new ResponseModel();
+
+		log.info("START - [{}] in class [{}]", methodName, this.getClass().getSimpleName());
+
+		try {
+			log.info("Fetching all Audit details ByReferenceId from workFlowService...");
+
+			response = workFlowService.getAllAuditDetailsByReferenceId(refId);
+
+			log.info("Successfully retrieved Audit details  By ReferenceId",
+					response.getHttpStatus());
+
+		} catch (Exception e) {
+			log.error("Exception in [{}] of class [{}]: {}", methodName, this.getClass().getSimpleName(),
+					e.getMessage(), e);
+
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage("Failed to fetch Audit details. Reason: " + e.getLocalizedMessage());
+		}
+
+		log.info("END - [{}] in class [{}]", methodName, this.getClass().getSimpleName());
+
+		return response;
+	}
+
 
 
 

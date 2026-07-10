@@ -36,6 +36,37 @@ public class LandDataXlsPropertyOriginal {
 	private LocalDateTime createDtm;
 	private LocalDateTime updateDtm;
 	private String status;
+	
+	//new added start
+	private String district;
+	private String nicCodeForMouza;//input
+	private String nicForPlotCode;//input
+	private String landUse;//input
+	
+
+	private String nicCodeForDistrict;
+	private BigDecimal districtMinimum;//input
+	private BigDecimal landUseFactor;//input
+	private BigDecimal geographicalFactor;//input
+	private BigDecimal plotBase;//districtMinimum *landUseFactor*geographicalFactor
+	private BigDecimal totalWeightParameters;
+
+	//d_rl_mjcbd_weightage
+	//+d_ur_mjcbd_weightage
+	//+d_ur_mncbd_weightage
+	//+dist_prk_weightage
+	//+dis_wtr_lg_weightage
+	//+dist_pwd_weightage
+	//+dist_tr_weightage
+
+	private BigDecimal valueOfParameters;//totalWeightParameters*districtMinimum
+	private BigDecimal perBighaValueOfPlot;
+	private BigDecimal finalValueOfPlot;
+
+	
+
+	
+	//new added end
 
 	//parameter
 	private BigDecimal distPwd;
@@ -54,13 +85,13 @@ public class LandDataXlsPropertyOriginal {
 	private String dUrMncbdSlab;
 	private String dRlMjcbdSlab;
 	
-	private BigDecimal distPwdWeightage;
-	private BigDecimal distTrWeightage;
-	private BigDecimal distPrkWeightage;
-	private BigDecimal disWtrLgWeightage;
-	private BigDecimal dUrMjcbdWeightage;
-	private BigDecimal dUrMncbdWeightage;
-	private BigDecimal dRlMjcbdWeightage;
+	private BigDecimal distPwdWeightage= BigDecimal.ZERO;;
+	private BigDecimal distTrWeightage= BigDecimal.ZERO;;
+	private BigDecimal distPrkWeightage= BigDecimal.ZERO;;
+	private BigDecimal disWtrLgWeightage= BigDecimal.ZERO;;
+	private BigDecimal dUrMjcbdWeightage= BigDecimal.ZERO;;
+	private BigDecimal dUrMncbdWeightage= BigDecimal.ZERO;;
+	private BigDecimal dRlMjcbdWeightage= BigDecimal.ZERO;;
 	
 	private String distPwdBand;
 	private String distTrBand;
@@ -69,6 +100,10 @@ public class LandDataXlsPropertyOriginal {
 	private String dUrMjcbdBand;
 	private String dUrMncbdBand;
 	private String dRlMjcbdBand;
+	
+	
+	private BigDecimal totalLandArea;
+	
 	
 
 
@@ -428,6 +463,122 @@ public class LandDataXlsPropertyOriginal {
 	public void setdRlMjcbd(BigDecimal dRlMjcbd) {
 		this.dRlMjcbd = dRlMjcbd;
 	}
+
+	public String getNicCodeForMouza() {
+		return nicCodeForMouza;
+	}
+
+	public void setNicCodeForMouza(String nicCodeForMouza) {
+		this.nicCodeForMouza = nicCodeForMouza;
+	}
+
+	public String getNicForPlotCode() {
+		return nicForPlotCode;
+	}
+
+	public void setNicForPlotCode(String nicForPlotCode) {
+		this.nicForPlotCode = nicForPlotCode;
+	}
+
+	public String getLandUse() {
+		return landUse;
+	}
+
+	public void setLandUse(String landUse) {
+		this.landUse = landUse;
+	}
+
+	public BigDecimal getDistrictMinimum() {
+		return districtMinimum;
+	}
+
+	public void setDistrictMinimum(BigDecimal districtMinimum) {
+		this.districtMinimum = districtMinimum;
+	}
+
+	public BigDecimal getLandUseFactor() {
+		return landUseFactor;
+	}
+
+	public void setLandUseFactor(BigDecimal landUseFactor) {
+		this.landUseFactor = landUseFactor;
+	}
+
+	public BigDecimal getGeographicalFactor() {
+		return geographicalFactor;
+	}
+
+	public void setGeographicalFactor(BigDecimal geographicalFactor) {
+		this.geographicalFactor = geographicalFactor;
+	}
+
+	public BigDecimal getPlotBase() {
+		return plotBase;
+	}
+
+	public void setPlotBase(BigDecimal plotBase) {
+		this.plotBase = plotBase;
+	}
+
+	public BigDecimal getTotalWeightParameters() {
+		return totalWeightParameters;
+	}
+
+	public void setTotalWeightParameters(BigDecimal totalWeightParameters) {
+		this.totalWeightParameters = totalWeightParameters;
+	}
+
+	public BigDecimal getValueOfParameters() {
+		return valueOfParameters;
+	}
+
+	public void setValueOfParameters(BigDecimal valueOfParameters) {
+		this.valueOfParameters = valueOfParameters;
+	}
+
+	public BigDecimal getPerBighaValueOfPlot() {
+		return perBighaValueOfPlot;
+	}
+
+	public void setPerBighaValueOfPlot(BigDecimal perBighaValueOfPlot) {
+		this.perBighaValueOfPlot = perBighaValueOfPlot;
+	}
+
+	public BigDecimal getFinalValueOfPlot() {
+		return finalValueOfPlot;
+	}
+
+	public void setFinalValueOfPlot(BigDecimal finalValueOfPlot) {
+		this.finalValueOfPlot = finalValueOfPlot;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getNicCodeForDistrict() {
+		return nicCodeForDistrict;
+	}
+
+	public void setNicCodeForDistrict(String nicCodeForDistrict) {
+		this.nicCodeForDistrict = nicCodeForDistrict;
+	}
+
+	public BigDecimal getTotalLandArea() {
+		return totalLandArea;
+	}
+
+	public void setTotalLandArea(BigDecimal totalLandArea) {
+		this.totalLandArea = totalLandArea;
+	}
+	
+	
+	
+	
 	
 	
 	

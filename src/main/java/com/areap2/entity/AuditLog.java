@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "audit_log")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class AuditLog {
 
 	@Id

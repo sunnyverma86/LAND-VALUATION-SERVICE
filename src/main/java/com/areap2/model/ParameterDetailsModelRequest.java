@@ -15,6 +15,8 @@ public class ParameterDetailsModelRequest {
 	
 	private String discription;
 	
+	private Boolean visibleToCitizen;
+	
 	//private String code;
 
 	private Timestamp effectiveFrom;
@@ -58,6 +60,18 @@ public class ParameterDetailsModelRequest {
 	public void setEffectiveFrom(Timestamp effectiveFrom) {
 		this.effectiveFrom = effectiveFrom;
 	}
+
+	public Boolean getVisibleToCitizen() {
+		return visibleToCitizen;
+	}
+
+	public void setVisibleToCitizen(Boolean visibleToCitizen) {
+		this.visibleToCitizen = visibleToCitizen;
+	}
+
+	
+	
+	
 	
 	
 

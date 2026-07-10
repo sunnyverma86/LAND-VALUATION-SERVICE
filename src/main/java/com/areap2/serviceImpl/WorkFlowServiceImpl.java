@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import com.areap2.entity.LandSubClassDetails;
 import com.areap2.entity.LotDetails;
 import com.areap2.entity.MouzaDetails;
 import com.areap2.entity.VillageDetails;
+import com.areap2.model.ResponseModel;
 import com.areap2.entity.ParameterDetails;
 import com.areap2.entity.SubParameterDetails;
 import com.areap2.service.WorkFlowService;
@@ -1442,6 +1444,74 @@ public class WorkFlowServiceImpl extends AbstractMasterRepository implements Wor
 			return Collections.emptyList();
 
 		return Collections.singletonList(updatedEntity);
+	}
+
+	@Override
+	public ResponseModel getAllAuditDetails() {
+		String methodName = "getAllAuditDetails";
+		ResponseModel response = new ResponseModel();
+		try {
+			log.info("Request: Finding All AuditLog Details " + "  Method Name" + methodName + " Class : "
+					+ this.getClass());
+		
+			List<AuditLog> ist = auditLogRepo.findAll();
+			if (ist == null || ist.isEmpty()) {
+				log.info("Respond: No Data Found - All AuditLog Details " + "  Method Name" + methodName + " Class : "
+						+ this.getClass());
+				response.setHttpStatus(HttpStatus.NO_CONTENT);
+				response.setMessage("No Data Found");
+				return response;
+			}
+
+			response.setData(ist);
+			response.setHttpStatus(HttpStatus.OK);
+			response.setMessage("Data Fetched Successfully");
+
+			log.info("Respond : data Fetched successfully All AuditLog Details " + "  Method Name" + methodName
+					+ " Class : " + this.getClass());
+		} catch (Exception e) {
+			log.error("An error occurred while Finding  All AuditLog Details " + "  Method Name" + methodName
+					+ " Class : " + this.getClass());
+			e.printStackTrace();
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage(
+					"An error occurred while Finding  All AuditLog Details ,error : " + e.getLocalizedMessage());
+		}
+		return response;
+	}
+
+	@Override
+	public ResponseModel getAllAuditDetailsByReferenceId(Long refId) {
+		String methodName = "getAllAuditDetailsByReferenceId";
+		ResponseModel response = new ResponseModel();
+		try {
+			log.info("Request: Finding All AuditLog Details ByReferenceId " + "  Method Name" + methodName + " Class : "
+					+ this.getClass());
+		
+			List<AuditLog> ist = auditLogRepo.findAllByReferenceId(refId);
+			if (ist == null || ist.isEmpty()) {
+				log.info("Respond: No Data Found - All AuditLog Details ByReferenceId " + "  Method Name" + methodName + " Class : "
+						+ this.getClass());
+				response.setHttpStatus(HttpStatus.NO_CONTENT);
+				response.setMessage("No Data Found");
+				return response;
+			}
+
+			response.setData(ist);
+			response.setHttpStatus(HttpStatus.OK);
+			response.setMessage("Data Fetched Successfully");
+
+			log.info("Respond : data Fetched successfully All AuditLog Details ByReferenceId " + "  Method Name" + methodName
+					+ " Class : " + this.getClass());
+		} catch (Exception e) {
+			log.error("An error occurred while Finding  All AuditLog Details ByReferenceId " + "  Method Name" + methodName
+					+ " Class : " + this.getClass());
+			e.printStackTrace();
+			response.setHttpStatus(HttpStatus.EXPECTATION_FAILED);
+			response.setMessage(
+					"An error occurred while Finding  All AuditLog Details ByReferenceId ,error : " + e.getLocalizedMessage());
+		}
+		return response;
 	}
 
 

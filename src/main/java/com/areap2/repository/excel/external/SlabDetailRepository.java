@@ -14,4 +14,6 @@ public interface SlabDetailRepository extends JpaRepository<SlabDetail, Long> {
 	List<SlabDetail> findBySlabGroup(SlabGroup slabGroup);
 
 	List<SlabDetail> findBySlabGroupOrderByMinValueAsc(SlabGroup slabGroup);
+	
+	List<SlabDetail> findBySlabGroup_IdOrderByIdDesc(Long slabGroupId);
 }

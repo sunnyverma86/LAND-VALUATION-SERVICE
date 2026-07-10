@@ -1,5 +1,7 @@
 package com.areap2.controller.excel;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +9,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.areap2.dto.excel.SearchDtoRequest;
 import com.areap2.entity.excel.external.LandDataXlsParameter;
+import com.areap2.entity.excel.external.LandDataXlsPropertyOriginal;
+import com.areap2.service.excel.LandDataService;
 import com.areap2.service.excel.LandDataXlsPropertyMeasurementService;
 import com.areap2.service.excel.LandDataXlsPropertyParameterService;
 import com.areap2.serviceImpl.LandDataXlsPropertyOriginalPhaseOneService;
@@ -33,6 +39,9 @@ public class LandDataExcelController {
 
 	@Autowired
 	private LandDataXlsPropertyOriginalPhaseOneService migrationService;
+
+	@Autowired
+	private LandDataService LandDataService;
 
 	/**
 	 * Step 1: Import Excel data into land_data_property_measurement table
@@ -61,6 +70,7 @@ public class LandDataExcelController {
 	/**
 	 * Step 2: Migrate land_data_property_measurement → land_data_original
 	 */
+
 	@GetMapping("/export-data-db-to-db-phasei")
 	public ResponseEntity<String> migrateLandData() {
 
@@ -105,32 +115,31 @@ public class LandDataExcelController {
 			return ResponseEntity.internalServerError().body("Excel Import Failed: " + e.getMessage());
 		}
 	}
-	
-	
+
 	/**
 	 * Step 2: Migrate land_data_property_measurement → land_data_original
 	 */
 	@GetMapping("/export-data-db-to-db-phaseii")
 	public ResponseEntity<String> migrateLandDataPhaseii() {
 
-	    log.info("START :: Land Data Migration Phase II");
+		log.info("START :: Land Data Migration Phase II");
 
-	    try {
+		try {
 
-	        migrationService.migrateLandDataPhaseii();
+			migrationService.migrateLandDataPhaseii();
 
-	        log.info("SUCCESS :: Migration Completed");
+			log.info("SUCCESS :: Migration Completed");
 
-	        return ResponseEntity.ok("Migration Phase II Completed Successfully");
+			return ResponseEntity.ok("Migration Phase II Completed Successfully");
 
-	    } catch (Exception e) {
+		} catch (Exception e) {
 
-	        log.error("ERROR :: Migration Failed", e);
+			log.error("ERROR :: Migration Failed", e);
 
-	        return ResponseEntity.internalServerError()
-	                .body("Migration Failed: " + e.getMessage());
-	    }
+			return ResponseEntity.internalServerError().body("Migration Failed: " + e.getMessage());
+		}
 	}
+
 	/**
 	 * Get land data by district
 	 */
@@ -155,4 +164,42 @@ public class LandDataExcelController {
 			return ResponseEntity.internalServerError().build();
 		}
 	}
+
+	@PostMapping("/search")
+	public ResponseEntity<?> getLandData(@RequestBody SearchDtoRequest request) {
+
+		LandDataXlsPropertyOriginal data = LandDataService.getLandData(request);
+
+		return ResponseEntity.ok(data);
+	}
+
+	@PostMapping("/search-for-muliple")
+	public ResponseEntity<?> getLandDataForMuliple(@RequestBody SearchDtoRequest request) {
+
+		List<LandDataXlsPropertyOriginal> data = LandDataService.getLandDataMultiple(request);
+
+		return ResponseEntity.ok(data);
+	}
+	
+	@PostMapping("/import-excel-data-phaseii-kaus")
+	public ResponseEntity<String> importExcelDataPhaseiiKaus(@RequestParam String path) {
+
+		log.info("START :: Import Excel API :: path={}", path);
+
+		try {
+
+			parameterExcelService.processExcelKaus(path);
+
+			log.info("SUCCESS :: Excel Imported");
+
+			return ResponseEntity.ok("Excel Imported Successfully");
+
+		} catch (Exception e) {
+
+			log.error("ERROR :: Excel Import Failed", e);
+
+			return ResponseEntity.internalServerError().body("Excel Import Failed: " + e.getMessage());
+		}
+	}
+
 }

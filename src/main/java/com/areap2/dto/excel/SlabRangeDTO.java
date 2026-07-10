@@ -4,15 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Data
 public class SlabRangeDTO {
 
 	private String band;
 	private Double minValue;
 	private Double maxValue;
 	private Double weightage;//new changes
+	
+	
 	public String getBand() {
 		return band;
 	}

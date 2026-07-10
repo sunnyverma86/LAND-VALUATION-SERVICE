@@ -10,9 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Entity
 @Table(name = "distance_type", schema = "areap2landvaluationexcel")
 public class DistanceType {
@@ -24,7 +24,7 @@ public class DistanceType {
 	@Column(unique = true)
 	private String code;
 
-	private String columnName;
+	private String district;
 
 	private Boolean active;
 
@@ -44,14 +44,6 @@ public class DistanceType {
 		this.code = code;
 	}
 
-	public String getColumnName() {
-		return columnName;
-	}
-
-	public void setColumnName(String columnName) {
-		this.columnName = columnName;
-	}
-
 	public Boolean getActive() {
 		return active;
 	}
@@ -59,6 +51,16 @@ public class DistanceType {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
-	
-	
+
+	public DistanceType() {
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
 }

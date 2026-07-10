@@ -63,14 +63,14 @@ public class LandDataExcelServiceImpl implements LandDataXlsPropertyParameterSer
 				data.setGmLayer(getString(row.getCell(0)));
 				data.setGmType(getString(row.getCell(1)));
 				data.setObjectid(getBigDecimal(row.getCell(2)));
-				data.setTextParcel(getString(row.getCell(3)));
+				data.setTextParcel(removeDecimal(getString(row.getCell(3))));
 				data.setVillage(getString(row.getCell(4)));
 				data.setMouza(getString(row.getCell(5)));
 				data.setDistrict(getString(row.getCell(6)));
 				data.setType(getString(row.getCell(7)));
 				data.setArea(getBigDecimal(row.getCell(8)));
 				data.setNicCode(getString(row.getCell(9)));
-				data.setPlotCode(getBigDecimal(row.getCell(10)));
+				data.setPlotCode(getString(row.getCell(10)));
 				data.setCircle(getString(row.getCell(11)));
 				data.setShapeLeng(getBigDecimal(row.getCell(12)));
 				data.setShapeArea(getBigDecimal(row.getCell(13)));
@@ -120,6 +120,30 @@ public class LandDataExcelServiceImpl implements LandDataXlsPropertyParameterSer
 		}
 	}
 
+	private String removeDecimal(String value) {
+
+		if (value == null || value.trim().isEmpty()) {
+			return null;
+		}
+
+		try {
+			// Convert to BigDecimal → remove decimal part safely
+			BigDecimal bd = new BigDecimal(value.trim());
+
+			// Convert to integer (remove decimal)
+			return bd.toBigInteger().toString();
+
+		} catch (Exception e) {
+			// fallback (if not a number)
+			if (value.contains(".")) {
+				return value.substring(0, value.indexOf("."));
+			}
+			return value;
+		}
+	}
+	
+
+
 	private String getString(Cell cell) {
 		if (cell == null)
 			return null;
@@ -152,4 +176,91 @@ public class LandDataExcelServiceImpl implements LandDataXlsPropertyParameterSer
 
 		return result;
 	}
+	
+	
+	
+	
+	@Transactional
+	public void processExcelKaus(String filePath) {
+
+		int batchSize = 1000;
+		int count = 0;
+
+		List<LandDataXlsParameter> batchList = new ArrayList<>(batchSize);
+
+		try (FileInputStream fis = new FileInputStream(filePath); Workbook workbook = WorkbookFactory.create(fis)) {
+
+			Sheet sheet = workbook.getSheetAt(0);
+			Iterator<Row> rows = sheet.iterator();
+
+			// Skip header
+			if (rows.hasNext()) {
+				rows.next();
+			}
+
+			while (rows.hasNext()) {
+
+				Row row = rows.next();
+				LandDataXlsParameter data = new LandDataXlsParameter();
+
+				data.setGmLayer(getString(row.getCell(0)));
+				data.setGmType(getString(row.getCell(1)));
+				data.setObjectid(getBigDecimal(row.getCell(2)));
+				data.setTextParcel(removeDecimal(getString(row.getCell(3))));
+				data.setVillage(getString(row.getCell(4)));
+				data.setMouza(getString(row.getCell(5)));
+				data.setDistrict(getString(row.getCell(6)));
+				data.setType(getString(row.getCell(7)));
+				data.setArea(getBigDecimal(row.getCell(8)));
+				data.setNicCode(getString(row.getCell(9)));
+				data.setPlotCode(getString(row.getCell(10)));
+				data.setCircle(getString(row.getCell(11)));
+				data.setShapeLeng(getBigDecimal(row.getCell(12)));
+				data.setShapeArea(getBigDecimal(row.getCell(13)));
+				data.setFid2(getBigDecimal(row.getCell(14)));
+				data.setFid1(getBigDecimal(row.getCell(15)));
+				data.setOrigFid(getBigDecimal(row.getCell(16)));
+				data.setFidPwd(getBigDecimal(row.getCell(17)));
+				data.setDistPwd(getBigDecimal(row.getCell(18)));
+				data.setFidTr(getBigDecimal(row.getCell(19)));
+				data.setDistTr(getBigDecimal(row.getCell(20)));
+				data.setFidPrk(getBigDecimal(row.getCell(21)));
+				data.setDistPrk(getBigDecimal(row.getCell(22)));
+				data.setFidWtrLg(getBigDecimal(row.getCell(23)));
+				data.setDisWtrLg(getBigDecimal(row.getCell(24)));
+				data.setfUrMjcbd(getBigDecimal(row.getCell(25)));
+				data.setdUrMjcbd(getBigDecimal(row.getCell(26)));
+				data.setfUrMncbd(getBigDecimal(row.getCell(27)));
+				data.setdUrMncbd(getBigDecimal(row.getCell(28)));
+				data.setfRlMjcbd(getBigDecimal(row.getCell(29)));
+				data.setdRlMjcbd(getBigDecimal(row.getCell(30)));
+
+				batchList.add(data);
+				count++;
+
+				if (count % batchSize == 0) {
+
+					repository.saveAll(batchList);
+					repository.flush();
+					entityManager.clear();
+					batchList.clear();
+
+					System.out.println("Inserted: " + count);
+				}
+			}
+
+			if (!batchList.isEmpty()) {
+				repository.saveAll(batchList);
+				repository.flush();
+				entityManager.clear();
+			}
+
+			System.out.println("TOTAL INSERTED: " + count);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Excel Import Failed", e);
+		}
+	}
+
 }

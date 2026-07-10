@@ -10,4 +10,6 @@ public interface LandDataXlsPropertyParameterService {
 
 	Page<LandDataXlsParameter> getLandDataByDistrict(String district, int page, int size);
 
+	void processExcelKaus(String path);
+
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.areap2.entity.AuditLog;
 import com.areap2.entity.DistrictDetails;
+import com.areap2.model.ResponseModel;
 
 @Service
 public interface WorkFlowService {
@@ -36,6 +37,10 @@ public interface WorkFlowService {
 	public List<?> getRequestsByIdAndMasterAndActionAdc(Long id, String masterType, String masterCode, String action,
 			String currentStatusCode);
 	public List<?> getRequestsByIdAndMasterAndActionDeputyCom(Long id, String masterType, String masterCode, String action, String statusCode,String requestType);
+
+	public ResponseModel getAllAuditDetails();
+
+	public ResponseModel getAllAuditDetailsByReferenceId(Long refId);
 	
 	
 	

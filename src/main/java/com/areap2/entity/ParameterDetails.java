@@ -80,6 +80,9 @@ public class ParameterDetails implements Serializable {
 
 	@Column(name = "parameter_description")
 	private String parameterDescription;
+	
+	@Column(name = "visible_to_citizen")
+	private Boolean visibleToCitizen;
 
 	public Long getParameterGenId() {
 		return parameterGenId;
@@ -228,6 +231,16 @@ public class ParameterDetails implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public Boolean getVisibleToCitizen() {
+		return visibleToCitizen;
+	}
+
+	public void setVisibleToCitizen(Boolean visibleToCitizen) {
+		this.visibleToCitizen = visibleToCitizen;
+	}
+	
+	
 	
 	
 	

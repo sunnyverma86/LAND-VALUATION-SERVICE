@@ -63,7 +63,7 @@ public class SlabService_Old_Working {
 
 					DistanceType newType = new DistanceType();
 					newType.setCode(request.getDistanceTypeCode());
-					newType.setColumnName(generateColumnName(request.getDistanceTypeCode()));
+					newType.setDistrict(generateColumnName(request.getDistanceTypeCode()));
 					newType.setActive(true);
 
 					return distanceTypeRepository.save(newType);

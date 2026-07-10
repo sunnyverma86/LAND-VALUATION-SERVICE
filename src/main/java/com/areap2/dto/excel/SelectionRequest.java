@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class SelectionRequest {
 
 	@NotNull
@@ -15,6 +15,9 @@ public class SelectionRequest {
 
 	@NotNull
 	private String selectedOption; // "Male" | "Female" | "Joint"
+
+	public SelectionRequest() {
+	}
 
 	public Long getInstrumentId() {
 		return instrumentId;
@@ -31,11 +34,5 @@ public class SelectionRequest {
 	public void setSelectedOption(String selectedOption) {
 		this.selectedOption = selectedOption;
 	}
-	
-	
-	
-	
-	
-	
 
 }

@@ -58,6 +58,14 @@ public class DistrictDetails implements Serializable {
 	
 	@Column(name = "request_status")
 	private String requestStatus;
+	
+	@Column(name = "is_cornor_plot")
+	private String isCornorPlot;
+	
+	@Column(name = "value_of_cornor_plot")
+	private String valueOfCornorPlot;
+	
+	
 
 	public Long getDistrictGenId() {
 		return districtGenId;
@@ -150,6 +158,24 @@ public class DistrictDetails implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public String getIsCornorPlot() {
+		return isCornorPlot;
+	}
+
+	public void setIsCornorPlot(String isCornorPlot) {
+		this.isCornorPlot = isCornorPlot;
+	}
+
+	public String getValueOfCornorPlot() {
+		return valueOfCornorPlot;
+	}
+
+	public void setValueOfCornorPlot(String valueOfCornorPlot) {
+		this.valueOfCornorPlot = valueOfCornorPlot;
+	}
+	
+	
 	
 	
 	

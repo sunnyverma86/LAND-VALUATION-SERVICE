@@ -31,7 +31,7 @@ import com.areap2.model.VillageDetailsModelUpdateRequest;
 import com.areap2.service.MasterDataService2;
 
 @RestController
-@RequestMapping("/masterData")
+@RequestMapping("/masterData-v5")
 //@CrossOrigin
 public class MasterDataController {
 
