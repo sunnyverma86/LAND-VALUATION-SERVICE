@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -22,8 +21,7 @@ public class ZonalValues implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "areap2_zone_zone_gen_id_seq", sequenceName = "areap2_zone_zone_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_zone_zone_gen_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "zonal_values_gen_id")
 	private Long zonalValuesGenId;
 
@@ -335,9 +333,5 @@ public class ZonalValues implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	
-	
 
 }

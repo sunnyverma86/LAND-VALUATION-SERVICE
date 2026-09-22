@@ -16,7 +16,11 @@ public class MouzaFactorBaseDatabase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "mouza_factor_gen_id")
+	private Long mouzaFactorGenId;
+
+	@Column(name = "mouza_factor_code")
+	private String mouzaFactorCode;
 
 	private String district;
 
@@ -46,26 +50,43 @@ public class MouzaFactorBaseDatabase {
 	@Column(name = "final_mf_zonal_value")
 	private BigDecimal finalMfZonalValue;
 
-	private String status;
-
-	private String createdBy;
-
 	private LocalDateTime createdDtm;
 
+	//
+
+	@Column(name = "created_at", insertable = false, updatable = false)
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_at", insertable = false, updatable = false)
+	private LocalDateTime updatedAt;
+
+	@Column(name = "status")
+	private String status;
+
+	@Column(name = "active")
+	private Boolean active;
+
+	@Column(name = "status_code")
+	private String statusCode;
+
+	@Column(name = "request_status")
+	private String requestStatus;
+
+	@Column(name = "created_by")
+	private String createdBy;
+
+	@Column(name = "updated_by")
 	private String updatedBy;
 
+	@Column(name = "updated_dtm")
 	private LocalDateTime updatedDtm;
+
+	//
+
+	//
 
 	public MouzaFactorBaseDatabase() {
 
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getMouza() {
@@ -195,5 +216,63 @@ public class MouzaFactorBaseDatabase {
 	public void setUpdatedDtm(LocalDateTime updatedDtm) {
 		this.updatedDtm = updatedDtm;
 	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public Long getMouzaFactorGenId() {
+		return mouzaFactorGenId;
+	}
+
+	public void setMouzaFactorGenId(Long mouzaFactorGenId) {
+		this.mouzaFactorGenId = mouzaFactorGenId;
+	}
+
+	public String getMouzaFactorCode() {
+		return mouzaFactorCode;
+	}
+
+	public void setMouzaFactorCode(String mouzaFactorCode) {
+		this.mouzaFactorCode = mouzaFactorCode;
+	}
+
+	
 
 }

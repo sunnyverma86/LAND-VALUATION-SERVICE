@@ -64,7 +64,7 @@ public class MasterBaseController {
 	private LandOutputService landOutputService;
 
 	// dm
-	@PostMapping("/saveDistrictMinimumBaseDatabase")
+	@PostMapping("/saveDistrictMinimumBaseDatabase")//done
 	public ResponseModel saveDistrictMinimumBaseDatabase(@RequestBody DistrictMinimumBaseDatabase request) {
 
 		final String methodName = "saveDistrictMinimumBaseDatabase";
@@ -94,7 +94,7 @@ public class MasterBaseController {
 		return response;
 	}
 
-	@GetMapping("/getDistrictMinimumBaseDatabaseById")
+	@GetMapping("/getDistrictMinimumBaseDatabaseById")//done
 	public ResponseModel getDistrictMinimumBaseDatabaseById(@RequestParam Long id) {
 
 		final String methodName = "getDistrictMinimumBaseDatabaseById";
@@ -125,7 +125,7 @@ public class MasterBaseController {
 		return response;
 	}
 
-	@DeleteMapping("/deleteDistrictMinimumBaseDatabase")
+	@DeleteMapping("/deleteDistrictMinimumBaseDatabase")//done
 	public ResponseModel deleteDistrictMinimumBaseDatabase(@RequestParam Long id) {
 
 		final String methodName = "deleteDistrictMinimumBaseDatabase";
@@ -156,7 +156,7 @@ public class MasterBaseController {
 		return response;
 	}
 
-	@GetMapping("/getAllDistrictMinimumBaseDatabase")
+	@GetMapping("/getAllDistrictMinimumBaseDatabase")//done
 	public ResponseModel getAllDistrictMinimumBaseDatabase() {
 
 		final String methodName = "getAllDistrictMinimumBaseDatabase";
@@ -187,7 +187,7 @@ public class MasterBaseController {
 		return response;
 	}
 
-	@PutMapping("/updateDistrictMinimumBaseDatabase")
+	@PutMapping("/updateDistrictMinimumBaseDatabase")//done
 	public ResponseModel updateDistrictMinimumBaseDatabase(@RequestParam Long id,
 			@RequestBody DistrictMinimumBaseDatabase request) {
 
@@ -225,7 +225,7 @@ public class MasterBaseController {
 	}
 
 //luf
-	@PostMapping("/land-use-factor/save")
+	@PostMapping("/land-use-factor/save")//done
 	public ResponseModel saveLandUseFactor(@RequestBody LandUseFactorExcelEntity request) {
 
 		ResponseModel response = new ResponseModel();
@@ -243,19 +243,19 @@ public class MasterBaseController {
 		return response;
 	}
 
-	@GetMapping("/land-use-factor/getAll")
+	@GetMapping("/land-use-factor/getAll")//done
 	public ResponseModel getAllLandUseFactor() {
 
 		return landUseFactorExcelService.getAll();
 	}
 
-	@GetMapping("/land-use-factor/getById/{id}")
+	@GetMapping("/land-use-factor/getById/{id}")//done
 	public ResponseModel getByIdLandUseFactor(@PathVariable Long id) {
 
 		return landUseFactorExcelService.getById(id);
 	}
 
-	@PutMapping("/land-use-factor/update/{id}")
+	@PutMapping("/land-use-factor/update/{id}")//done
 	public ResponseModel updateLandUseFactor(@PathVariable Long id, @RequestBody LandUseFactorExcelEntity request) {
 
 		ResponseModel response = new ResponseModel();
@@ -273,7 +273,7 @@ public class MasterBaseController {
 		return response;
 	}
 
-	@DeleteMapping("/land-use-factor/delete/{id}")
+	@DeleteMapping("/land-use-factor/delete/{id}")//done
 	public ResponseModel deleteLandUseFactor(@PathVariable Long id) {
 
 		ResponseModel response = new ResponseModel();
@@ -291,31 +291,6 @@ public class MasterBaseController {
 		return response;
 	}
 
-	@PostMapping("/landuse/save")
-	public LandUseMaster save(@RequestBody LandUseMaster landUseMaster) {
-		return landUseMasterService.save(landUseMaster);
-	}
-
-	@GetMapping("/landuse/get-all")
-	public List<LandUseMaster> getAll() {
-		return landUseMasterService.getAll();
-	}
-
-	@GetMapping("/landuse/get-by-id/{id}")
-	public LandUseMaster getById(@PathVariable Long id) {
-		return landUseMasterService.getById(id);
-	}
-
-	@PutMapping("landuse/update-by-id/{id}")
-	public LandUseMaster update(@PathVariable Long id, @RequestBody LandUseMaster landUseMaster) {
-		return landUseMasterService.update(id, landUseMaster);
-	}
-
-	@DeleteMapping("landuse/delete/{id}")
-	public String delete(@PathVariable Long id) {
-		landUseMasterService.delete(id);
-		return "Land Use deleted successfully";
-	}
 
 	// mf---MouzaFactor mouzaFactorJpaServiceImpl
 
@@ -673,4 +648,30 @@ public class MasterBaseController {
 		return "Deleted Successfully";
 	}
 
+
+	@PostMapping("/landuse/save")
+	public ResponseModel save(@RequestBody LandUseMaster landUseMaster) {
+		return landUseMasterService.save(landUseMaster);
+	}
+
+	@GetMapping("/landuse/get-all")
+	public ResponseModel getAll() {
+		return landUseMasterService.getAll();
+	}
+
+	@GetMapping("/landuse/get-by-id/{id}")
+	public ResponseModel getById(@PathVariable Long id) {
+		return landUseMasterService.getById(id);
+	}
+
+	@PutMapping("landuse/update-by-id/{id}")
+	public ResponseModel update(@PathVariable Long id, @RequestBody LandUseMaster landUseMaster) {
+		return landUseMasterService.update(id, landUseMaster);
+	}
+
+	@DeleteMapping("landuse/delete/{id}")
+	public String delete(@PathVariable Long id) {
+		landUseMasterService.delete(id);
+		return "Land Use deleted successfully";
+	}
 }

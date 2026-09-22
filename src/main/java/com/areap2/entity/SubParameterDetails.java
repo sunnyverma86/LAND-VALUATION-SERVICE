@@ -10,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -23,41 +22,40 @@ public class SubParameterDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "areap2_sub_parameter_details_sub_parameter_gen_id_seq", sequenceName = "areap2_sub_parameter_details_sub_parameter_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_sub_parameter_details_sub_parameter_gen_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sub_parameter_gen_id")
 	private Long subParameterGenId;
 
 	@Column(name = "parameter_code")
 	private String parameterCode;
-	
+
 	@Column(name = "band_code")
 	private String bandCode;
-	
+
 	@Column(name = "weightage")
 	private BigDecimal weightage;
-	
+
 	@Column(name = "effective_till")
 	private String effectiveTill;
-	
+
 	@Column(name = "area_type")
 	private String areaType;
-	
+
 	@Column(name = "district")
 	private String district;
-	
+
 	@Column(name = "band")
 	private String band;
-	
+
 	@Column(name = "distance_from")
 	private BigDecimal distanceFrom;
-	
+
 	@Column(name = "distance_to")
 	private BigDecimal distanceTo;
-	
+
 	@Column(name = "perpetual")
 	private Boolean perpetual;
-	
+
 	@Column(name = "created_by")
 	private String createdBy;
 
@@ -81,19 +79,19 @@ public class SubParameterDetails implements Serializable {
 
 	@Column(name = "status_code")
 	private String statusCode;
-	
+
 	@Column(name = "request_status")
 	private String requestStatus;
-	
+
 	@Column(name = "district_code")
 	private String districtCode;
-	
+
 	@Column(name = "sub_parameter_code")
 	private String subParameterCode;
-	
+
 	@Column(name = "sub_parameter_name")
 	private String subParameterName;
-	
+
 	@Column(name = "active")
 	private boolean active;
 
@@ -292,12 +290,5 @@ public class SubParameterDetails implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	
-	
-	
-
-	
 
 }

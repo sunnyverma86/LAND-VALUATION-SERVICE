@@ -72,6 +72,4 @@ public class Instrument {
 		this.jointDuty = jointDuty;
 	}
 
-	
-	
 }

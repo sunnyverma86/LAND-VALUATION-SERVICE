@@ -2,6 +2,11 @@ package com.areap2.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.areap2.controller.excel.map.repo.DistrictMinimumBaseDatabaseRepository;
+import com.areap2.controller.excel.map.repo.LandUseFactorExcelEntityRepository;
+import com.areap2.controller.excel.map.repo.MouzaFactorBaseDatabaseRepository;
+import com.areap2.controller.excel.map.repo.MouzaFactorJpaRepository;
+import com.areap2.controller.excel.map.repo.VillageLandClassRepository;
 import com.areap2.repository.AreaTypesRepo;
 import com.areap2.repository.AuditLogRepo;
 import com.areap2.repository.CircleDetailsRepo;
@@ -65,12 +70,29 @@ public abstract class AbstractMasterRepository {
 	LandSubClassDetailsRepo landSubClassDetailsRepo;
 
 	@Autowired
-	AuditLogRepo auditLogRepo;
+	MouzaFactorBaseDatabaseRepository mouzaFactorBaseDatabaseRepository;
 
 	@Autowired
 	StampDutyCalculationRepo stampDutyCalculationRepo;
-	
+
 	@Autowired
 	LandsCategoryDetailsRepo landsCategoryDetailsRepo;
+
+	@Autowired
+	DistrictMinimumBaseDatabaseRepository districtMinimumBaseDatabaseRepo;
+
+	@Autowired
+	LandUseFactorExcelEntityRepository landUseFactorExcelEntityRepository;
+
+	@Autowired
+	MouzaFactorJpaRepository mouzaFactorJpaRepository;
+	
+	@Autowired
+	VillageLandClassRepository villageLandClassRepository;
+
+
+
+	@Autowired
+	AuditLogRepo auditLogRepo;
 
 }

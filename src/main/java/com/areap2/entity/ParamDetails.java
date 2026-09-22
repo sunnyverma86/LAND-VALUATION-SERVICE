@@ -23,8 +23,7 @@ public class ParamDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "cluster_details_cluster_details_gen_id_seq", sequenceName = "cluster_details_cluster_details_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "cluster_details_cluster_details_gen_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	@Column(name = "parameter_id")
 	private Long parameterId;

@@ -588,7 +588,7 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 			DistrictDetails savedDistrictDetails = districtDetailsRepo.saveAndFlush(districtDetails);
 
 			// Log action
-			logAction(loginId, ModelConstant.DISTRICT, ModelConstant.ADD,
+			logAction(loginId, ModelConstant.DISTRICT_MINIMUM, ModelConstant.ADD,
 					"District Code: " + savedDistrictDetails.getDistrictCode(),
 					"District added, name: " + savedDistrictDetails.getDistrictName(), savedDistrictDetails.getStatus(),
 					savedDistrictDetails.getStatusCode(), savedDistrictDetails.getDistrictGenId());
@@ -710,7 +710,7 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 
 			DistrictDetails savedDistrict = districtDetailsRepo.save(districtDetails);
 
-			logAction(loginId, ModelConstant.DISTRICT, ModelConstant.UPDATE,
+			logAction(loginId, ModelConstant.DISTRICT_MINIMUM, ModelConstant.UPDATE,
 					"District Code: " + savedDistrict.getDistrictCode(),
 					"District updated, name: " + savedDistrict.getDistrictName(), savedDistrict.getStatus(),
 					savedDistrict.getStatusCode(), savedDistrict.getDistrictGenId());
@@ -810,7 +810,7 @@ public class MasterDataServiceImpl2 extends AbstractMasterRepository implements 
 			}
 			DistrictDetails savedDistrict = districtDetailsRepo.save(districtDetails);
 
-			logAction(loginId, ModelConstant.DISTRICT, ModelConstant.DELETE,
+			logAction(loginId, ModelConstant.DISTRICT_MINIMUM, ModelConstant.DELETE,
 					"District Code: " + savedDistrict.getDistrictCode(),
 					"District deleted (set active=false) , name: " + savedDistrict.getDistrictName(),
 					savedDistrict.getStatus(), savedDistrict.getStatusCode(), savedDistrict.getDistrictGenId());

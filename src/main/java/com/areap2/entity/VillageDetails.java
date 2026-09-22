@@ -23,8 +23,7 @@ public class VillageDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "areap2_village_details_village_gen_id_seq", sequenceName = "areap2_village_details_village_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_village_details_village_gen_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "village_gen_id")
 	private Long villageGenId;
 

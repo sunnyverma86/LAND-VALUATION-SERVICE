@@ -76,4 +76,11 @@ public class MfBatchRepositoryImpl implements MouzaFactorBaseDatabaseRepository 
 
 	}
 
+
+	@Override
+	public MouzaFactorBaseDatabase findByMouzaFactorGenId(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

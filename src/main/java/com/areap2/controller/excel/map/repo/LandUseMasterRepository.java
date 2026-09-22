@@ -15,4 +15,6 @@ public interface LandUseMasterRepository extends JpaRepository<LandUseMaster, Lo
 
 	List<LandUseMaster> findByStatus(String status);
 
+	//List<LandUseMaster> findByStatusIsTrue();
+
 }

@@ -22,8 +22,7 @@ public class CircleDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "areap2_circle_details_circle_gen_id_seq", sequenceName = "areap2_circle_details_circle_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_circle_details_circle_gen_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "circle_gen_id")
 	private Long circleGenId;
 

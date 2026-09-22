@@ -10,12 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "district_minimum_base_database",schema = "kau")
+@Table(name = "district_minimum_base_database", schema = "kau")
 public class DistrictMinimumBaseDatabase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "district_minimum_gen_id")
+	private Long districtMinimumGenId;
+
+	@Column(name = "district_minimum_code")
+	private String districtMinimumCode;
+	
+	
 
 	@Column(name = "district")
 	private String district;
@@ -29,8 +35,6 @@ public class DistrictMinimumBaseDatabase {
 	@Column(name = "district_minimum_value")
 	private Double districtMinimumValue;
 
-	private String status;
-
 	@Column(name = "created_by")
 	private String createdBy;
 
@@ -43,15 +47,20 @@ public class DistrictMinimumBaseDatabase {
 	@Column(name = "updated_dtm")
 	private LocalDateTime updatedDtm;
 
+	@Column(name = "request_status")
+	private String requestStatus;
+
+	@Column(name = "status")
+	private String status;
+
+	@Column(name = "active")
+	private Boolean active;
+
+	@Column(name = "status_code")
+	private String statusCode;
+	
+
 	public DistrictMinimumBaseDatabase() {
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getDistrict() {
@@ -125,5 +134,51 @@ public class DistrictMinimumBaseDatabase {
 	public void setUpdatedDtm(LocalDateTime updatedDtm) {
 		this.updatedDtm = updatedDtm;
 	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public Long getDistrictMinimumGenId() {
+		return districtMinimumGenId;
+	}
+
+	public void setDistrictMinimumGenId(Long districtMinimumGenId) {
+		this.districtMinimumGenId = districtMinimumGenId;
+	}
+
+	public String getDistrictMinimumCode() {
+		return districtMinimumCode;
+	}
+
+	public void setDistrictMinimumCode(String districtMinimumCode) {
+		this.districtMinimumCode = districtMinimumCode;
+	}
+
+	
+
+	
+	
+	
 
 }

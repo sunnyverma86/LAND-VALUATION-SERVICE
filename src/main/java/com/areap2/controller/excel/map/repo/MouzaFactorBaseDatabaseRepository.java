@@ -9,7 +9,9 @@ import com.areap2.controller.excel.map.enity.MouzaFactorBaseDatabase;
 
 @Repository
 public interface MouzaFactorBaseDatabaseRepository  {
-	
+
 	void saveBatch(List<MouzaFactorBaseDatabase> records);
+
+	MouzaFactorBaseDatabase findByMouzaFactorGenId(Long id);
 
 }

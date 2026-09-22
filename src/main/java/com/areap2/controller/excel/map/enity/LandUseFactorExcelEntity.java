@@ -14,9 +14,14 @@ import jakarta.persistence.Table;
 @Table(name = "land_use_factor", schema = "kau")
 public class LandUseFactorExcelEntity {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "land_use_factor_gen_id")
+	private Long landUseFactorGenId;
+
+	@Column(name = "land_use_factor_code")
+	private String landUseFactorCode;
 
 	@Column(name = "land_use")
 	private String landUse;
@@ -43,10 +48,17 @@ public class LandUseFactorExcelEntity {
 
 	@Column(name = "updated_dtm")
 	private LocalDateTime updatedDtm;
+	
+	@Column(name = "request_status")
+	private String requestStatus;
+	
+	@Column(name = "active")
+	private Boolean active;
 
-	public Long getId() {
-		return id;
-	}
+	@Column(name = "status_code")
+	private String statusCode;
+
+
 
 	public String getLandUse() {
 		return landUse;
@@ -80,9 +92,6 @@ public class LandUseFactorExcelEntity {
 		this.district = district;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getStatus() {
 		return status;
@@ -127,5 +136,56 @@ public class LandUseFactorExcelEntity {
 	public LandUseFactorExcelEntity() {
 
 	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public Long getLandUseFactorGenId() {
+		return landUseFactorGenId;
+	}
+
+	public void setLandUseFactorGenId(Long landUseFactorGenId) {
+		this.landUseFactorGenId = landUseFactorGenId;
+	}
+
+	public String getLandUseFactorCode() {
+		return landUseFactorCode;
+	}
+
+	public void setLandUseFactorCode(String landUseFactorCode) {
+		this.landUseFactorCode = landUseFactorCode;
+	}
+
+	
+
+
+	
+
+	
+	
+	
+	
+	
 
 }

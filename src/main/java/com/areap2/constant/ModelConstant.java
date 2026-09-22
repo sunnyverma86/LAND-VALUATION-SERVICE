@@ -30,7 +30,7 @@ public class ModelConstant {
     public static final String APPROVE = "Approve";
     public static final String REJECT = "Reject";
     public static final String REFER_BACK = "Refer Back";
-    public static final String COMPLETE = "Complete";
+    public static final String COMPLETE = "ACTIVE";
     public static final String HALF_COMPLETE = "Partial Complete";
     public static final String NEXT_LEVEL = "Next Level";
     public static final String REFER_BACK_TO_J_M = "Refer Back to Junior Manager";
@@ -48,6 +48,11 @@ public class ModelConstant {
 
     
     
+    public static final String DISTRICT_MINIMUM = "DistrictMinimum";
+    public static final String LAND_USE_FACTOR = "LandUseFactor";
+    public static final String MOUZA_FACTOR_CALCULATION = "MouzaFactorCalculation";
+    public static final String VILLAGE_FACTOR_CALCULATION = "VillageFactorCalculation";
+    public static final String PARAMETER_CALCULATION = "ParameterCalculation";
     public static final String DISTRICT = "District";
     public static final String CIRCLE = "Circle";
     public static final String MAUZA = "Mauza";

@@ -9,5 +9,5 @@ public enum ParameterName {
     WATER_LOGGED,
     OIL_PIPELINE,
     ECO_SENSITIVE,
-    CORNOR_PLOT
+    CORNER_PLOT
 }

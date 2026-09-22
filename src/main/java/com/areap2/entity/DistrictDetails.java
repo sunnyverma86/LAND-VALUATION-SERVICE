@@ -22,8 +22,7 @@ public class DistrictDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "areap2_district_details_district_gen_id_seq", sequenceName = "areap2_district_details_district_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "areap2_district_details_district_gen_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "district_gen_id")
 	private Long districtGenId;
 
@@ -33,8 +32,7 @@ public class DistrictDetails implements Serializable {
 	@Column(name = "district_code",nullable=false)
 	private String districtCode;
 
-	@Column(name = "active")
-	private Boolean active;
+	
 
 	@Column(name = "created_by")
 	private String createdBy;
@@ -52,6 +50,8 @@ public class DistrictDetails implements Serializable {
 	@Column(name = "status")
 	private String status;
 
+	@Column(name = "active")
+	private Boolean active;
 	
 	@Column(name = "status_code")
 	private String statusCode;
@@ -59,11 +59,11 @@ public class DistrictDetails implements Serializable {
 	@Column(name = "request_status")
 	private String requestStatus;
 	
-	@Column(name = "is_cornor_plot")
-	private String isCornorPlot;
+	@Column(name = "is_corner_plot")
+	private String isCornerPlot;
 	
-	@Column(name = "value_of_cornor_plot")
-	private String valueOfCornorPlot;
+	@Column(name = "value_of_corner_plot")
+	private String valueOfCornerPlot;
 	
 	
 
@@ -159,21 +159,23 @@ public class DistrictDetails implements Serializable {
 		return serialVersionUID;
 	}
 
-	public String getIsCornorPlot() {
-		return isCornorPlot;
+	public String getIsCornerPlot() {
+		return isCornerPlot;
 	}
 
-	public void setIsCornorPlot(String isCornorPlot) {
-		this.isCornorPlot = isCornorPlot;
+	public void setIsCornerPlot(String isCornerPlot) {
+		this.isCornerPlot = isCornerPlot;
 	}
 
-	public String getValueOfCornorPlot() {
-		return valueOfCornorPlot;
+	public String getValueOfCornerPlot() {
+		return valueOfCornerPlot;
 	}
 
-	public void setValueOfCornorPlot(String valueOfCornorPlot) {
-		this.valueOfCornorPlot = valueOfCornorPlot;
+	public void setValueOfCornerPlot(String valueOfCornerPlot) {
+		this.valueOfCornerPlot = valueOfCornerPlot;
 	}
+
+
 	
 	
 	

@@ -20,14 +20,32 @@ public class LandUseMaster {
 	@Column(name = "land_use_name", nullable = false, unique = true)
 	private String landUseName;
 
-	@Column(name = "status")
-	private String status;
-
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private LocalDateTime createdAt;
 
 	@Column(name = "updated_at", insertable = false, updatable = false)
 	private LocalDateTime updatedAt;
+
+	@Column(name = "status")
+	private String status;
+
+	@Column(name = "active")
+	private Boolean active;
+
+	@Column(name = "status_code")
+	private String statusCode;
+
+	@Column(name = "request_status")
+	private String requestStatus;
+
+	@Column(name = "created_by")
+	private String createdBy;
+
+	@Column(name = "updated_by")
+	private String updatedBy;
+
+	@Column(name = "updated_dtm")
+	private LocalDateTime updatedDtm;
 
 	public LandUseMaster() {
 
@@ -71,6 +89,54 @@ public class LandUseMaster {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public LocalDateTime getUpdatedDtm() {
+		return updatedDtm;
+	}
+
+	public void setUpdatedDtm(LocalDateTime updatedDtm) {
+		this.updatedDtm = updatedDtm;
 	}
 
 }

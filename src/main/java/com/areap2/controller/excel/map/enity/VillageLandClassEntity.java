@@ -14,16 +14,21 @@ import jakarta.persistence.Table;
 @Table(name = "village_land_class", schema = "kau")
 public class VillageLandClassEntity {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "village_factor_gen_id")
+	private Long villageFactorGenId;
+
+	@Column(name = "village_factor_code")
+	private String villageFactorCode;
 
 	@Column(name = "excel_id")
 	private String excelId;
 
 	@Column(name = "village")
 	private String village;
-	
+
 	@Column(name = "mouza")
 	private String mouza;
 
@@ -32,7 +37,7 @@ public class VillageLandClassEntity {
 
 	@Column(name = "land_class")
 	private String landClass;
-	
+
 	@Column(name = "village_code")
 	private Long villageCode;
 
@@ -69,17 +74,38 @@ public class VillageLandClassEntity {
 	@Column(name = "band_ratio")
 	private BigDecimal bandRatio;
 
-	private String status;
-	
 	private String district;
-
-	private String createdBy;
 
 	private LocalDateTime createdDtm;
 
+	//
+	@Column(name = "created_at", insertable = false, updatable = false)
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_at", insertable = false, updatable = false)
+	private LocalDateTime updatedAt;
+
+	@Column(name = "status")
+	private String status;
+
+	@Column(name = "active")
+	private Boolean active;
+
+	@Column(name = "status_code")
+	private String statusCode;
+
+	@Column(name = "request_status")
+	private String requestStatus;
+
+	@Column(name = "created_by")
+	private String createdBy;
+
+	@Column(name = "updated_by")
 	private String updatedBy;
 
+	@Column(name = "updated_dtm")
 	private LocalDateTime updatedDtm;
+	//
 
 	public VillageLandClassEntity() {
 
@@ -87,9 +113,6 @@ public class VillageLandClassEntity {
 
 	// ===== Getters and Setters =====
 
-	public Long getId() {
-		return id;
-	}
 
 	public String getExcelId() {
 		return excelId;
@@ -251,9 +274,7 @@ public class VillageLandClassEntity {
 		this.updatedDtm = updatedDtm;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 
 	public String getDistrict() {
 		return district;
@@ -262,8 +283,79 @@ public class VillageLandClassEntity {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
+
+	public Long getVillageFactorGenId() {
+		return villageFactorGenId;
+	}
+
+	public void setVillageFactorGenId(Long villageFactorGenId) {
+		this.villageFactorGenId = villageFactorGenId;
+	}
+
+	public String getVillageFactorCode() {
+		return villageFactorCode;
+	}
+
+	public void setVillageFactorCode(String villageFactorCode) {
+		this.villageFactorCode = villageFactorCode;
+	}
+
+	public String getMouza() {
+		return mouza;
+	}
+
+	public void setMouza(String mouza) {
+		this.mouza = mouza;
+	}
+
+	public Long getVillageCode() {
+		return villageCode;
+	}
+
+	public void setVillageCode(Long villageCode) {
+		this.villageCode = villageCode;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
 	
 	
-	
-	
+
 }

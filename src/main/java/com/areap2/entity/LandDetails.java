@@ -22,8 +22,7 @@ public class LandDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@SequenceGenerator(name = "land_details_land_details_gen_id_seq", sequenceName = "land_details_land_details_gen_id_seq", allocationSize = 1, schema = "areap2landvaluation")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "land_details_land_details_gen_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "land_details_gen_id")
     private Long landDetailsGenId;
 
