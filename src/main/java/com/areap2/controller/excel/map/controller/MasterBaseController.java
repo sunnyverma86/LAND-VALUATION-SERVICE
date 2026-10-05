@@ -621,6 +621,7 @@ public class MasterBaseController {
 
 	@GetMapping("/band-parameter-list")
 	public List<DistrictParameterMaster> getAllBandParameter() {
+		log.info("band-parameter-list");
 
 		return bandParameterServiceImpl.getAll();
 	}

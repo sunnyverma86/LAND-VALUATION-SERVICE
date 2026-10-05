@@ -170,7 +170,18 @@ public class DistrictParameterServiceImpl {
 	}
 
 	public List<DistrictParameterMaster> getAll() {
-		return repository.findAll();
+		log.info("getAll - before findAll");
+
+		try {
+			List<DistrictParameterMaster> result = repository.findAll();
+
+			log.info("getAll - after findAll, size={}", result.size());
+
+			return result;
+		} catch (Exception e) {
+			log.error("Error while fetching district_parameter_master", e);
+			throw e;
+		}
 	}
 
 	public DistrictParameterMaster getById(Long id) {
@@ -217,6 +228,5 @@ public class DistrictParameterServiceImpl {
 
 		repository.delete(entity);
 	}
-	
-	
+
 }
